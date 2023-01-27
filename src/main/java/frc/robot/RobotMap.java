@@ -2,10 +2,13 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
+import edu.wpi.first.wpilibj.Joystick;
+
 /**
  * RobotMap
  */
 public final class RobotMap {
+
 
 
 	public static class Drivetrain {
