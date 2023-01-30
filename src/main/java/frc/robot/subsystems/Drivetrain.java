@@ -5,13 +5,23 @@
 package frc.robot.subsystems;
 
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonFX;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
-  /** Creates a new Drivetrain. */
+  public static final TalonFX leftControllerDrive = RobotMap.Drivetrain.leftDrivetrainLeader;
+  public static final TalonFX rightControllerDrive = RobotMap.Drivetrain.rightDrivetrainLeader;
 
-  
+  public static final TalonFX leftFollower = RobotMap.Drivetrain.leftDrivetrainFollower;
+  public static final TalonFX rightFollower = RobotMap.Drivetrain.rightDrivetrainFollower;
+
+	
+
+  /** Creates a new Drivetrain. */
   public Drivetrain() {
   }
 
@@ -23,4 +33,10 @@ public class Drivetrain extends SubsystemBase {
   public void resetOdometry(Pose2d pose) {
 
   }
+
+  public void driveByPercentOutput(double left, double right) {
+	rightControllerDrive.set(ControlMode.PercentOutput, right);
+	leftControllerDrive.set(ControlMode.PercentOutput, left);
+	
+  }	  
 }

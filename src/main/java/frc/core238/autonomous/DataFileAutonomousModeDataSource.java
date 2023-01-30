@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import frc.core238.Logger;
 
 /**
  * Add your docs here.
@@ -29,7 +28,7 @@ public class DataFileAutonomousModeDataSource implements IAutonomousModeDataSour
         try {
             return Files.readString(Paths.get(filePath));
         } catch (IOException e) {
-            Logger.Debug("DataFileAutonomousModeDataSource.GetJson failed : " + filePath);
+            System.out.println("DataFileAutonomousModeDataSource.GetJson failed : " + filePath);
             return null;
         }
     }

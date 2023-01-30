@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        mavenCentral() // or jcenter()
+    }
+    dependencies {
+        classpath 'ch.raffael.markdown-doclet:markdown-doclet:1.4'
+    }
+}
+
+
 plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2023.2.1"
@@ -85,3 +95,5 @@ jar {
 deployArtifact.jarTask = jar
 wpi.java.configureExecutableTasks(jar)
 wpi.java.configureTestTasks(test)
+
+apply plugin: 'ch.raffael.markdown-doclet'
