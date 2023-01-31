@@ -37,4 +37,8 @@ public final class RobotMap {
 	
 		
 	}
+
+	public static class VisionParameters {
+		//vision stuff i guess	
+	}
 }
