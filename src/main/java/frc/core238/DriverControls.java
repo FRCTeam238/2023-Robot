@@ -44,7 +44,6 @@ public class DriverControls {
 	public double[] getPowers() {
 		double rightJoyValue = right.getY();
 		double leftJoyValue = left.getY();
-		double[] joysticks = new double[2];
 		double modifier = RobotMap.ControlParameters.cubicModifier;
 		double leftPower;
 		double rightPower;
@@ -57,7 +56,6 @@ public class DriverControls {
 			return new double[]{0, 0};
 		}
 
-		
 		
 	}
 }

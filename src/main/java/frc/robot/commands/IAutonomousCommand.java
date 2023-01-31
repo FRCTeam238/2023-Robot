@@ -10,7 +10,7 @@ package frc.robot.commands;
 import java.util.List;
 
 /**
- * Add your docs here.
+ * @deprecated unit testing should be revamped or removed entirely
  */
 public interface IAutonomousCommand {
     public boolean getIsAutonomousMode();
