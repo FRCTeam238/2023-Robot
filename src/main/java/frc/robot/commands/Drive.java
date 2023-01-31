@@ -15,11 +15,13 @@ public class Drive extends CommandBase{
 	DriverControls controls;
 	DifferentialDrive diff;	
 	Drivetrain drivetrain;
-	public Drive() {
+	driveType controlType;
+	public Drive(driveType controlType) {
 		drivetrain = new Drivetrain();
 		controls = new DriverControls(RobotMap.ControlParameters.left,
 							     RobotMap.ControlParameters.right,
-							     RobotMap.ControlParameters.controlType);	
+							     controlType);	
+		this.controlType = controlType;
 		addRequirements(drivetrain);
 	}
 	@Override
@@ -33,7 +35,7 @@ public class Drive extends CommandBase{
 		
 		double leftOutput;
 		double rightOutput;
-		switch (RobotMap.ControlParameters.controlType) {
+		switch (controlType) {
 			case Tank:
 				leftOutput = controls.getTankPowers()[0];
 				rightOutput = controls.getTankPowers()[1];
