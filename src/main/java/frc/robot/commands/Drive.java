@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 
@@ -39,11 +40,21 @@ public class Drive extends CommandBase{
 			case Tank:
 				leftOutput = controls.getTankPowers()[0];
 				rightOutput = controls.getTankPowers()[1];
+        if (RobotMap.ControlParameters.right.getTrigger()
+            || RobotMap.ControlParameters.left.getTrigger()) {
+              leftOutput *= RobotMap.ControlParameters.slowmodeModifier;
+              rightOutput *= RobotMap.ControlParameters.slowmodeModifier;
+            }
 				diff.tankDrive(leftOutput, rightOutput, false);
 			break;
 			case Arcade:
 				leftOutput = controls.getArcadePowers()[0];
 				rightOutput = controls.getArcadePowers()[1];
+        if (RobotMap.ControlParameters.right.getTrigger()
+            || RobotMap.ControlParameters.left.getTrigger()) {
+              leftOutput *= RobotMap.ControlParameters.slowmodeModifier;
+              rightOutput *= RobotMap.ControlParameters.slowmodeModifier;
+            }
 				diff.arcadeDrive(leftOutput, rightOutput);
 			break;
 		}

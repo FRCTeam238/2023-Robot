@@ -31,6 +31,7 @@ public final class RobotMap {
 		public static double cubicModifier = 0.2;
 		public static Joystick left = new Joystick(leftJoyID);
 		public static Joystick right = new Joystick(rightJoyID);
+    public static double slowmodeModifier = 0.7;
 		//TODO: Do we want to test out other driver control methods like arcade/cheesy?
 		//we don't use this value, we have a sendable chooser for this in robot.java, this is just backup
 		public static driveType controlType = driveType.Tank;

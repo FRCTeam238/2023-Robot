@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -32,6 +34,10 @@ public class Robot extends TimedRobot {
 	drivetrain = new Drivetrain();
 	controlType.setDefaultOption("Tank", driveType.Tank);
 	controlType.addOption("Arcade", driveType.Arcade);
+    RobotMap.DrivetrainParameters.leftDrivetrainLeader.setNeutralMode(NeutralMode.Brake);
+    RobotMap.DrivetrainParameters.leftDrivetrainFollower.setNeutralMode(NeutralMode.Brake);
+    RobotMap.DrivetrainParameters.rightDrivetrainLeader.setNeutralMode(NeutralMode.Brake);
+    RobotMap.DrivetrainParameters.rightDrivetrainFollower.setNeutralMode(NeutralMode.Brake);
   }
 
   /**

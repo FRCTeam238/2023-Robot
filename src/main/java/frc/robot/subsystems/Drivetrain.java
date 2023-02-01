@@ -43,5 +43,10 @@ public class Drivetrain extends SubsystemBase {
 	double avg = (left + right)/2;
 	rightControllerDrive.set(ControlMode.PercentOutput, avg);
 	leftControllerDrive.set(ControlMode.PercentOutput, avg);
+	
+  }
+  public void driveByVelocityOutput(double left, double right) {
+    rightControllerDrive.set(ControlMode.Velocity, right);
+    leftControllerDrive.set(ControlMode.Velocity, left);
   }
 }
