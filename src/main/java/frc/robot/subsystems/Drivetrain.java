@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
-  public static final TalonFX leftControllerDrive = RobotMap.Drivetrain.leftDrivetrainLeader;
-  public static final TalonFX rightControllerDrive = RobotMap.Drivetrain.rightDrivetrainLeader;
+  public static final TalonFX leftControllerDrive = RobotMap.DrivetrainParameters.leftDrivetrainLeader;
+  public static final TalonFX rightControllerDrive = RobotMap.DrivetrainParameters.rightDrivetrainLeader;
 
-  public static final TalonFX leftFollower = RobotMap.Drivetrain.leftDrivetrainFollower;
-  public static final TalonFX rightFollower = RobotMap.Drivetrain.rightDrivetrainFollower;
+  public static final TalonFX leftFollower = RobotMap.DrivetrainParameters.leftDrivetrainFollower;
+  public static final TalonFX rightFollower = RobotMap.DrivetrainParameters.rightDrivetrainFollower;
 
 	
 
@@ -28,7 +28,6 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-	
   }
   public void resetOdometry(Pose2d pose) {
 
@@ -39,4 +38,10 @@ public class Drivetrain extends SubsystemBase {
 	leftControllerDrive.set(ControlMode.PercentOutput, left);
 	
   }	  
+
+  public void driveStraight(double left, double right) {
+	double avg = (left + right)/2;
+	rightControllerDrive.set(ControlMode.PercentOutput, avg);
+	leftControllerDrive.set(ControlMode.PercentOutput, avg);
+  }
 }

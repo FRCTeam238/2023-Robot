@@ -41,10 +41,9 @@ public class DriverControls {
 
 
 	//puts a cubic on the joysticks just like last year
-	public double[] getPowers() {
+	public double[] getTankPowers() {
 		double rightJoyValue = right.getY();
-		double leftJoyValue = left.getY();
-		double[] joysticks = new double[2];
+		double leftJoyValue = left.getY(); 
 		double modifier = RobotMap.ControlParameters.cubicModifier;
 		double leftPower;
 		double rightPower;
@@ -58,6 +57,18 @@ public class DriverControls {
 		}
 
 		
+	}
+
+	public double[] getArcadePowers() {
+		double rightJoyValue = right.getX();
+		double leftJoyValue = left.getY(); 
+		double modifier = RobotMap.ControlParameters.cubicModifier;
+		double leftPower;
+		double rightPower;
+		leftPower = modifier * Math.pow(leftJoyValue, 3) + (1 - modifier) * leftJoyValue;
+		rightPower = modifier * Math.pow(rightJoyValue, 3) + (1 - modifier) * rightJoyValue;
+			return new double[]{leftPower, rightPower};
+
 		
 	}
 }
