@@ -13,12 +13,12 @@ public class OI {
 
 	Joystick leftJoystick = RobotMap.ControlParameters.left;
 	Joystick rightJoystick = RobotMap.ControlParameters.right;
-	DriverControls control = new DriverControls(leftJoystick, rightJoystick, driveType.Tank);
+	DriverControls control = new DriverControls(leftJoystick, rightJoystick);
 
 	Drive driveCommand;
 	public OI(driveType controlType) {
 		
-		driveCommand = new Drive(controlType);
+		driveCommand = new Drive();
 		Robot.drivetrain.setDefaultCommand(driveCommand);	
 
 	}

@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -17,10 +18,15 @@ public static class DrivetrainParameters {
     public static int leftDTLeaderID = 0;
     public static int rightDTFollowerID = 15;
     public static int leftDTFollowerID = 1;
-    public static TalonFX rightDrivetrainLeader = new TalonFX(rightDTLeaderID);
-    public static TalonFX leftDrivetrainLeader = new TalonFX(leftDTLeaderID);
+    public static WPI_TalonFX rightDrivetrainLeader = new WPI_TalonFX(rightDTLeaderID);
+    public static WPI_TalonFX leftDrivetrainLeader = new WPI_TalonFX(leftDTLeaderID);
+    public static WPI_TalonFX leftDrivetrainFollower = new WPI_TalonFX(leftDTFollowerID);
+	public static WPI_TalonFX rightDrivetrainFollower = new WPI_TalonFX(rightDTFollowerID);
+	public static double currentLimit = 40;
+	public static double triggerThresholdCurrent = 55;
+	public static double triggerThresholdTime = 0.5;
 	}
-	public static class Elevator {
+	public static class ElevatorParameters {
 		public static int elevatorFollowerID = 13; 
 		public static int elevatorLeaderID = 12;
 		public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
@@ -32,9 +38,9 @@ public static class DrivetrainParameters {
 		}
 
 	public static class ControlParameters {
-		public static int leftJoyID = 0;
-		public static int rightJoyID = 1;
-		public static int xboxID = 2;
+		public static int leftJoyID = 1;
+		public static int rightJoyID = 2;
+		public static int xboxID = 0;
 		public static double cubicModifier = 0.2;
 		public static Joystick left = new Joystick(leftJoyID);
 		public static Joystick right = new Joystick(rightJoyID);

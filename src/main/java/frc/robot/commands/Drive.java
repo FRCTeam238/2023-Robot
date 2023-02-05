@@ -1,29 +1,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 
 /**
  * TankDrive
  */
-public class Drive extends CommandBase{
+public class Drive extends CommandBase {
 
+	SendableChooser<driveType> controlType = new SendableChooser<>();
 	DriverControls controls;
-	DifferentialDrive diff;	
+	DifferentialDrive diff;
 	Drivetrain drivetrain;
-	driveType controlType;
-	public Drive(driveType controlType) {
-		drivetrain = new Drivetrain();
+
+	public Drive() {
+
+		drivetrain = Robot.drivetrain;
 		controls = new DriverControls(RobotMap.ControlParameters.left,
-							     RobotMap.ControlParameters.right,
-							     controlType);	
-		this.controlType = controlType;
+				RobotMap.ControlParameters.right);
+
 		addRequirements(drivetrain);
+		controlType.setDefaultOption("Tank", driveType.Tank);
+    	controlType.addOption("Arcade", driveType.Arcade);
+		controlType.addOption("Cheesy", driveType.Cheesy);
+		SmartDashboard.putData(controlType);
 	}
+
 	@Override
 	public void initialize() {
 		// TODO Auto-generated method stub
@@ -32,24 +41,30 @@ public class Drive extends CommandBase{
 
 	@Override
 	public void execute() {
-		
+
 		double leftOutput;
 		double rightOutput;
-		switch (controlType) {
+		switch (controlType.getSelected()) {
 			case Tank:
 				leftOutput = controls.getTankPowers()[0];
 				rightOutput = controls.getTankPowers()[1];
-				diff.tankDrive(leftOutput, rightOutput, false);
-			break;
+				drivetrain.tankDrive(leftOutput, rightOutput);
+				break;
 			case Arcade:
 				leftOutput = controls.getArcadePowers()[0];
 				rightOutput = controls.getArcadePowers()[1];
-				diff.arcadeDrive(leftOutput, rightOutput);
-			break;
+				drivetrain.arcadeDrive(leftOutput, rightOutput);
+				break;
+			case Cheesy:
+				leftOutput = controls.getCheesyPowers()[0];
+				rightOutput = controls.getCheesyPowers()[1];
+				drivetrain.cheesyDrive(leftOutput, rightOutput, controls.isCheesyTurnPressed());
+				break;
+
+				
 		}
 
 	}
-
 
 	@Override
 	public void end(boolean interrupted) {

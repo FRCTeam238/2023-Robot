@@ -14,19 +14,19 @@ import frc.robot.RobotMap;
 
 public class Elevator extends SubsystemBase {
   
-  protected final static CANSparkMax elevatorLeader = RobotMap.Elevator.elevatorLeader;
-  protected final static CANSparkMax elevatorFollower = RobotMap.Elevator.elevatorFollower;
+  protected final static CANSparkMax elevatorLeader = RobotMap.ElevatorParameters.elevatorLeader;
+  protected final static CANSparkMax elevatorFollower = RobotMap.ElevatorParameters.elevatorFollower;
   
   /** Creates a new Elevator. */
   public Elevator() {
-    initSparkMax()
+    initSparkMax();
   }
   
   public void initSparkMax() {
     elevatorFollower.follow(elevatorLeader);
-    elevatorLeader.setSmartCurrentLimit(RobotMap.Elevator.sparkCurrentLimit);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, RobotMap.Elevator.softLimitForward);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, RobotMap.Elevator.softLimitBackward);
+    elevatorLeader.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, RobotMap.ElevatorParameters.softLimitForward);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, RobotMap.ElevatorParameters.softLimitBackward);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
   }
