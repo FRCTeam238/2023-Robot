@@ -6,6 +6,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.core238.DriverControls.driveType;
 
 /**
@@ -27,7 +28,9 @@ public static class DrivetrainParameters {
 	public static double triggerThresholdTime = 0.5;
 	}
 	public static class ElevatorParameters {
-		public static int elevatorFollowerID = 13; 
+		public static final double MaxVel = 0;
+        public static final double MaxAccel = 0;
+        public static int elevatorFollowerID = 13; 
 		public static int elevatorLeaderID = 12;
 		public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
 		public static CANSparkMax elevatorFollower = new CANSparkMax(elevatorFollowerID, MotorType.kBrushless);
@@ -35,6 +38,13 @@ public static class DrivetrainParameters {
 		public static int sparkCurrentLimit;
 		public static int softLimitForward;
 		public static int softLimitBackward;
+		public static double kv;
+		public static double kg;
+		public static double ks;
+		public static double ka;
+		public static double kp;
+		public static double ki;
+		public static double kd;
 		}
 
 	public static class ControlParameters {
@@ -44,10 +54,18 @@ public static class DrivetrainParameters {
 		public static double cubicModifier = 0.2;
 		public static Joystick left = new Joystick(leftJoyID);
 		public static Joystick right = new Joystick(rightJoyID);
+		public static XboxController operatorController = new XboxController(xboxID);
+		public static double elevatorThreshold = 0.2;
+		public static double elevatorMultiplier = 0.25;
+		
     
 		//TODO: Do we want to test out other driver control methods like arcade/cheesy?
 		//we don't use this value, we have a sendable chooser for this in robot.java, this is just backup
 		public static driveType controlType = driveType.Tank;
 
+	}
+	
+	public static class IntakeParameters {
+		
 	}
 }

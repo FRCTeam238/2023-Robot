@@ -5,15 +5,18 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.SoftLimitDirection;
 import com.revrobotics.SparkMaxLimitSwitch.Type;
 
+import edu.wpi.first.math.controller.ElevatorFeedforward;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.ElevatorParameters;
 
 public class Elevator extends SubsystemBase {
-  
+  protected final static ElevatorFeedforward FF = new ElevatorFeedforward(ElevatorParameters.ks, ElevatorParameters.kg, ElevatorParameters.kv);
   protected final static CANSparkMax elevatorLeader = RobotMap.ElevatorParameters.elevatorLeader;
   protected final static CANSparkMax elevatorFollower = RobotMap.ElevatorParameters.elevatorFollower;
   
@@ -29,6 +32,9 @@ public class Elevator extends SubsystemBase {
     elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, RobotMap.ElevatorParameters.softLimitBackward);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
+    elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
+    elevatorLeader.getPIDController().setP(ElevatorParameters.ki);
+    elevatorLeader.getPIDController().setP(ElevatorParameters.kd);
   }
 
   public void moveByPercentOutput(double percent) {
@@ -46,7 +52,15 @@ public class Elevator extends SubsystemBase {
      elevatorLeader.getEncoder().setPosition(0);
     
     }
+  }
 
-    
+  public void PIDdrive(TrapezoidProfile.State state) {
+    double feed = FF.calculate(state.velocity);
+    elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
+
+  }
+
+  public double getVelocity() {
+    return elevatorLeader.getEncoder().getVelocity();
   }
 }

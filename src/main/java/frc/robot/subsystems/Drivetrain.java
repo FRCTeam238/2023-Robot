@@ -3,14 +3,14 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
@@ -22,10 +22,14 @@ public class Drivetrain extends SubsystemBase {
   public static final WPI_TalonFX leftFollower = RobotMap.DrivetrainParameters.leftDrivetrainFollower;
   public static final WPI_TalonFX rightFollower = RobotMap.DrivetrainParameters.rightDrivetrainFollower;
   public static DifferentialDrive diff = new DifferentialDrive(leftControllerDrive, rightControllerDrive);
+  public static DifferentialDriveOdometry differentialDriveOdometry;
+  Pose2d currentPose;
+  AHRS navx;
 
   /** Creates a new Drivetrain. */
   public Drivetrain() {
     initTalons();
+    
   }
 
   public void initTalons() {
@@ -43,6 +47,9 @@ public class Drivetrain extends SubsystemBase {
     leftControllerDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     rightFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     leftFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
+    differentialDriveOdometry = new DifferentialDriveOdometry(null, getLeftEncoderTicks(), getRightEncoderTicks());
+  
+    
 
     
   }
@@ -50,11 +57,23 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    differentialDriveOdometry.update(null, getLeftEncoderTicks(), getRightEncoderTicks());
   }
 
   public void resetOdometry(Pose2d pose) {
+    currentPose = pose;
 
   }
+
+  public double getRightEncoderTicks() {
+    return rightControllerDrive.getSelectedSensorPosition();
+  }
+
+  public double getLeftEncoderTicks() {
+    return leftControllerDrive.getSelectedSensorPosition();
+  }
+
+
 
   public void tankDrive(double left, double right) {
 
