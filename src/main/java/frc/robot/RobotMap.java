@@ -1,11 +1,14 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.core238.DriverControls.driveType;
 
@@ -30,6 +33,7 @@ public static class DrivetrainParameters {
 	public static class ElevatorParameters {
 		public static final double MaxVel = 0;
         public static final double MaxAccel = 0;
+        public static double midCubeHeight;
         public static int elevatorFollowerID = 13; 
 		public static int elevatorLeaderID = 12;
 		public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
@@ -45,6 +49,7 @@ public static class DrivetrainParameters {
 		public static double kp;
 		public static double ki;
 		public static double kd;
+        public static double midConeHeight;
 		}
 
 	public static class ControlParameters {
@@ -59,13 +64,28 @@ public static class DrivetrainParameters {
 		public static double elevatorMultiplier = 0.25;
 		
     
-		//TODO: Do we want to test out other driver control methods like arcade/cheesy?
 		//we don't use this value, we have a sendable chooser for this in robot.java, this is just backup
 		public static driveType controlType = driveType.Tank;
 
 	}
 	
 	public static class IntakeParameters {
-		
+		public static int intakeID = 9;
+		public static int shortArmForwardChannel = 5;
+		public static int shortArmBackChannel = 4;
+		public static int longArmForwardChannel = 7;
+		public static int longArmBackChannel = 6;
+		public static int intakeSolenoidForwardChannel = 1;
+		public static int intakeSolenoidBackChannel = 0;
+
+		public static double intakeSpeed = 0.2;
+		public static double intakeEjectSpeed = 0.2;
+
+
+		public static VictorSPX intakeMotor = new VictorSPX(intakeID);
+
+		public static DoubleSolenoid shortArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shortArmForwardChannel, shortArmBackChannel);
+		public static DoubleSolenoid longArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, longArmForwardChannel, longArmBackChannel);
+		public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeSolenoidForwardChannel, intakeSolenoidBackChannel);
 	}
 }
