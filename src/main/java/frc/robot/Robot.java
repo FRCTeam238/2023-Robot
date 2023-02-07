@@ -26,7 +26,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static Drivetrain drivetrain;
   public static Elevator elevator;
-public static Intake intake;
+  public static Intake intake;
   OI oi;
 
   /**
