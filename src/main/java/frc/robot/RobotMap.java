@@ -33,7 +33,6 @@ public static class DrivetrainParameters {
 	public static class ElevatorParameters {
 		public static final double MaxVel = 0;
         public static final double MaxAccel = 0;
-        public static double midCubeHeight;
         public static int elevatorFollowerID = 13; 
 		public static int elevatorLeaderID = 12;
 		public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
@@ -49,7 +48,10 @@ public static class DrivetrainParameters {
 		public static double kp;
 		public static double ki;
 		public static double kd;
+        public static double midCubeHeight;
         public static double midConeHeight;
+		public static double floorHeight;
+		public static double topHeight;
 		}
 
 	public static class ControlParameters {
@@ -80,7 +82,6 @@ public static class DrivetrainParameters {
 
 		public static double intakeSpeed = 0.2;
 		public static double intakeEjectSpeed = 0.2;
-
 
 		public static VictorSPX intakeMotor = new VictorSPX(intakeID);
 

@@ -8,16 +8,21 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class MidHeight extends DriveToHeight {
+public class MidConeHeight extends DriveToHeight {
   /** Creates a new MidHeight. */
-  public MidHeight() {
-    super(new TrapezoidProfile.State(Robot.intake.hasCube() ? RobotMap.ElevatorParameters.midCubeHeight : RobotMap.ElevatorParameters.midConeHeight, 0));
+  public MidConeHeight() { 
+    
+    super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.midConeHeight, 0));
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    if (!Robot.intake.isEitherExtended()) {
+      Robot.intake.extendShort();
+    }
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
