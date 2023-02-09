@@ -6,19 +6,22 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class ReleaseGamepieceCommand extends SequentialCommandGroup {
-  /** Creates a new ReleaseGamepieceCommand. */
-  public ReleaseGamepieceCommand() {
-    // Add your commands in the addCommands() call, e.g.
+public class StowCommand extends SequentialCommandGroup {
+  /** Creates a new StowCommand. */
+  public StowCommand() {
     Intake intake = Robot.intake;
-    addRequirements(intake);
+    Elevator elevator = Robot.elevator;
+    addRequirements(intake, elevator);
+    // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new OpenIntakeCommand());
-    addCommands(new IntakeInOutCommand(false));
+    addCommands(new Travelposition());
+    addCommands(new FloorHeight());
+    addCommands(new RetractAll());
   }
 }

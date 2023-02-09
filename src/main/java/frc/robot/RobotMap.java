@@ -29,7 +29,15 @@ public static class DrivetrainParameters {
 	public static double currentLimit = 40;
 	public static double triggerThresholdCurrent = 55;
 	public static double triggerThresholdTime = 0.5;
+	public static double trackWidth;
+	public static double wheelCircumferenceMeters;
+	public static double wheelCircumferenceInches;
+	public static double sensorUnitsPerRotation;
+	public static double wheelDiameterInches;
+	public static double staticVolts;
+	public static double voltsMetersPerSecondSquared;
 	}
+
 	public static class ElevatorParameters {
 		public static final double MaxVel = 0;
         public static final double MaxAccel = 0;
