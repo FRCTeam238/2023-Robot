@@ -3,6 +3,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.pathplanner.lib.PathConstraints;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -10,6 +11,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.SPI.Port;
 import frc.core238.DriverControls.driveType;
 
 /**
@@ -31,11 +33,19 @@ public static class DrivetrainParameters {
 	public static double triggerThresholdTime = 0.5;
 	public static double trackWidth;
 	public static double wheelCircumferenceMeters;
-	public static double wheelCircumferenceInches;
-	public static double sensorUnitsPerRotation;
-	public static double wheelDiameterInches;
-	public static double staticVolts;
-	public static double voltsMetersPerSecondSquared;
+	public static double sensorUnitsPerRotation = 2048 * 10.86;
+	public static double wheelDiameterInches = 6.18;
+	public static double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
+	public static double maxVoltage = 12; 
+	public static double kS; 
+	public static double kV; 
+	public static double kA;
+	public static double maxVelocity = 2;
+	public static double maxAccel = 2; 
+	public static double maxYTolerance = 0.05; // meters
+	public static double maxXTolerance = 0.05; // meters
+	public static double maxAngle = 1;// in degrees 
+
 	}
 
 	public static class ElevatorParameters {
@@ -96,5 +106,11 @@ public static class DrivetrainParameters {
 		public static DoubleSolenoid shortArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shortArmForwardChannel, shortArmBackChannel);
 		public static DoubleSolenoid longArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, longArmForwardChannel, longArmBackChannel);
 		public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeSolenoidForwardChannel, intakeSolenoidBackChannel);
+	}
+
+	public static class VisionParameters {
+
+        public static Port navxPort;
+
 	}
 }

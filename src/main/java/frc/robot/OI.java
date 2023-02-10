@@ -19,11 +19,13 @@ import frc.robot.commands.MidConeHeight;
 import frc.robot.commands.MidCubeHeight;
 import frc.robot.commands.ReleaseGamepieceCommand;
 import frc.robot.commands.Scoringposition;
+import frc.robot.commands.StowCommand;
 import frc.robot.commands.TopHeight;
 import frc.robot.commands.Travelposition;
 
 /**
  * OI
+ * stands for operatorInterface
  */
 public class OI {
 
@@ -68,6 +70,7 @@ public class OI {
 
 		JoystickButton dropGamepiece = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
 		dropGamepiece.whileTrue(new ReleaseGamepieceCommand());
+		
 		//Dpad up
 		POVButton Travelposition = new POVButton(operatorController, 0);
 		Travelposition.onTrue(new Travelposition());
@@ -82,6 +85,10 @@ public class OI {
 		//Dpad down
 		POVButton Armdown = new POVButton(operatorController, 180);
 		Armdown.onTrue(new Armdown());
+
+		//Back button
+		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
+		stowPos.onTrue(new StowCommand());
 	}
 	
 		

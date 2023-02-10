@@ -1,0 +1,16 @@
+{
+    "AutonomousModes": [
+        {
+            "Name": "New Mode",
+            "Commands": [
+                {
+                    "Name": "TrajectoryDriveCommand",
+                    "Parameters": [
+                        "New Path"
+                    ],
+                    "ParallelType": "None"
+                }
+            ]
+        }
+    ]
+}

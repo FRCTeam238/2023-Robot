@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.core238.autonomous.AutonomousModeAnnotation;
@@ -20,34 +19,41 @@ import frc.robot.subsystems.Drivetrain;
 public class TrajectoryDriveCommand extends SequentialCommandGroup implements IAutonomousCommand{
   DifferentialDriveKinematics kinematics;
   Drivetrain drivetrain = Robot.drivetrain;
+  String trajectoryName;
+  BiConsumer<Double, Double> output;
   /** Creates a new TrajectoryDriveCommand. */
   public TrajectoryDriveCommand() {
     kinematics = Drivetrain.kinematics;
-    BiConsumer<Double, Double> output = drivetrain::driveByVelocityOutput;
+    output = drivetrain::driveByVelocityOutput;
+
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands();
+    
   }
-
+  
   @Override
   public boolean getIsAutonomousMode() {
     // TODO Auto-generated method stub
     return false;
   }
-
+  
   @Override
   public void setIsAutonomousMode(boolean isAutonomousMode) {
-      // TODO Auto-generated method stub
-      
+    // TODO Auto-generated method stub
+    
   }
   @Override
   public void setParameters(List<String> parameters) {
-      // TODO Auto-generated method stub
-      
+    // TODO Auto-generated method stub
+    trajectoryName = parameters.get(0);
+    LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectoryName, drivetrain::getCurrentPose, kinematics, output, drivetrain);
+    addCommands(ltv);
+    
   }
   @Override
   public double getTimeout() {
-      // TODO Auto-generated method stub
-      return 0;
+    // TODO Auto-generated method stub
+    return 0;
   }
 }

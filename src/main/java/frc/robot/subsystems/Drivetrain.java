@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.controller.DifferentialDriveFeedforward;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
@@ -28,7 +29,7 @@ public class Drivetrain extends SubsystemBase {
   public static DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(RobotMap.DrivetrainParameters.trackWidth);
   public static DifferentialDriveOdometry differentialDriveOdometry;
 
-  public static DifferentialDriveFeedforward feedForward = new DifferentialDriveFeedforward(0, 0, 0, 0, 0);
+  public static SimpleMotorFeedforward feedForward = new SimpleMotorFeedforward(RobotMap.DrivetrainParameters.kS, RobotMap.DrivetrainParameters.kV, RobotMap.DrivetrainParameters.kA);
 
   
   Pose2d currentPose;
@@ -37,6 +38,7 @@ public class Drivetrain extends SubsystemBase {
   /** Creates a new Drivetrain. */
   public Drivetrain() {
     initTalons();
+    navx = new AHRS(RobotMap.VisionParameters.navxPort);
     
   }
 
@@ -56,7 +58,7 @@ public class Drivetrain extends SubsystemBase {
     rightFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     leftFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     differentialDriveOdometry = new DifferentialDriveOdometry(null, getLeftEncoderTicks(), getRightEncoderTicks());
-  
+    
     
 
     
@@ -65,12 +67,16 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    differentialDriveOdometry.update(null, getLeftEncoderTicks(), getRightEncoderTicks());
+    differentialDriveOdometry.update(navx.getRotation2d(), getLeftEncoderTicks(), getRightEncoderTicks());
+    currentPose = differentialDriveOdometry.getPoseMeters();
   }
 
   public void resetOdometry(Pose2d pose) {
     currentPose = pose;
+  }
 
+  public Pose2d getCurrentPose() {
+    return differentialDriveOdometry.getPoseMeters();
   }
 
   public double getRightEncoderTicks() {
@@ -83,8 +89,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void driveByVelocityOutput(double left, double right) {
-    rightControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, right);
+    rightControllerDrive.set(ControlMode.Velocity, right, DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.currentLimit);
+    leftControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.currentLimit);
   }
+
+
 
   public void tankDrive(double left, double right) {
 
@@ -100,11 +109,15 @@ public class Drivetrain extends SubsystemBase {
     diff.curvatureDrive(xSpeed, zRotation, turnInPlace);
   }
 
+
+  
   public void driveStraight(double left, double right) {
-    double avg = (left + right) / 2;
+    double avg = (left + right) / 2.0;
     rightControllerDrive.set(ControlMode.PercentOutput, avg);
     leftControllerDrive.set(ControlMode.PercentOutput, avg);
   }
+
+
 
   public static double stepsToMeters(double steps) {
     return (RobotMap.DrivetrainParameters.wheelCircumferenceMeters / RobotMap.DrivetrainParameters.sensorUnitsPerRotation) * steps;
@@ -115,11 +128,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public static double stepsPerDecisecToMetersToSec(double stepsPerDecisec) {
-    return stepsToMeters(stepsPerDecisec * 10);
+    return stepsToMeters(stepsPerDecisec * 10.0);
   }
 
   public static double metersPerDecisecToStepsToSec(double metersPerSec) {
-    return metersToSteps(metersPerSec) / 10;
+    return metersToSteps(metersPerSec) / 10.0;
   }
 
   public static double insToRevs(double inches) {
