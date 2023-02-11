@@ -25,6 +25,12 @@ public class Drivetrain extends SubsystemBase {
 
   public static final WPI_TalonFX leftFollower = RobotMap.DrivetrainParameters.leftDrivetrainFollower;
   public static final WPI_TalonFX rightFollower = RobotMap.DrivetrainParameters.rightDrivetrainFollower;
+  private static final int kTimeoutMs = 30;
+  private static final int kPIDLoopIdx = 0;
+  private static final double kP = 0;
+  private static final double kI = 0;
+  private static final double kD = 0;
+  private static final double kF = 0;
   public static DifferentialDrive diff = new DifferentialDrive(leftControllerDrive, rightControllerDrive);
   public static DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(RobotMap.DrivetrainParameters.trackWidth);
   public static DifferentialDriveOdometry differentialDriveOdometry;
@@ -63,6 +69,46 @@ public class Drivetrain extends SubsystemBase {
 
     
   }
+    //Set the encoder status frame to update every 1ms to minimize latency and jitter
+    initPID(leftControllerDrive);
+    initPID(rightControllerDrive);
+  }
+
+  public void initPID(TalonFX talon) {
+       /* Config the peak and nominal outputs ([-1, 1] represents [-100, 100]%) */
+       talon.configNominalOutputForward(0, kTimeoutMs);
+       talon.configNominalOutputReverse(0, kTimeoutMs);
+       talon.configPeakOutputForward(1, kTimeoutMs);
+       talon.configPeakOutputReverse(-1, kTimeoutMs);
+   
+       /**
+        * Config the allowable closed-loop error, Closed-Loop output will be
+        * neutral within this range.
+        */
+       talon.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
+   
+       /* Config closed loop gains for Primary closed loop (Current) */
+       talon.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+       talon.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+       talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+       talon.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+       //talon.config_IntegralZone(kPIDLoopIdx, kIzone, kTimeoutMs);
+       
+       // Config encoders and set them to update every 1ms to minimize latency/jitter
+       talon.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, kPIDLoopIdx, kTimeoutMs);
+       talon.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 0);
+   
+       //talon.configClosedloopRamp(rampRate, kTimeoutMs);
+   
+       // Ensure motor output and encoder velocity are proportional to each other
+       // If they become inverted, set these to true
+       talon.setSensorPhase(true);
+ 
+       talon.configVelocityMeasurementPeriod(SensorVelocityMeasPeriod.Period_5Ms);
+       talon.configVelocityMeasurementWindow(2);
+   
+       talon.setSelectedSensorPosition(0);
+     }
 
   @Override
   public void periodic() {
