@@ -7,6 +7,7 @@ import com.pathplanner.lib.PathConstraints;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -31,11 +32,11 @@ public static class DrivetrainParameters {
 	public static double currentLimit = 40;
 	public static double triggerThresholdCurrent = 55;
 	public static double triggerThresholdTime = 0.5;
-	public static double trackWidth;
-	public static double wheelCircumferenceMeters;
+	public static double trackWidth = .7;
 	public static double sensorUnitsPerRotation = 2048 * 10.86;
 	public static double wheelDiameterInches = 6.18;
 	public static double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
+	public static double wheelCircumferenceMeters = Units.inchesToMeters(wheelCircumferenceInches);
 	public static double maxVoltage = 12; 
 	public static double kS; 
 	public static double kV; 
@@ -45,6 +46,10 @@ public static class DrivetrainParameters {
 	public static double maxYTolerance = 0.05; // meters
 	public static double maxXTolerance = 0.05; // meters
 	public static double maxAngle = 1;// in degrees 
+	public static final double kVLinear = 2;
+    public static final double kALinear = .2;
+	public static final double kVAngular = 1.5;
+    public static final double kAAngular = .3;
 
 	}
 
@@ -110,7 +115,7 @@ public static class DrivetrainParameters {
 
 	public static class VisionParameters {
 
-        public static Port navxPort;
+        public static Port navxPort = Port.kMXP;
 
 	}
 }
