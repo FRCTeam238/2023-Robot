@@ -8,23 +8,43 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation3d;
+import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.core238.PoseHelper;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Intake extends SubsystemBase {
   
   VictorSPX intakeMotor;
+  GenericEntry armPoseEntry;
+  Pose3d armPose = new Pose3d();
   
   /** Creates a new Intake. */
   public Intake() {
     intakeMotor = RobotMap.IntakeParameters.intakeMotor;
+    armPoseEntry = Shuffleboard.getTab("Logging").add("ArmPose", PoseHelper.PoseToArray(armPose)).getEntry();
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-
+    armPose = Robot.elevator.getPose();
+    if (getShort())
+    {
+      armPose = armPose.plus(new Transform3d(new Translation3d(-.08,0,.065), new Rotation3d(0, Math.toRadians(19), 0)));
+    }
+    if (getLong())
+    {
+      armPose = armPose.plus(new Transform3d(new Translation3d(-.15,0,.32), new Rotation3d(0, Math.toRadians(67.4), 0)));
+    }
+    armPoseEntry.setDoubleArray(PoseHelper.PoseToArray(armPose));
   }
 
   public void runIntake(double intakeSpeed) {
