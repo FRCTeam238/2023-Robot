@@ -1,0 +1,114 @@
+{
+  "Keyboard 2 Settings": {
+    "window": {
+      "visible": true
+    }
+  },
+  "keyboardJoysticks": [
+    {
+      "axisConfig": [
+        {
+          "incKey": 68
+        },
+        {
+          "decKey": 65,
+          "incKey": 81
+        },
+        {
+          "decKey": 50,
+          "decayRate": 0.0,
+          "incKey": 51,
+          "keyRate": 0.009999999776482582
+        },
+        {
+          "decKey": 57,
+          "incKey": 48
+        },
+        {},
+        {
+          "decKey": 47,
+          "incKey": 39
+        }
+      ],
+      "axisCount": 6,
+      "buttonCount": 8,
+      "buttonKeys": [
+        75,
+        76,
+        74,
+        73,
+        49,
+        56,
+        -1,
+        -1
+      ],
+      "povConfig": [
+        {
+          "key0": 83,
+          "key135": 323,
+          "key180": 88,
+          "key225": 321,
+          "key270": 90,
+          "key315": 327,
+          "key45": 329,
+          "key90": 67
+        }
+      ],
+      "povCount": 1
+    },
+    {
+      "axisConfig": [
+        {},
+        {
+          "decKey": 263,
+          "incKey": 266
+        }
+      ],
+      "axisCount": 2,
+      "buttonCount": 4,
+      "buttonKeys": [
+        77,
+        -1,
+        46,
+        -1
+      ],
+      "povCount": 0
+    },
+    {
+      "axisConfig": [
+        {},
+        {
+          "decKey": 262,
+          "incKey": 267
+        }
+      ],
+      "axisCount": 2,
+      "buttonCount": 6,
+      "buttonKeys": [
+        260,
+        268,
+        -1,
+        261,
+        269,
+        -1
+      ],
+      "povCount": 0
+    },
+    {
+      "axisCount": 0,
+      "buttonCount": 0,
+      "povCount": 0
+    }
+  ],
+  "robotJoysticks": [
+    {
+      "guid": "Keyboard0"
+    },
+    {
+      "guid": "Keyboard1"
+    },
+    {
+      "guid": "Keyboard2"
+    }
+  ]
+}
