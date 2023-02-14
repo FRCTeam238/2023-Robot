@@ -10,6 +10,7 @@ import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
 
 import java.util.function.BiConsumer;
@@ -30,7 +31,8 @@ public class GeneratePathLive extends SequentialCommandGroup {
         double posX = drivetrain.getCurrentPose().getX();
         double posY = drivetrain.getCurrentPose().getY();
         Rotation2d rot = drivetrain.getCurrentPose().getRotation();
-        PathPlannerTrajectory trajectory = PathPlanner.generatePath(new PathConstraints(4, 3),
+        PathPlannerTrajectory trajectory = PathPlanner.generatePath(new PathConstraints(RobotMap.DrivetrainParameters.maxVelocity,
+                                                                                        RobotMap.DrivetrainParameters.maxAccel),
                                                                     new PathPoint(new Translation2d(posX, posY), rot),
                                                                     new PathPoint(endTranslation, endRotation));
         LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, drivetrain);
