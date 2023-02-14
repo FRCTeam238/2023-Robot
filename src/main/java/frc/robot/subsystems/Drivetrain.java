@@ -31,6 +31,7 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
@@ -98,6 +99,7 @@ public class Drivetrain extends SubsystemBase {
     //Set the encoder status frame to update every 1ms to minimize latency and jitter
     initPID(leftControllerDrive);
     initPID(rightControllerDrive);
+    
   }
 
   public void initPID(TalonFX talon) {
