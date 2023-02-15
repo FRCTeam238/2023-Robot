@@ -5,7 +5,9 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -41,9 +43,13 @@ public class Robot extends TimedRobot {
     // and put our
     // autonomous chooser on the dashboard.
     drivetrain = new Drivetrain();
+    elevator = new Elevator();
+    intake = new Intake();
     
     oi = new OI(driveType.Tank);
     DataLogManager.start();
+    Shuffleboard.getTab("Logging").add(CommandScheduler.getInstance());
+    DriverStation.startDataLog(DataLogManager.getLog());
   }
 
   /**
@@ -124,4 +130,5 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
 }

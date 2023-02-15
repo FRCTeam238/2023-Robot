@@ -164,8 +164,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void driveByVelocityOutput(double left, double right) {
-    rightControllerDrive.set(ControlMode.Velocity, right, DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.currentLimit);
-    leftControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.currentLimit);
+    rightControllerDrive.set(ControlMode.Velocity, right, DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
+    leftControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
   }
 
 
@@ -232,8 +232,6 @@ public class Drivetrain extends SubsystemBase {
     // subsystem in a separate thread or have changed the nominal timestep
     // of TimedRobot, this value needs to match it.
     m_driveSim.update(0.02);
-
-    System.out.println("Left, Right " + m_driveSim.getLeftPositionMeters() + "," + m_driveSim.getRightPositionMeters()); 
 
     // Update all of our sensors.
     leftControllerDrive.getSimCollection().setIntegratedSensorRawPosition((int) metersToSteps(m_driveSim.getLeftPositionMeters()));
