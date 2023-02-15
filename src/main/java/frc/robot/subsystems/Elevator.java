@@ -81,4 +81,8 @@ public class Elevator extends SubsystemBase {
   public double getVelocity() {
     return elevatorLeader.getEncoder().getVelocity();
   }
+
+  public boolean getLowerLimit() {
+    return elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
+  }
 }
