@@ -36,6 +36,7 @@ public class Elevator extends SubsystemBase {
   public void initSparkMax() {
     elevatorFollower.follow(elevatorLeader);
     elevatorLeader.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
+    elevatorFollower.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
     elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, RobotMap.ElevatorParameters.softLimitForward);
     elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, RobotMap.ElevatorParameters.softLimitBackward);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);

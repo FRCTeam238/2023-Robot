@@ -55,27 +55,38 @@ public final class RobotMap {
     }
 
     public static class ElevatorParameters {
-        public static final double MaxVel = 0;
-        public static final double MaxAccel = 0;
+		protected final static int cpr = 42;
+		protected final static double gearing = 4; //4:1 gear ratio
+		protected final static double inchesPerRev = 1.5*Math.PI; //1.5" diameter pulley
+		
+		public static int inchesToTicks(double inches) {
+			return (int)((inches/inchesPerRev)*gearing*cpr);
+		}
+
+        public static final double MaxVel = inchesToTicks(8); //Starting very slow. Real max is ~ 8 fps = 8*12
+        public static final double MaxAccel = inchesToTicks(24); //~1/3 second to accell to this slow max V
+		public static final double holdPercent = 0.08;
         public static int elevatorFollowerID = 13;
         public static int elevatorLeaderID = 12;
         public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
         public static CANSparkMax elevatorFollower = new CANSparkMax(elevatorFollowerID, MotorType.kBrushless);
         //TODO: initialize these variables w/ real #'s
-        public static int sparkCurrentLimit;
-        public static int softLimitForward;
-        public static int softLimitBackward;
-        public static double kv;
-        public static double kg;
+        public static int sparkCurrentLimit = 30;
+        public static int softLimitForward = inchesToTicks(30); //Actual max travel = 36
+        public static int softLimitBackward = inchesToTicks(.25);
+        public static double kv = 4.09; //theortical
+        public static double kg = 1.02;
         public static double ks;
-        public static double ka;
+        public static double ka = .13; //theoretical
         public static double kp;
         public static double ki;
         public static double kd;
-        public static double midCubeHeight;
-        public static double midConeHeight;
-        public static double floorHeight;
-        public static double topHeight;
+        public static double midCubeHeight = inchesToTicks (21.25); //initial guess based on CAD
+        public static double midConeHeight = inchesToTicks(31.175); //initial guess based on CAD
+        public static double floorHeight = inchesToTicks(.25); //drive all the way down to soft limit  
+        public static double topHeight = inchesToTicks(34.5); //initial guess based on CAD
+
+
     }
 
     public static class ControlParameters {
