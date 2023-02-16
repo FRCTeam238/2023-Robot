@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.pathplanner.lib.PathConstraints;
@@ -118,7 +119,7 @@ public final class RobotMap {
         public static double intakeSpeed = 0.2;
         public static double intakeEjectSpeed = 0.2;
 
-        public static VictorSPX intakeMotor = new VictorSPX(intakeID);
+        public static TalonSRX intakeMotor = new TalonSRX(intakeID);
 
         public static DoubleSolenoid shortArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shortArmForwardChannel, shortArmBackChannel);
         public static DoubleSolenoid longArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, longArmForwardChannel, longArmBackChannel);
