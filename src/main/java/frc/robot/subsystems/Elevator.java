@@ -56,8 +56,8 @@ public class Elevator extends SubsystemBase {
   }
 
   public double getPositionMeters() {
-    //1.5 inches per pulley rotation divided by 42 ppr and 4:1 gear ratio
-    return Units.inchesToMeters(1.5*getEncoderPosition()/(4));
+    //1.5*Pi inches per pulley rotation divided by 4:1 gear ratio
+    return Units.inchesToMeters(1.5*Math.PI*getEncoderPosition()/(4));
   }
 
   public Pose3d getPose() {
@@ -71,11 +71,15 @@ public class Elevator extends SubsystemBase {
      elevatorLeader.getEncoder().setPosition(0);
     }
     poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
-    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
   }
 
   public void PIDdrive(TrapezoidProfile.State state) {
+    SmartDashboard.putNumber("Desired V", state.velocity);
+    SmartDashboard.putNumber("Desired Pos", state.position);
+    SmartDashboard.putNumber("Actual V", getVelocity());
+    SmartDashboard.putNumber("Actual Pos", getEncoderPosition());
     double feed = FF.calculate(state.velocity);
+    SmartDashboard.putNumber("FF", feed);
     elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
 
   }
