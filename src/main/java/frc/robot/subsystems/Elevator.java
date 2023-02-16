@@ -16,6 +16,7 @@ import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.PoseHelper;
 import frc.robot.RobotMap;
@@ -37,8 +38,8 @@ public class Elevator extends SubsystemBase {
     elevatorFollower.follow(elevatorLeader);
     elevatorLeader.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
     elevatorFollower.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, RobotMap.ElevatorParameters.softLimitForward);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, RobotMap.ElevatorParameters.softLimitBackward);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, (float)RobotMap.ElevatorParameters.softLimitForward);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, (float)RobotMap.ElevatorParameters.softLimitBackward);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
@@ -56,7 +57,7 @@ public class Elevator extends SubsystemBase {
 
   public double getPositionMeters() {
     //1.5 inches per pulley rotation divided by 42 ppr and 4:1 gear ratio
-    return Units.inchesToMeters(1.5*getEncoderPosition()/(42.0*4));
+    return Units.inchesToMeters(1.5*getEncoderPosition()/(4));
   }
 
   public Pose3d getPose() {
@@ -70,6 +71,7 @@ public class Elevator extends SubsystemBase {
      elevatorLeader.getEncoder().setPosition(0);
     }
     poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
+    SmartDashboard.putNumber("ElevatorEncoder", getEncoderPosition());
   }
 
   public void PIDdrive(TrapezoidProfile.State state) {

@@ -55,29 +55,29 @@ public final class RobotMap {
     }
 
     public static class ElevatorParameters {
-		protected final static int cpr = 42;
+		protected final static int cpr = 1;
 		protected final static double gearing = 4; //4:1 gear ratio
 		protected final static double inchesPerRev = 1.5*Math.PI; //1.5" diameter pulley
 		
-		public static int inchesToTicks(double inches) {
-			return (int)((inches/inchesPerRev)*gearing*cpr);
+		public static double inchesToTicks(double inches) {
+			return (inches/inchesPerRev)*gearing*cpr;
 		}
 
         public static final double MaxVel = inchesToTicks(8); //Starting very slow. Real max is ~ 8 fps = 8*12
         public static final double MaxAccel = inchesToTicks(24); //~1/3 second to accell to this slow max V
-		public static final double holdPercent = 0.08;
+		public static final double holdPercent = 0.03;
         public static int elevatorFollowerID = 13;
         public static int elevatorLeaderID = 12;
         public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
         public static CANSparkMax elevatorFollower = new CANSparkMax(elevatorFollowerID, MotorType.kBrushless);
         //TODO: initialize these variables w/ real #'s
         public static int sparkCurrentLimit = 30;
-        public static int softLimitForward = inchesToTicks(30); //Actual max travel = 36
-        public static int softLimitBackward = inchesToTicks(.25);
-        public static double kv = 4.09; //theortical
+        public static double softLimitForward = inchesToTicks(30); //Actual max travel = 36
+        public static double softLimitBackward = inchesToTicks(.25);
+        public static double kv = .1/inchesToTicks(1); //theortical
         public static double kg = 1.02;
         public static double ks;
-        public static double ka = .13; //theoretical
+        public static double ka = .0033/inchesToTicks(1); //theortical
         public static double kp;
         public static double ki;
         public static double kd;
@@ -97,8 +97,8 @@ public final class RobotMap {
         public static Joystick left = new Joystick(leftJoyID);
         public static Joystick right = new Joystick(rightJoyID);
         public static XboxController operatorController = new XboxController(xboxID);
-        public static double elevatorThreshold = 0.2;
-        public static double elevatorMultiplier = 0.25;
+        public static double elevatorThreshold = 0.1;
+        public static double elevatorMultiplier = 0.125;
 
 
         //we don't use this value, we have a sendable chooser for this in robot.java, this is just backup
@@ -110,8 +110,8 @@ public final class RobotMap {
         public static int intakeID = 9;
         public static int shortArmForwardChannel = 5;
         public static int shortArmBackChannel = 4;
-        public static int longArmForwardChannel = 7;
-        public static int longArmBackChannel = 6;
+        public static int longArmForwardChannel = 3;
+        public static int longArmBackChannel = 2;
         public static int intakeSolenoidForwardChannel = 1;
         public static int intakeSolenoidBackChannel = 0;
 
