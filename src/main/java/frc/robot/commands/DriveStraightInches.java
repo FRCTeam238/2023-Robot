@@ -1,0 +1,72 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
+package frc.robot.commands;
+
+import java.util.List;
+
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.core238.autonomous.AutonomousModeAnnotation;
+import frc.robot.Robot;
+
+@AutonomousModeAnnotation(parameterNames = {"DistanceInches"})
+public class DriveStraightInches extends CommandBase implements IAutonomousCommand{
+
+  private double startingVal;
+  private double target;
+
+  /** Creates a new DriveStraightInches. */
+  public DriveStraightInches() {
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.drivetrain);
+  }
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    startingVal = Units.metersToInches(Robot.drivetrain.stepsToMeters(Robot.drivetrain.getLeftEncoderTicks()));
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {
+      Robot.drivetrain.driveStraight(.3, .3);
+  }
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {}
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    double currentDist = Units.metersToInches(Robot.drivetrain.stepsToMeters(Robot.drivetrain.getLeftEncoderTicks())) - startingVal;
+    return currentDist > target;
+  }
+
+  @Override
+  public boolean getIsAutonomousMode() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+
+  @Override
+  public void setIsAutonomousMode(boolean isAutonomousMode) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void setParameters(List<String> parameters) {
+    // TODO Auto-generated method stub
+    target = Double.parseDouble(parameters.get(0));
+  }
+
+  @Override
+  public double getTimeout() {
+    // TODO Auto-generated method stub
+    return 0;
+  }
+}
