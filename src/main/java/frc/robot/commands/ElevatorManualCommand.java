@@ -26,7 +26,7 @@ public class ElevatorManualCommand extends CommandBase {
   @Override
   public void execute() {
     if (Math.abs(RobotMap.ControlParameters.operatorController.getRightY()) > RobotMap.ControlParameters.elevatorThreshold) {
-      double percentOutput = RobotMap.ControlParameters.operatorController.getRightY() * RobotMap.ControlParameters.elevatorMultiplier;
+      double percentOutput = -1*RobotMap.ControlParameters.operatorController.getRightY() * RobotMap.ControlParameters.elevatorMultiplier;
         elevator.moveByPercentOutput(percentOutput);
     } else if (!elevator.getLowerLimit()){ // If we're at the bottom just let it go, otherwise hold
       elevator.moveByPercentOutput(RobotMap.ElevatorParameters.holdPercent);

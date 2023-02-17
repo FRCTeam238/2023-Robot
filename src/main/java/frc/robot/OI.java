@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -17,6 +18,7 @@ import frc.robot.commands.FloorHeight;
 import frc.robot.commands.IntakeInOutCommand;
 import frc.robot.commands.MidConeHeight;
 import frc.robot.commands.MidCubeHeight;
+import frc.robot.commands.OpenIntakeCommand;
 import frc.robot.commands.ReleaseGamepieceCommand;
 import frc.robot.commands.Scoringposition;
 import frc.robot.commands.StowCommand;
@@ -33,6 +35,7 @@ public class OI {
 	Joystick leftJoystick = RobotMap.ControlParameters.left;
 	Joystick rightJoystick = RobotMap.ControlParameters.right;
 	XboxController operatorController = RobotMap.ControlParameters.operatorController;
+	CommandXboxController commandController = new CommandXboxController(operatorController.getPort());
 	DriverControls control = new DriverControls(leftJoystick, rightJoystick);
 
 	ElevatorManualCommand elevatorManualCommand;
@@ -62,14 +65,11 @@ public class OI {
 		JoystickButton topHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
 		topHeight.onTrue(new TopHeight());
 
-		TriggerButton intakeIn = new TriggerButton(operatorController, XboxController.Axis.kLeftTrigger.value);
-		intakeIn.whileTrue(new IntakeInOutCommand(true));
-
-		TriggerButton intakeOut = new TriggerButton(operatorController, XboxController.Axis.kLeftTrigger.value);
-		intakeOut.whileTrue(new IntakeInOutCommand(false));
-
+		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(true));
+		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(false));
+		
 		JoystickButton dropGamepiece = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
-		dropGamepiece.whileTrue(new ReleaseGamepieceCommand());
+		dropGamepiece.whileTrue(new OpenIntakeCommand());
 		
 		//Dpad up
 		POVButton Travelposition = new POVButton(operatorController, 0);

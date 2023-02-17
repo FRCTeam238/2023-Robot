@@ -45,6 +45,7 @@ public class Elevator extends SubsystemBase {
     elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
     elevatorLeader.getPIDController().setP(ElevatorParameters.ki);
     elevatorLeader.getPIDController().setP(ElevatorParameters.kd);
+    elevatorLeader.getPIDController().setOutputRange(-.2, 1);
   }
 
   public void moveByPercentOutput(double percent) {
@@ -71,6 +72,7 @@ public class Elevator extends SubsystemBase {
      elevatorLeader.getEncoder().setPosition(0);
     }
     poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
+    SmartDashboard.putNumber("Encoder", getEncoderPosition());
   }
 
   public void PIDdrive(TrapezoidProfile.State state) {

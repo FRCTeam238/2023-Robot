@@ -71,21 +71,21 @@ public final class RobotMap {
         public static int elevatorLeaderID = 12;
         public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
         public static CANSparkMax elevatorFollower = new CANSparkMax(elevatorFollowerID, MotorType.kBrushless);
-        //TODO: initialize these variables w/ real #'s
+
         public static int sparkCurrentLimit = 30;
         public static double softLimitForward = inchesToTicks(30); //Actual max travel = 36
         public static double softLimitBackward = inchesToTicks(.25);
-        public static double kv = .1/inchesToTicks(1); //theortical
-        public static double kg = 1.02;
-        public static double ks;
-        public static double ka = .0033/inchesToTicks(1); //theortical
+        public static double kv = .0856; //theortical
+        public static double kg = .32804;
+        public static double ks = .185;
+        public static double ka = .028; //theortical
         public static double kp;
         public static double ki;
         public static double kd;
         public static double midCubeHeight = inchesToTicks (21.25); //initial guess based on CAD
         public static double midConeHeight = inchesToTicks(31.175); //initial guess based on CAD
         public static double floorHeight = inchesToTicks(.25); //drive all the way down to soft limit  
-        public static double topHeight = inchesToTicks(34.5); //initial guess based on CAD
+        public static double topHeight = 27.75;//inchesToTicks(34.5); //initial guess based on CAD
 
 
     }
@@ -109,21 +109,25 @@ public final class RobotMap {
 
     public static class IntakeParameters {
         public static int intakeID = 9;
-        public static int shortArmForwardChannel = 5;
-        public static int shortArmBackChannel = 4;
-        public static int longArmForwardChannel = 3;
-        public static int longArmBackChannel = 2;
-        public static int intakeSolenoidForwardChannel = 1;
-        public static int intakeSolenoidBackChannel = 0;
+        public static int shortArmForwardChannel = 3;
+        public static int shortArmBackChannel = 2;
+        public static int longArmForwardChannel = 1;
+        public static int longArmBackChannel = 0;
+        public static int intakeSolenoidForwardChannel = 4;
+        public static int intakeSolenoidBackChannel = 5;
 
-        public static double intakeSpeed = 0.2;
-        public static double intakeEjectSpeed = 0.2;
+        public static double intakeSpeed = 0.5;
+        public static double intakeEjectSpeed = 0.5;
 
         public static TalonSRX intakeMotor = new TalonSRX(intakeID);
 
         public static DoubleSolenoid shortArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shortArmForwardChannel, shortArmBackChannel);
         public static DoubleSolenoid longArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, longArmForwardChannel, longArmBackChannel);
         public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeSolenoidForwardChannel, intakeSolenoidBackChannel);
+
+        public static final int continuousCurrent = 10;
+        public static final int peakCurrent = 20;
+        public static final int peakDuration = 60;
     }
 
     public static class VisionParameters {

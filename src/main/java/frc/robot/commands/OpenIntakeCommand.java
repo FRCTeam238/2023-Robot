@@ -10,29 +10,20 @@ import frc.robot.Robot;
 import frc.robot.subsystems.Intake;
 
 public class OpenIntakeCommand extends InstantCommand {
+
+  Intake intake;
   /** Creates a new OpenIntakeCommand. */
   public OpenIntakeCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
-    Intake intake = Robot.intake;
+    intake = Robot.intake;
     addRequirements(intake);
-    intake.openIntake();
+
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
-
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
-  public void execute() {}
-
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {}
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
+  public void initialize() {
+    intake.openIntake();
   }
+
 }

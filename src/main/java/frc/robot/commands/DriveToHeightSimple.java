@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -16,9 +17,9 @@ public class DriveToHeightSimple extends CommandBase {
   /** Creates a new DriveToHeight. */
   public DriveToHeightSimple(State endState) {
     addRequirements(Robot.elevator);
-    controller = new PIDController(0.001, 0, 0); // .005 = Approximately 4V for 20in error
+    controller = new PIDController(0.04, 0, 0); // .005 = Approximately 4V for 20in error
     controller.setSetpoint(endState.position);
-    controller.setTolerance(18); // 1/2"
+    controller.setTolerance(.4); // 1/2"
   }
 
   // Called when the command is initially scheduled.
@@ -31,6 +32,7 @@ public class DriveToHeightSimple extends CommandBase {
   @Override
   public void execute() {
     Robot.elevator.moveByPercentOutput(controller.calculate(Robot.elevator.getEncoderPosition()) + RobotMap.ElevatorParameters.holdPercent);
+    SmartDashboard.putNumber("Target", controller.getSetpoint());
   }
 
   // Called once the command ends or is interrupted.

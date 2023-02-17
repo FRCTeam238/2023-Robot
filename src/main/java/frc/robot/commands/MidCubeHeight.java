@@ -9,7 +9,7 @@ import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 @AutonomousModeAnnotation(parameterNames = {})
-public class MidCubeHeight extends DriveToHeight {
+public class MidCubeHeight extends DriveToHeightSimple {
   /** Creates a new MidHeight. */
   public MidCubeHeight() { 
     

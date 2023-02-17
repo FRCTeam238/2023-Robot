@@ -25,7 +25,6 @@ public class IntakeInOutCommand extends CommandBase {
   public IntakeInOutCommand(boolean inOrOut) {
     this.inOrOut = inOrOut;
     intake = Robot.intake;
-    addRequirements(intake);
   }
 
   // Called when the command is initially scheduled.
@@ -36,15 +35,18 @@ public class IntakeInOutCommand extends CommandBase {
   @Override
   public void execute() {
     if (inOrOut) {
-      intake.runIntake(RobotMap.IntakeParameters.intakeSpeed);
+      intake.runIntake(-1*RobotMap.IntakeParameters.intakeSpeed);
     } else {
       intake.runIntake(RobotMap.IntakeParameters.intakeEjectSpeed);
     }
+    System.out.println("Intake");
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    intake.runIntake(0);
+  }
 
   // Returns true when the command should end.
   @Override
