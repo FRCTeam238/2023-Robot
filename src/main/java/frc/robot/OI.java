@@ -54,20 +54,20 @@ public class OI {
 		closeIntake.onTrue(new CloseIntakeCommand());
 
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);
-		midCone.onTrue(new MidConeHeight());
+		midCone.onTrue(new MidConeHeight().withTimeout(3));
 
 		JoystickButton midCube = new JoystickButton(operatorController, XboxController.Button.kX.value);
-		midCube.onTrue(new MidCubeHeight());
+		midCube.onTrue(new MidCubeHeight().withTimeout(3));
 
 		JoystickButton floorHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
-		floorHeight.onTrue(new FloorHeight());
+		floorHeight.onTrue(new FloorHeight().withTimeout(3));
 		
 		JoystickButton topHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
-		topHeight.onTrue(new TopHeight());
+		topHeight.onTrue(new TopHeight().withTimeout(3));
 
 		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(true));
 		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(false));
-		
+
 		JoystickButton dropGamepiece = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
 		dropGamepiece.whileTrue(new OpenIntakeCommand());
 		
@@ -88,7 +88,7 @@ public class OI {
 
 		//Back button
 		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
-		stowPos.onTrue(new StowCommand());
+		stowPos.onTrue(new StowCommand().withTimeout(5));
 	}
 	
 		
