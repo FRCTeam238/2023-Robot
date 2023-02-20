@@ -11,7 +11,7 @@ import frc.robot.RobotMap;
 
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class MidConeHeight extends DriveToHeightSimple {
+public class MidConeHeight extends ElevatorProfileCommand {
 
   /** Creates a new MidHeight. */
   public MidConeHeight() { 
@@ -26,6 +26,7 @@ public class MidConeHeight extends DriveToHeightSimple {
     if (!Robot.intake.isEitherExtended()) {
       Robot.intake.extendShort();
     }
+    super.initialize();
   }
 
 }

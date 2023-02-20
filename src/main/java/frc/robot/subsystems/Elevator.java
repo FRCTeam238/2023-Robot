@@ -36,16 +36,18 @@ public class Elevator extends SubsystemBase {
   
   public void initSparkMax() {
     elevatorFollower.follow(elevatorLeader);
-    elevatorLeader.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
-    elevatorFollower.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, (float)RobotMap.ElevatorParameters.softLimitForward);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, (float)RobotMap.ElevatorParameters.softLimitBackward);
+    elevatorLeader.setSmartCurrentLimit(ElevatorParameters.sparkCurrentLimit);
+    elevatorFollower.setSmartCurrentLimit(ElevatorParameters.sparkCurrentLimit);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, (float)ElevatorParameters.softLimitForward);
+    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, (float)ElevatorParameters.softLimitBackward);
+    elevatorLeader.enableSoftLimit(SoftLimitDirection.kForward, true);
+    elevatorLeader.enableSoftLimit(SoftLimitDirection.kReverse, true);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
-    elevatorLeader.getPIDController().setP(ElevatorParameters.ki);
-    elevatorLeader.getPIDController().setP(ElevatorParameters.kd);
-    elevatorLeader.getPIDController().setOutputRange(-.2, 1);
+    elevatorLeader.getPIDController().setI(ElevatorParameters.ki);
+    elevatorLeader.getPIDController().setD(ElevatorParameters.kd);
+    elevatorLeader.getPIDController().setOutputRange(ElevatorParameters.minOutput, ElevatorParameters.maxOutput);
   }
 
   public void moveByPercentOutput(double percent) {

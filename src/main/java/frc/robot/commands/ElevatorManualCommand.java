@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.RobotMap.ElevatorParameters;
 import frc.robot.subsystems.Elevator;
 
 public class ElevatorManualCommand extends CommandBase {
@@ -28,8 +29,12 @@ public class ElevatorManualCommand extends CommandBase {
     if (Math.abs(RobotMap.ControlParameters.operatorController.getRightY()) > RobotMap.ControlParameters.elevatorThreshold) {
       double percentOutput = -1*RobotMap.ControlParameters.operatorController.getRightY() * RobotMap.ControlParameters.elevatorMultiplier;
         elevator.moveByPercentOutput(percentOutput);
-    } else if (!elevator.getLowerLimit()){ // If we're at the bottom just let it go, otherwise hold
+    } else if (!elevator.getLowerLimit() || elevator.getEncoderPosition() <= ElevatorParameters.softLimitBackward)
+    { // If we're not at the bottom hold
       elevator.moveByPercentOutput(RobotMap.ElevatorParameters.holdPercent);
+    } else 
+    { // If we are at the bottom, let it go.
+      elevator.moveByPercentOutput(0);
     }
   }
 

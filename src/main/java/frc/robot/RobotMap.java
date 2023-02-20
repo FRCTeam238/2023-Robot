@@ -1,11 +1,7 @@
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.pathplanner.lib.PathConstraints;
-import com.pathplanner.lib.PathPoint;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
@@ -67,13 +63,17 @@ public final class RobotMap {
         public static final double MaxVel = inchesToTicks(8); //Starting very slow. Real max is ~ 8 fps = 8*12
         public static final double MaxAccel = inchesToTicks(24); //~1/3 second to accell to this slow max V
 		public static final double holdPercent = 0.03;
+        public static final double maxPositionError = 0;
+        public static final double maxVelocityError = 0;
+        public static final double minOutput = 0;
+        public static final double maxOutput = 0;
         public static int elevatorFollowerID = 13;
         public static int elevatorLeaderID = 12;
         public static CANSparkMax elevatorLeader = new CANSparkMax(elevatorLeaderID, MotorType.kBrushless);
         public static CANSparkMax elevatorFollower = new CANSparkMax(elevatorFollowerID, MotorType.kBrushless);
-
+        //TODO: initialize these variables w/ real #'s
         public static int sparkCurrentLimit = 30;
-        public static double softLimitForward = inchesToTicks(30); //Actual max travel = 36
+        public static double softLimitForward = inchesToTicks(35); //Actual max travel = 36
         public static double softLimitBackward = inchesToTicks(.25);
         public static double kv = .0856; //theortical
         public static double kg = .32804;
@@ -108,6 +108,9 @@ public final class RobotMap {
     }
 
     public static class IntakeParameters {
+        public static final int peakCurrent = 20; //If current spikes > 20 Amps
+		public static final int peakDuration = 60; // For more than 60 ms
+		public static final int continuousCurrent = 10; //Then limit down to 10Amps
         public static int intakeID = 9;
         public static int shortArmForwardChannel = 3;
         public static int shortArmBackChannel = 2;
@@ -124,10 +127,6 @@ public final class RobotMap {
         public static DoubleSolenoid shortArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, shortArmForwardChannel, shortArmBackChannel);
         public static DoubleSolenoid longArm = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, longArmForwardChannel, longArmBackChannel);
         public static DoubleSolenoid intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, intakeSolenoidForwardChannel, intakeSolenoidBackChannel);
-
-        public static final int continuousCurrent = 10;
-        public static final int peakCurrent = 20;
-        public static final int peakDuration = 60;
     }
 
     public static class VisionParameters {

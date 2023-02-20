@@ -6,10 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
@@ -27,6 +24,7 @@ public class Intake extends SubsystemBase {
   TalonSRX intakeMotor;
   GenericEntry armPoseEntry;
   GenericEntry armTextEntry;
+  GenericEntry intakeEntry;
   Pose3d armPose = new Pose3d();
   
   /** Creates a new Intake. */
@@ -38,7 +36,8 @@ public class Intake extends SubsystemBase {
     intakeMotor.enableCurrentLimit(true);
     intakeMotor.setNeutralMode(NeutralMode.Brake);
     armPoseEntry = Shuffleboard.getTab("Logging").add("ArmPose", PoseHelper.PoseToArray(armPose)).getEntry();
-    armTextEntry = Shuffleboard.getTab("Logging").add("ArmText", "False, False").getEntry();
+    armTextEntry = Shuffleboard.getTab("Logging").add("ArmState", getShort() + ", " + getLong()).getEntry();
+    intakeEntry = Shuffleboard.getTab("Logging").add("IntakeState", getIntake()).getEntry();
     retractLong();
     retractShort();
     closeIntake();
@@ -58,6 +57,7 @@ public class Intake extends SubsystemBase {
     }
     armPoseEntry.setDoubleArray(PoseHelper.PoseToArray(armPose));
     armTextEntry.setString(getShort() + ", " + getLong());
+    intakeEntry.setString(String.valueOf(getIntake()));
   }
 
   public void runIntake(double intakeSpeed) {
@@ -99,6 +99,14 @@ public class Intake extends SubsystemBase {
 
   public boolean getLong() {
     if (RobotMap.IntakeParameters.longArm.get() == Value.kForward) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean getIntake() {
+    if (RobotMap.IntakeParameters.intakeSolenoid.get() == Value.kForward) {
       return true;
     } else {
       return false;
