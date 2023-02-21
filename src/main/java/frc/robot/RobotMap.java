@@ -64,7 +64,7 @@ public final class RobotMap {
 			return (inches/inchesPerRev)*gearing*cpr;
 		}
 
-        public static final double MaxVel = inchesToTicks(8); //Starting very slow. Real max is ~ 8 fps = 8*12
+        public static final double MaxVel = inchesToTicks(12); //Starting very slow. Real max is ~ 8 fps = 8*12
         public static final double MaxAccel = inchesToTicks(24); //~1/3 second to accell to this slow max V
 		public static final double holdPercent = 0.03;
         public static int elevatorFollowerID = 13;
