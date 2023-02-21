@@ -11,7 +11,7 @@ import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 @AutonomousModeAnnotation(parameterNames = {})
-public class MidCubeHeight extends DriveToHeightSimple implements IAutonomousCommand {
+public class MidCubeHeight extends ElevatorTrapezoid implements IAutonomousCommand {
   /** Creates a new MidHeight. */
   public MidCubeHeight() { 
     

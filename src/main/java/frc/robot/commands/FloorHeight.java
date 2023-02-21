@@ -12,7 +12,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class FloorHeight extends DriveToHeightSimple implements IAutonomousCommand{
+public class FloorHeight extends ElevatorTrapezoid implements IAutonomousCommand{
   /** Creates a new MidHeight. */
   
   
@@ -20,14 +20,6 @@ public class FloorHeight extends DriveToHeightSimple implements IAutonomousComma
     
     super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.floorHeight, 0));
     // Use addRequirements() here to declare subsystem dependencies.
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    if (!Robot.intake.isEitherExtended()) {
-      Robot.intake.extendShort();
-    }
   }
 
   @Override

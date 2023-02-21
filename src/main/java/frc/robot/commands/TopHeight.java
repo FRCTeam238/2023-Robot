@@ -12,7 +12,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 @AutonomousModeAnnotation(parameterNames = {"Timeout"})
-public class TopHeight extends DriveToHeightSimple implements IAutonomousCommand {
+public class TopHeight extends ElevatorTrapezoid implements IAutonomousCommand {
   /** Creates a new MidHeight. */
 
   double timeout;
