@@ -4,10 +4,12 @@
 
 package frc.robot;
 
+import java.io.File;
 import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -59,13 +61,15 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     oi = new OI(driveType.Tank);
 
-    if (isReal()){
-      // initialize the automodes list
-        IAutonomousModeDataSource autoModesDataSource = new DataFileAutonomousModeDataSource("/home/lvuser/deploy/amode238.txt");
-        AutonomousModesReader reader = new AutonomousModesReader(autoModesDataSource);
-        m_autoModes = reader.getAutonmousModes();
-      } else {
-      }
+    if(isSimulation())
+    {
+      setDeployDirectory();
+    }
+
+    // initialize the automodes list
+    IAutonomousModeDataSource autoModesDataSource = new DataFileAutonomousModeDataSource(Filesystem.getDeployDirectory() + "/amode238.txt");
+    AutonomousModesReader reader = new AutonomousModesReader(autoModesDataSource);
+    m_autoModes = reader.getAutonmousModes();
   
       if (m_autoModes.size() > 0) {
         Boolean first = true;
@@ -172,5 +176,17 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+  public void setDeployDirectory() {
+    File deployDir = Filesystem.getDeployDirectory();
+
+    // remove everything starting at /build
+    String userDir = deployDir.getPath();
+    int idx = userDir.indexOf(File.separator + "build");
+    if (idx > 0) {
+        userDir = userDir.substring(0, idx);
+        System.setProperty("user.dir", userDir);
+    }
+}
 
 }
