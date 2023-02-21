@@ -4,12 +4,14 @@
 
 package frc.robot.commands;
 
+import java.util.List;
+
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 @AutonomousModeAnnotation(parameterNames = {})
-public class MidCubeHeight extends DriveToHeightSimple {
+public class MidCubeHeight extends DriveToHeightSimple implements IAutonomousCommand {
   /** Creates a new MidHeight. */
   public MidCubeHeight() { 
     
@@ -18,12 +20,26 @@ public class MidCubeHeight extends DriveToHeightSimple {
   }
 
   // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    System.out.println("MidCube!!!!!!!!!!!!!!!!!!!!!");
-    if (!Robot.intake.isEitherExtended()) {
-      Robot.intake.extendShort();
-    }
   
+  @Override
+  public boolean getIsAutonomousMode() {
+    // TODO Auto-generated method stub
+    return false;
   }
+  @Override
+  public double getTimeout() {
+      // TODO Auto-generated method stub
+      return 0;
+  }
+  @Override
+  public void setIsAutonomousMode(boolean isAutonomousMode) {
+      // TODO Auto-generated method stub
+      
+  }
+  @Override
+  public void setParameters(List<String> parameters) {
+    // TODO Auto-generated method stub
+    
+  }
+  
 }

@@ -86,7 +86,8 @@ public final class RobotMap {
         public static double midConeHeight = inchesToTicks(31.175); //initial guess based on CAD
         public static double floorHeight = inchesToTicks(.25); //drive all the way down to soft limit  
         public static double topHeight = 27.75;//inchesToTicks(34.5); //initial guess based on CAD
-
+        public static double toleranceInches = 1;
+        public static double toleranceVelocity = .2; //in rotatation per sec
 
     }
 

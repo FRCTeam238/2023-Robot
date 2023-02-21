@@ -23,12 +23,7 @@ public class TopHeight extends DriveToHeightSimple implements IAutonomousCommand
   }
 
   // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    if (!Robot.intake.isEitherExtended()) {
-      Robot.intake.extendShort();
-    }
-  }
+ 
 
   @Override
   public boolean getIsAutonomousMode() {
