@@ -32,7 +32,7 @@ public class ElevatorTrapezoid extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double posMeters = elevator.getPositionMeters();
+    double posMeters = elevator.getEncoderPosition();
     double velocity = elevator.getVelocity();
     State startPos = new State(posMeters, velocity);
     profile = new TrapezoidProfile(constraints, goal, startPos);
