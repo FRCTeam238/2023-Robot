@@ -4,12 +4,18 @@
 
 package frc.robot.commands;
 
+import java.util.List;
+
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
-public class TopHeight extends DriveToHeightSimple {
+@AutonomousModeAnnotation(parameterNames = {"Timeout"})
+public class TopHeight extends DriveToHeightSimple implements IAutonomousCommand {
   /** Creates a new MidHeight. */
+
+  double timeout;
   public TopHeight() { 
     
     super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.midConeHeight, 0));
@@ -22,5 +28,26 @@ public class TopHeight extends DriveToHeightSimple {
     if (!Robot.intake.isEitherExtended()) {
       Robot.intake.extendShort();
     }
+  }
+
+  @Override
+  public boolean getIsAutonomousMode() {
+    // TODO Auto-generated method stub
+    return false;
+  }
+  @Override
+  public void setIsAutonomousMode(boolean isAutonomousMode) {
+      // TODO Auto-generated method stub
+      
+  }
+  @Override
+  public void setParameters(List<String> parameters) {
+    parameters.get(0);      
+
+  }
+  @Override
+  public double getTimeout() {
+      // TODO Auto-generated method stub
+      return timeout;
   }
 }

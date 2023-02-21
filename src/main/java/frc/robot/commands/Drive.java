@@ -44,20 +44,31 @@ public class Drive extends CommandBase {
 
 		double leftOutput;
 		double rightOutput;
+		double multiplier;
+		if (RobotMap.ControlParameters.left.getTrigger() || RobotMap.ControlParameters.right.getTrigger()){
+			multiplier = 0.5;
+		} else {
+			multiplier = 1.0;
+		}
 		switch (controlType.getSelected()) {
 			case Tank:
-				leftOutput = controls.getTankPowers()[0];
-				rightOutput = controls.getTankPowers()[1];
+				leftOutput = controls.getTankPowers()[0] * multiplier;
+				rightOutput = controls.getTankPowers()[1] * multiplier;
+				//makes us drive straight
+
+				if (RobotMap.ControlParameters.left.getRawButton(2)) {
+					leftOutput = rightOutput;
+				}
 				drivetrain.tankDrive(leftOutput, rightOutput);
 				break;
 			case Arcade:
-				leftOutput = controls.getArcadePowers()[0];
-				rightOutput = controls.getArcadePowers()[1];
+				leftOutput = controls.getArcadePowers()[0] * multiplier;
+				rightOutput = controls.getArcadePowers()[1] * multiplier;
 				drivetrain.arcadeDrive(leftOutput, rightOutput);
 				break;
 			case Cheesy:
-				leftOutput = controls.getCheesyPowers()[0];
-				rightOutput = controls.getCheesyPowers()[1];
+				leftOutput = controls.getCheesyPowers()[0] * multiplier;
+				rightOutput = controls.getCheesyPowers()[1] * multiplier;
 				drivetrain.cheesyDrive(leftOutput, rightOutput, controls.isCheesyTurnPressed());
 				break;
 

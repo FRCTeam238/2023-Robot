@@ -6,25 +6,22 @@ package frc.robot.commands;
 
 import java.util.List;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
-
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class Scoringposition extends InstantCommand implements IAutonomousCommand{
-  public Scoringposition() {
-    // Use addRequirements() here to declare subsystem dependencies.
+public class ScoreAuto extends SequentialCommandGroup implements IAutonomousCommand {
+  /** Creates a new Wait238. */
+  
+  
+  public ScoreAuto() {
     addRequirements(Robot.intake);
-  }
-
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    Robot.intake.extendLong();
-    Robot.intake.retractShort();
+    // Use addRequirements() here to declare subsystem dependencies.
+    addCommands(new Scoringposition());
+    addCommands(new WaitCommand(3));
+    addCommands(new OpenIntakeCommand());  
   }
   @Override
   public boolean getIsAutonomousMode() {
@@ -32,18 +29,21 @@ public class Scoringposition extends InstantCommand implements IAutonomousComman
       return false;
   }
   @Override
-  public double getTimeout() {
-      // TODO Auto-generated method stub
-      return 0;
-  }
-  @Override
   public void setIsAutonomousMode(boolean isAutonomousMode) {
       // TODO Auto-generated method stub
       
   }
   @Override
+  public double getTimeout() {
+      // TODO Auto-generated method stub
+      return 0;
+  }
+
+  @Override
   public void setParameters(List<String> parameters) {
       // TODO Auto-generated method stub
       
   }
+
+  // Called when the command is initially scheduled.
 }

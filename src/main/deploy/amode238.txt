@@ -1,16 +1,69 @@
 {
-    "AutonomousModes": [
+  "AutonomousModes": [
+    {
+      "Commands": [
         {
-            "Name": "New Mode",
-            "Commands": [
-                {
-                    "Name": "TrajectoryDriveCommand",
-                    "Parameters": [
-                        "New Path"
-                    ],
-                    "ParallelType": "None"
-                }
-            ]
+          "Name": "DriveStraightInches",
+          "Parameters": [
+            "160",
+            "0.3"
+          ],
+          "ParallelType": "None"
         }
-    ]
+      ],
+      "Name": "drivestraight"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TopHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "ScoreCubeNstow"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TopHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DriveStraightInches",
+          "Parameters": [
+            "86.75",
+            "-0.3"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "scoreAndCharge"
+    }
+  ]
 }

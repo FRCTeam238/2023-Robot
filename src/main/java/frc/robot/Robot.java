@@ -4,14 +4,21 @@
 
 package frc.robot;
 
+import java.util.HashMap;
+
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandGroupBase;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.core238.DriverControls.driveType;
+import frc.core238.autonomous.AutonomousModesReader;
+import frc.core238.autonomous.DataFileAutonomousModeDataSource;
+import frc.core238.autonomous.IAutonomousModeDataSource;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -31,6 +38,11 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Intake intake;
   OI oi;
+  HashMap<String, Command> m_autoModes;
+  SendableChooser<String> m_chooser = new SendableChooser<>();
+  boolean fmsConnected = false;
+  boolean m_allowAuto = true;
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -45,8 +57,32 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     elevator = new Elevator();
     intake = new Intake();
-    
     oi = new OI(driveType.Tank);
+
+    if (isReal()){
+      // initialize the automodes list
+        IAutonomousModeDataSource autoModesDataSource = new DataFileAutonomousModeDataSource("/home/lvuser/deploy/amode238.txt");
+        AutonomousModesReader reader = new AutonomousModesReader(autoModesDataSource);
+        m_autoModes = reader.getAutonmousModes();
+      } else {
+      }
+  
+      if (m_autoModes.size() > 0) {
+        Boolean first = true;
+  
+        for (var entry : m_autoModes.entrySet()) {
+          String name = entry.getKey();
+          if (first) {
+            first = false;
+            m_chooser.setDefaultOption(name, name);
+          } else {
+            m_chooser.addOption(name, name);
+          }
+        }
+        SmartDashboard.putData("Auto Modes", m_chooser);
+      }
+    }
+    {
     DataLogManager.start();
     Shuffleboard.getTab("Logging").add(CommandScheduler.getInstance());
     DriverStation.startDataLog(DataLogManager.getLog());
@@ -91,10 +127,16 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
 
+    String autoMode = m_chooser.getSelected();
+
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
+    if (m_allowAuto && m_autoModes.containsKey(autoMode)) {
+      m_autonomousCommand = m_autoModes.get(autoMode);
       m_autonomousCommand.schedule();
     }
+
+    // prevent the robot from rerunning auto mode a second time without a restart
+    m_allowAuto = false;
   }
 
   /** This function is called periodically during autonomous. */

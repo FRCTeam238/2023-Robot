@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import java.util.List;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
@@ -15,7 +17,7 @@ import frc.robot.subsystems.Intake;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class StowCommand extends SequentialCommandGroup {
+public class StowCommand extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new StowCommand. */
   public StowCommand() {
     Intake intake = Robot.intake;
@@ -24,8 +26,31 @@ public class StowCommand extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new Travelposition());
-    addCommands(new WaitCommand(2.5));
+    addCommands(new WaitCommand(2));
+    System.out.println("Done Waitaing ------------------------------------------------------");
     addCommands(new FloorHeight());
+    System.out.println("DONE FLOORING--------------------------------------------------------");
     addCommands(new RetractAll());
+  }
+  @Override
+  public boolean getIsAutonomousMode() {
+      // TODO Auto-generated method stub
+      return false;
+  }
+  @Override
+  public void setIsAutonomousMode(boolean isAutonomousMode) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public double getTimeout() {
+      // TODO Auto-generated method stub
+      return 0;
+  }
+  @Override
+  public void setParameters(List<String> parameters) {
+      // TODO Auto-generated method stub
+      
   }
 }

@@ -24,7 +24,10 @@
           "decKey": 57,
           "incKey": 48
         },
-        {},
+        {
+          "decKey": 46,
+          "incKey": 59
+        },
         {
           "decKey": 47,
           "incKey": 39
@@ -69,7 +72,7 @@
       "buttonKeys": [
         77,
         -1,
-        46,
+        -1,
         -1
       ],
       "povCount": 0

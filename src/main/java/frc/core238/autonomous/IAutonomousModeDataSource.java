@@ -10,7 +10,6 @@ package frc.core238.autonomous;
 /**
  * {@summary made for unit testing a while ago}
  *
- * @deprecated we need to redo the whole autonomous suite
  */
 public interface IAutonomousModeDataSource {
     String getJson();

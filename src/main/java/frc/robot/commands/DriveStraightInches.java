@@ -11,11 +11,12 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 
-@AutonomousModeAnnotation(parameterNames = {"DistanceInches"})
+@AutonomousModeAnnotation(parameterNames = {"DistanceInches", "Speed"})
 public class DriveStraightInches extends CommandBase implements IAutonomousCommand{
 
   private double startingVal;
   private double target;
+  private double speed;
 
   /** Creates a new DriveStraightInches. */
   public DriveStraightInches() {
@@ -32,7 +33,7 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-      Robot.drivetrain.driveStraight(.3, .3);
+      Robot.drivetrain.tankDrive(speed, speed);
   }
 
   // Called once the command ends or is interrupted.
@@ -43,7 +44,7 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   @Override
   public boolean isFinished() {
     double currentDist = Units.metersToInches(Robot.drivetrain.stepsToMeters(Robot.drivetrain.getLeftEncoderTicks())) - startingVal;
-    return currentDist > target;
+    return Math.abs(currentDist) > target;
   }
 
   @Override
@@ -62,6 +63,7 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub
     target = Double.parseDouble(parameters.get(0));
+    speed = Double.parseDouble(parameters.get(1));
   }
 
   @Override
@@ -70,3 +72,4 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
     return 0;
   }
 }
+

@@ -3,6 +3,7 @@
     "types": {
       "/FMSInfo": "FMSInfo",
       "/Shuffleboard/Logging/RobotPose": "Field2d",
+      "/Shuffleboard/Logging/Scheduler": "Scheduler",
       "/SmartDashboard/Elevator Sim": "Mechanism2d",
       "/SmartDashboard/SendableChooser[0]": "String Chooser"
     },
@@ -24,6 +25,9 @@
       "Shuffleboard": {
         "Logging": {
           "RobotPose": {
+            "open": true
+          },
+          "Scheduler": {
             "open": true
           },
           "open": true

@@ -15,7 +15,9 @@ import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.PoseHelper;
@@ -62,6 +64,12 @@ public class Intake extends SubsystemBase {
 
   public void runIntake(double intakeSpeed) {
     intakeMotor.set(ControlMode.PercentOutput, intakeSpeed);
+    if (intakeMotor.getSupplyCurrent() > 19) {
+      closeIntake();
+      RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
+    } else {
+      RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
+    }
   }
 
   public void openIntake() {
