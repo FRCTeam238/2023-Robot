@@ -57,7 +57,7 @@ public class ElevatorTrapezoid extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    double tolerance = RobotMap.ElevatorParameters.toleranceInches;
+    double tolerance = RobotMap.ElevatorParameters.toleranceRotations;
     double velocityTolerance = RobotMap.ElevatorParameters.toleranceVelocity;
     if (Math.abs(goal.position - elevator.getEncoderPosition()) <= tolerance 
     && Math.abs(goal.velocity - elevator.getVelocity()) <= velocityTolerance) {

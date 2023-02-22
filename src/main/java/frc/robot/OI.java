@@ -54,16 +54,16 @@ public class OI {
 		closeIntake.onTrue(new CloseIntakeCommand());
 
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);
-		midCone.onTrue(new MidConeHeight().withTimeout(3));
+		midCone.onTrue(new MidConeHeight());
 
 		JoystickButton midCube = new JoystickButton(operatorController, XboxController.Button.kX.value);
-		midCube.onTrue(new MidCubeHeight().withTimeout(3));
+		midCube.onTrue(new MidCubeHeight());
 
 		JoystickButton floorHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
-		floorHeight.onTrue(new FloorHeight().withTimeout(3));
+		floorHeight.onTrue(new FloorHeight());
 		
 		JoystickButton topHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
-		topHeight.onTrue(new TopHeight().withTimeout(3));
+		topHeight.onTrue(new TopHeight());
 
 		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(true));
 		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(false));

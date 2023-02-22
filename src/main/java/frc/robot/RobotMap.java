@@ -64,8 +64,8 @@ public final class RobotMap {
 			return (inches/inchesPerRev)*gearing*cpr;
 		}
 
-        public static final double MaxVel = inchesToTicks(12); //Starting very slow. Real max is ~ 8 fps = 8*12
-        public static final double MaxAccel = inchesToTicks(24); //~1/3 second to accell to this slow max V
+        public static final double MaxVel = inchesToTicks(60); //Starting very slow. Real max is ~ 8 fps = 8*12
+        public static final double MaxAccel = inchesToTicks(100); //~1/3 second to accell to this slow max V
 		public static final double holdPercent = 0.03;
         public static int elevatorFollowerID = 13;
         public static int elevatorLeaderID = 12;
@@ -75,18 +75,18 @@ public final class RobotMap {
         public static int sparkCurrentLimit = 30;
         public static double softLimitForward = inchesToTicks(30); //Actual max travel = 36
         public static double softLimitBackward = inchesToTicks(.25);
-        public static double kv = .0856; //theortical
-        public static double kg = .32804;
+        public static double kv = .12; //theortical
+        public static double kg = .4;
         public static double ks = .185;
-        public static double ka = .028; //theortical
-        public static double kp;
+        public static double ka = .002; //theortical
+        public static double kp = .15;
         public static double ki;
         public static double kd;
         public static double midCubeHeight = inchesToTicks (21.25); //initial guess based on CAD
-        public static double midConeHeight = inchesToTicks(31.175); //initial guess based on CAD
+        public static double midConeHeight = 28.22;//inchesToTicks(31.175); //initial guess based on CAD
         public static double floorHeight = inchesToTicks(.25); //drive all the way down to soft limit  
-        public static double topHeight = 27.75;//inchesToTicks(34.5); //initial guess based on CAD
-        public static double toleranceInches = 1;
+        public static double topHeight = inchesToTicks(34.5); //initial guess based on CAD
+        public static double toleranceRotations = inchesToTicks(.5);
         public static double toleranceVelocity = .2; //in rotatation per sec
 
     }

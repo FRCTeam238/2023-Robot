@@ -31,7 +31,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.RobotMap.ElevatorParameters;
 public class Elevator extends SubsystemBase {
-  protected final static ElevatorFeedforward FF = new ElevatorFeedforward(ElevatorParameters.ks, ElevatorParameters.kg, ElevatorParameters.kv);
+  protected final static ElevatorFeedforward FF = new ElevatorFeedforward(ElevatorParameters.ks, ElevatorParameters.kg, ElevatorParameters.kv, ElevatorParameters.ka);
   protected final static CANSparkMax elevatorLeader = RobotMap.ElevatorParameters.elevatorLeader;
   protected final static CANSparkMax elevatorFollower = RobotMap.ElevatorParameters.elevatorFollower;
   protected Pose3d elevatorPose = new Pose3d();
@@ -57,9 +57,10 @@ public class Elevator extends SubsystemBase {
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
-    elevatorLeader.getPIDController().setP(ElevatorParameters.ki);
-    elevatorLeader.getPIDController().setP(ElevatorParameters.kd);
+    elevatorLeader.getPIDController().setI(ElevatorParameters.ki);
+    elevatorLeader.getPIDController().setD(ElevatorParameters.kd);
     elevatorLeader.getPIDController().setOutputRange(-.2, 1);
+    elevatorLeader.getEncoder().setPosition(0);
   }
 
   public void moveByPercentOutput(double percent) {
@@ -92,7 +93,6 @@ public class Elevator extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if(elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed()) {
-     elevatorLeader.getEncoder().setPosition(0);
     }
     poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
     SmartDashboard.putNumber("Encoder", getEncoderPosition());
@@ -103,7 +103,7 @@ public class Elevator extends SubsystemBase {
     SmartDashboard.putNumber("Desired Pos", state.position);
     SmartDashboard.putNumber("Actual V", getVelocity());
     SmartDashboard.putNumber("Actual Pos", getEncoderPosition());
-    double feed = FF.calculate(state.velocity);
+    double feed = FF.calculate(state.velocity, (state.velocity - getVelocity())/.02);
     SmartDashboard.putNumber("FF", feed);
     if(Robot.isReal()){
     elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
@@ -118,7 +118,7 @@ public class Elevator extends SubsystemBase {
   public double getVelocity() {
     if(Robot.isReal())
     {
-    return elevatorLeader.getEncoder().getVelocity();
+    return elevatorLeader.getEncoder().getVelocity()/60;
     }
     else {
       return RobotMap.ElevatorParameters.inchesToTicks(Units.metersToInches(m_sim.getVelocityMetersPerSecond()));

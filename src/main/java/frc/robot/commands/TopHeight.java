@@ -18,7 +18,7 @@ public class TopHeight extends ElevatorTrapezoid implements IAutonomousCommand {
   double timeout;
   public TopHeight() { 
     
-    super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.midConeHeight, 0));
+    super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.topHeight, 0));
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
