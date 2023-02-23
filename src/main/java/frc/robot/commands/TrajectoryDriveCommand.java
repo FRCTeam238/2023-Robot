@@ -19,12 +19,13 @@ import frc.robot.subsystems.Drivetrain;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-@AutonomousModeAnnotation(parameterNames = {"TrajectoryName"})
+@AutonomousModeAnnotation(parameterNames = {"TrajectoryName", "IsFirstPath"})
 public class TrajectoryDriveCommand extends SequentialCommandGroup implements IAutonomousCommand{
   DifferentialDriveKinematics kinematics;
   Drivetrain drivetrain = Robot.drivetrain;
   PathPlannerTrajectory trajectory;
   BiConsumer<Double, Double> output;
+  private boolean isFirstPath;
   /** Creates a new TrajectoryDriveCommand. */
   public TrajectoryDriveCommand() {
     kinematics = Drivetrain.kinematics;
@@ -37,21 +38,11 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
   }
   
   @Override
-  public boolean getIsAutonomousMode() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-  
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-    // TODO Auto-generated method stub
-    
-  }
-  @Override
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub
+    isFirstPath = Boolean.parseBoolean(parameters.get(1));
     trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel);
-    LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, drivetrain);
+    LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, isFirstPath, drivetrain);
     addCommands(ltv);
     
   }

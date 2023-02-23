@@ -81,7 +81,6 @@ public class AutonomousModesReader {
 
                 // Pass in parameters (minus isParallel
                 autoCommand.setParameters(commandDescriptor.getParameters());
-                autoCommand.setIsAutonomousMode(true);
 
 
                 if (!parallelType.equals("None")) {

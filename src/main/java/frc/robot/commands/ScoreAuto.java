@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
+/**
+ * {@summary moves to scoring position, waits 3 seconds, and opens the intake}
+ */
 @AutonomousModeAnnotation(parameterNames = {})
 public class ScoreAuto extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new Wait238. */
-  
   
   public ScoreAuto() {
     addRequirements(Robot.intake);
@@ -23,16 +25,7 @@ public class ScoreAuto extends SequentialCommandGroup implements IAutonomousComm
     addCommands(new WaitCommand(3));
     addCommands(new OpenIntakeCommand());  
   }
-  @Override
-  public boolean getIsAutonomousMode() {
-      // TODO Auto-generated method stub
-      return false;
-  }
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-      // TODO Auto-generated method stub
-      
-  }
+  
   @Override
   public double getTimeout() {
       // TODO Auto-generated method stub

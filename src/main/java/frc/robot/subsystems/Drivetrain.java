@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotMap;
@@ -61,7 +62,9 @@ public class Drivetrain extends SubsystemBase {
   TalonFXSimCollection m_leftDriveSim = leftControllerDrive.getSimCollection();
   TalonFXSimCollection m_rightDriveSim = rightControllerDrive.getSimCollection();
 
-  /** Creates a new Drivetrain. */
+  /**
+   * {@summary} the {@link SubsystemBase} of the robot drivetrain
+   */
   public Drivetrain() {
     navx = new AHRS(RobotMap.VisionParameters.navxPort);
     differentialDriveOdometry = new DifferentialDriveOdometry(navx.getRotation2d(), getLeftEncoderTicks(), getRightEncoderTicks());
@@ -80,6 +83,9 @@ public class Drivetrain extends SubsystemBase {
       null);
   }
 
+  /**
+   * d
+   */
   public void initTalons() {
     rightControllerDrive.setInverted(true);
     rightFollower.setInverted(true);
@@ -102,6 +108,10 @@ public class Drivetrain extends SubsystemBase {
     
   }
 
+  /**
+   * {@summary initialize the PID controller on the given Talon}
+   * @param talon
+   */
   public void initPID(TalonFX talon) {
        /* Config the peak and nominal outputs ([-1, 1] represents [-100, 100]%) */
        talon.configNominalOutputForward(0, kTimeoutMs);
@@ -147,7 +157,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void resetOdometry(Pose2d pose) {
-    currentPose = pose;
+    differentialDriveOdometry.resetPosition(navx.getRotation2d(), stepsToMeters(getLeftEncoderTicks()), stepsToMeters(getRightEncoderTicks()), pose);
   }
 
   public Pose2d getCurrentPose() {
@@ -170,14 +180,33 @@ public class Drivetrain extends SubsystemBase {
 
 
 
+  /**
+   * {@summary} calls {@link DifferentialDrive}.tankDrive() 
+   * @param left the left side of the drivetrain's speed [-1 to 1]
+   * @param right
+   */
   public void tankDrive(double left, double right) {
     diff.tankDrive(left, right, false);
   }
 
-  public void arcadeDrive(double left, double right) {
-    diff.arcadeDrive(left, right, false);
+  /**
+   * {@summary} calls {@link DifferentialDrive}.arcadeDrive()
+   * 
+   * @apiNote inputs are commonly from a joystick for teleop, 
+   * but also good if you only want to turn in place
+   * @param speed the robot's speed along the x axis [-1 to 1]
+   * @param rotation the robot's rotation around the z axis [-1 to 1]
+   */
+  public void arcadeDrive(double speed, double rotation) {
+    diff.arcadeDrive(speed, rotation, false);
   }
 
+  /**
+   * {@summary uses a drive system }
+   * @param xSpeed
+   * @param zRotation
+   * @param turnInPlace
+   */
   public void cheesyDrive(double xSpeed, double zRotation, boolean turnInPlace) {
     diff.curvatureDrive(xSpeed, zRotation, turnInPlace);
   }

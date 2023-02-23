@@ -22,20 +22,11 @@ public class MidCubeHeight extends ElevatorTrapezoid implements IAutonomousComma
   // Called when the command is initially scheduled.
   
   @Override
-  public boolean getIsAutonomousMode() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-  @Override
   public double getTimeout() {
       // TODO Auto-generated method stub
       return 0;
   }
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-      // TODO Auto-generated method stub
-      
-  }
+  
   @Override
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub

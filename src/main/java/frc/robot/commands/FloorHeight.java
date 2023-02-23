@@ -23,16 +23,6 @@ public class FloorHeight extends ElevatorTrapezoid implements IAutonomousCommand
   }
 
   @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-      // TODO Auto-generated method stub
-      
-  }
-  @Override
-  public boolean getIsAutonomousMode() {
-      // TODO Auto-generated method stub
-      return false;
-  }
-  @Override
   public double getTimeout() {
       // TODO Auto-generated method stub
       return 0;

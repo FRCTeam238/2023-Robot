@@ -10,8 +10,6 @@ package frc.robot.commands;
 import java.util.List;
 
 public interface IAutonomousCommand {
-    public boolean getIsAutonomousMode();
-    public void setIsAutonomousMode(boolean isAutonomousMode);
     public void setParameters(List<String> parameters); 
     public double getTimeout();
 }

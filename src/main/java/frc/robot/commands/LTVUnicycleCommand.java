@@ -9,12 +9,15 @@ import java.util.function.Supplier;
 
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
+import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
 
 import edu.wpi.first.math.controller.LTVUnicycleController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -40,11 +43,15 @@ public class LTVUnicycleCommand extends CommandBase {
     private final DifferentialDriveKinematics m_kinematics;
     private final BiConsumer<Double, Double> m_output;
     private PathPlannerTrajectory trajectory;
+    private boolean isFirstPath;
+    LTVUnicycleController lu;
+
 
     public LTVUnicycleCommand(PathPlannerTrajectory trajectory,
                               Supplier<Pose2d> pose,
                               DifferentialDriveKinematics kinematics,
                               BiConsumer<Double, Double> outputMetersPerSecond,
+                              boolean isFirstPath,
                               SubsystemBase... requirements) {
         // Use addRequirements() here to declare subsystem dependencies.
         this.trajectory = trajectory;
@@ -52,13 +59,21 @@ public class LTVUnicycleCommand extends CommandBase {
 
         m_kinematics = kinematics;
         m_output = outputMetersPerSecond;
+        this.isFirstPath = isFirstPath;
         addRequirements(requirements);
     }
 
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        if (isFirstPath) {
+            PathPlannerState state = PathPlannerTrajectory.transformStateForAlliance(trajectory.getInitialState(), DriverStation.getAlliance());
+            Robot.drivetrain.resetOdometry(state.poseMeters);
+            
+        }
         startTime = Timer.getFPGATimestamp();
+        trajectory = PathPlannerTrajectory.transformTrajectoryForAlliance(trajectory, DriverStation.getAlliance());
+        lu = new LTVUnicycleController(0.02);
 
 
     }
@@ -68,13 +83,11 @@ public class LTVUnicycleCommand extends CommandBase {
     public void execute() {
         currentTime = Timer.getFPGATimestamp() - startTime;
 
-        LTVUnicycleController lu = new LTVUnicycleController(0.02);
         DifferentialDriveWheelSpeeds targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), trajectory.sample(currentTime)));
         double leftOutput = targetWheelSpeeds.leftMetersPerSecond;
         double rightOutput = targetWheelSpeeds.rightMetersPerSecond;
         // should call the method given as the parameter for the BiConsumer
         m_output.accept(leftOutput, rightOutput);
-
 
     }
 

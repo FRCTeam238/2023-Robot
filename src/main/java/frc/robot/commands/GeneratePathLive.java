@@ -35,6 +35,6 @@ public class GeneratePathLive extends SequentialCommandGroup {
                                                                                         RobotMap.DrivetrainParameters.maxAccel),
                                                                     new PathPoint(new Translation2d(posX, posY), rot),
                                                                     new PathPoint(endTranslation, endRotation));
-        LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, drivetrain);
+        LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, false, drivetrain);
     }
 }

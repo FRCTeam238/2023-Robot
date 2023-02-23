@@ -48,18 +48,6 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   }
 
   @Override
-  public boolean getIsAutonomousMode() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub
     target = Double.parseDouble(parameters.get(0));
