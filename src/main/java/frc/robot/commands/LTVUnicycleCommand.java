@@ -45,7 +45,8 @@ public class LTVUnicycleCommand extends CommandBase {
     private final Supplier<Pose2d> m_pose;
     private final DifferentialDriveKinematics m_kinematics;
     private final BiConsumer<Double, Double> m_output;
-    private PathPlannerTrajectory trajectory;
+    private PathPlannerTrajectory initialTrajectory;
+    private PathPlannerTrajectory finalTrajectory;
     private boolean isFirstPath;
     LTVUnicycleController lu;
     private Field2d m_field;
@@ -57,7 +58,7 @@ public class LTVUnicycleCommand extends CommandBase {
                               boolean isFirstPath,
                               SubsystemBase... requirements) {
         // Use addRequirements() here to declare subsystem dependencies.
-        this.trajectory = trajectory;
+        this.initialTrajectory = trajectory;
         m_pose = pose;
 
         m_kinematics = kinematics;
@@ -66,7 +67,7 @@ public class LTVUnicycleCommand extends CommandBase {
 
         m_field = new Field2d();
         
-        Shuffleboard.getTab("Logging").add("TrajectoryPose", m_field);
+        // Shuffleboard.getTab("Logging").add("TrajectoryPose", m_field);
         addRequirements(requirements);
         lu = new LTVUnicycleController(0.02);
 
@@ -76,14 +77,13 @@ public class LTVUnicycleCommand extends CommandBase {
     @Override
     public void initialize() {
         if (isFirstPath) {
-            PathPlannerState state = PathPlannerTrajectory.transformStateForAlliance(trajectory.getInitialState(), DriverStation.getAlliance());
+            PathPlannerState state = PathPlannerTrajectory.transformStateForAlliance(initialTrajectory.getInitialState(), DriverStation.getAlliance());
             Robot.drivetrain.resetOdometry(state.poseMeters);
             
         }
         startTime = Timer.getFPGATimestamp();
-        trajectory = PathPlannerTrajectory.transformTrajectoryForAlliance(trajectory, DriverStation.getAlliance());
-        lu = new LTVUnicycleController(0.02);
-
+        
+        finalTrajectory = PathPlannerTrajectory.transformTrajectoryForAlliance(initialTrajectory, DriverStation.getAlliance());
 
     }
 
@@ -91,13 +91,13 @@ public class LTVUnicycleCommand extends CommandBase {
     @Override
     public void execute() {
         currentTime = Timer.getFPGATimestamp() - startTime;
-
-        DifferentialDriveWheelSpeeds targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), trajectory.sample(currentTime)));
+        SmartDashboard.putNumber("StateV", finalTrajectory.sample(currentTime).velocityMetersPerSecond);
+        DifferentialDriveWheelSpeeds targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), finalTrajectory.sample(currentTime)));
         double leftOutput = targetWheelSpeeds.leftMetersPerSecond;
         double rightOutput = targetWheelSpeeds.rightMetersPerSecond;
         // should call the method given as the parameter for the BiConsumer
         m_output.accept(leftOutput, rightOutput);
-        m_field.setRobotPose(trajectory.sample(currentTime).poseMeters);
+        m_field.setRobotPose(finalTrajectory.sample(currentTime).poseMeters);
 
     }
 
@@ -111,7 +111,7 @@ public class LTVUnicycleCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
-        Pose2d diff = trajectory.getEndState().poseMeters.relativeTo(m_pose.get());
+        Pose2d diff = finalTrajectory.getEndState().poseMeters.relativeTo(m_pose.get());
         if (Math.abs(diff.getX()) < RobotMap.DrivetrainParameters.maxXTolerance) {
             if (Math.abs(diff.getY()) < RobotMap.DrivetrainParameters.maxYTolerance) {
                 if (Math.abs(diff.getRotation().getDegrees()) < RobotMap.DrivetrainParameters.maxAngle) {

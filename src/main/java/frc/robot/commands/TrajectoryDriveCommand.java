@@ -41,7 +41,7 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub
     isFirstPath = Boolean.parseBoolean(parameters.get(1));
-    trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel);
+    trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel, true);
     LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, isFirstPath, drivetrain);
     addCommands(ltv);
     

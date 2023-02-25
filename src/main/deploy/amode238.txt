@@ -3,49 +3,32 @@
     {
       "Commands": [
         {
-          "Name": "DriveStraightInches",
+          "Name": "TopHeight",
           "Parameters": [
-            "160",
-            "0.3"
+            "3"
           ],
           "ParallelType": "None"
-        }
-      ],
-      "Name": "drivestraight"
-    },
-    {
-      "Commands": [
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "test"
+            "Station_Cube3_Mobi_1",
+            "true"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "TestPaths"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "TopHeight",
-          "Parameters": [
-            "3"
-          ],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "ScoreAuto",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "StowCommand",
-          "Parameters": [],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "ScoreCubeNstow"
+      "Name": "Station_Cube3_Mobi"
     },
     {
       "Commands": [
@@ -67,15 +50,127 @@
           "ParallelType": "None"
         },
         {
-          "Name": "DriveStraightInches",
+          "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "86.75",
-            "-0.3"
+            "Cable_Cube3_Mobi_1",
+            "true"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "scoreAndCharge"
+      "Name": "Cable_Cube3_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cube2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cone2_Mobi"
     }
   ]
 }

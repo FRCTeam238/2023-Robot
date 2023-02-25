@@ -177,13 +177,16 @@ public class Drivetrain extends SubsystemBase {
   public void driveByVelocityOutput(double left, double right) {
     double rightFF = feedForward.calculate(right);
     double leftFF = feedForward.calculate(left);
-    SmartDashboard.putNumber("rightV", right);
-    SmartDashboard.putNumber("leftV", left);
+    SmartDashboard.putNumber("rightVDesired", right);
+    SmartDashboard.putNumber("leftVDesired", left);
     SmartDashboard.putNumber("rightFF", rightFF);
     SmartDashboard.putNumber("leftFF", leftFF);
 
-    rightControllerDrive.set(ControlMode.Velocity, right, DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
-    leftControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
+    SmartDashboard.putNumber("rightVActual", stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
+    SmartDashboard.putNumber("leftVActual", stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
+
+    rightControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(right), DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
+    leftControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(left), DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
     diff.feed();
   }
 
@@ -273,13 +276,13 @@ public class Drivetrain extends SubsystemBase {
     m_driveSim.update(0.02);
 
     // Update all of our sensors.
-    leftControllerDrive.getSimCollection().setIntegratedSensorRawPosition((int) metersToSteps(m_driveSim.getLeftPositionMeters()));
-    leftControllerDrive.getSimCollection().setIntegratedSensorVelocity((int) metersPerSecToStepsPerDecisec(m_driveSim.getLeftVelocityMetersPerSecond()));
-    rightControllerDrive.getSimCollection().setIntegratedSensorRawPosition(-(int) metersToSteps(m_driveSim.getRightPositionMeters()));
-    rightControllerDrive.getSimCollection().setIntegratedSensorVelocity(-(int) metersPerSecToStepsPerDecisec(m_driveSim.getRightVelocityMetersPerSecond()));    
+    leftControllerDrive.getSimCollection().setIntegratedSensorRawPosition(-(int) metersToSteps(m_driveSim.getLeftPositionMeters()));
+    leftControllerDrive.getSimCollection().setIntegratedSensorVelocity(-(int) metersPerSecToStepsPerDecisec(m_driveSim.getLeftVelocityMetersPerSecond()));
+    rightControllerDrive.getSimCollection().setIntegratedSensorRawPosition((int) metersToSteps(m_driveSim.getRightPositionMeters()));
+    rightControllerDrive.getSimCollection().setIntegratedSensorVelocity((int) metersPerSecToStepsPerDecisec(m_driveSim.getRightVelocityMetersPerSecond()));    
     int dev = SimDeviceDataJNI.getSimDeviceHandle("navX-Sensor[0]");
     SimDouble angle = new SimDouble(SimDeviceDataJNI.getSimValueHandle(dev, "Yaw"));
-    angle.set(-m_driveSim.getHeading().getDegrees());
+    angle.set(m_driveSim.getHeading().getDegrees());
     RoboRioSim.setVInVoltage(BatterySim.calculateDefaultBatteryLoadedVoltage(m_driveSim.getCurrentDrawAmps()));
   }
 

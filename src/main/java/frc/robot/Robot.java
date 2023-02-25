@@ -140,7 +140,10 @@ public class Robot extends TimedRobot {
     }
 
     // prevent the robot from rerunning auto mode a second time without a restart
-    m_allowAuto = false;
+    if (DriverStation.isFMSAttached()) {
+      m_allowAuto = false;
+
+    }
   }
 
   /** This function is called periodically during autonomous. */

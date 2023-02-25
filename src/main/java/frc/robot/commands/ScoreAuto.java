@@ -22,7 +22,7 @@ public class ScoreAuto extends SequentialCommandGroup implements IAutonomousComm
     addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
     addCommands(new Scoringposition());
-    addCommands(new WaitCommand(3));
+    addCommands(new WaitCommand(2));
     addCommands(new OpenIntakeCommand());  
   }
   

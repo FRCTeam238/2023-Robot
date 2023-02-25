@@ -24,17 +24,6 @@ public class TopHeight extends ElevatorTrapezoid implements IAutonomousCommand {
 
   // Called when the command is initially scheduled.
  
-
-  @Override
-  public boolean getIsAutonomousMode() {
-    // TODO Auto-generated method stub
-    return false;
-  }
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-      // TODO Auto-generated method stub
-      
-  }
   @Override
   public void setParameters(List<String> parameters) {
     parameters.get(0);      

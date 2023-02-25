@@ -33,17 +33,6 @@ public class StowCommand extends SequentialCommandGroup implements IAutonomousCo
     addCommands(new RetractAll());
   }
   @Override
-  public boolean getIsAutonomousMode() {
-      // TODO Auto-generated method stub
-      return false;
-  }
-  @Override
-  public void setIsAutonomousMode(boolean isAutonomousMode) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
   public double getTimeout() {
       // TODO Auto-generated method stub
       return 0;
