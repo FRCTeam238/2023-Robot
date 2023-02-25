@@ -31,7 +31,7 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
     kinematics = Drivetrain.kinematics;
     output = drivetrain::driveByVelocityOutput;
 
-
+    addRequirements(Robot.drivetrain);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     

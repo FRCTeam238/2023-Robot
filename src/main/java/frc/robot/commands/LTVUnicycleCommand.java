@@ -18,6 +18,9 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
@@ -45,7 +48,7 @@ public class LTVUnicycleCommand extends CommandBase {
     private PathPlannerTrajectory trajectory;
     private boolean isFirstPath;
     LTVUnicycleController lu;
-
+    private Field2d m_field;
 
     public LTVUnicycleCommand(PathPlannerTrajectory trajectory,
                               Supplier<Pose2d> pose,
@@ -60,7 +63,13 @@ public class LTVUnicycleCommand extends CommandBase {
         m_kinematics = kinematics;
         m_output = outputMetersPerSecond;
         this.isFirstPath = isFirstPath;
+
+        m_field = new Field2d();
+        
+        Shuffleboard.getTab("Logging").add("TrajectoryPose", m_field);
         addRequirements(requirements);
+        lu = new LTVUnicycleController(0.02);
+
     }
 
     // Called when the command is initially scheduled.
@@ -88,12 +97,14 @@ public class LTVUnicycleCommand extends CommandBase {
         double rightOutput = targetWheelSpeeds.rightMetersPerSecond;
         // should call the method given as the parameter for the BiConsumer
         m_output.accept(leftOutput, rightOutput);
+        m_field.setRobotPose(trajectory.sample(currentTime).poseMeters);
 
     }
 
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
+        System.out.println("END_______________________________________________");
         Robot.drivetrain.tankDrive(0, 0);
     }
 
@@ -104,6 +115,7 @@ public class LTVUnicycleCommand extends CommandBase {
         if (Math.abs(diff.getX()) < RobotMap.DrivetrainParameters.maxXTolerance) {
             if (Math.abs(diff.getY()) < RobotMap.DrivetrainParameters.maxYTolerance) {
                 if (Math.abs(diff.getRotation().getDegrees()) < RobotMap.DrivetrainParameters.maxAngle) {
+                    System.out.println("DONE___________________________________________");
                     return true;
                 }
             }
