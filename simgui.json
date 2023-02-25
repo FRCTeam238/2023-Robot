@@ -4,11 +4,19 @@
       "/FMSInfo": "FMSInfo",
       "/Shuffleboard/Logging/RobotPose": "Field2d",
       "/Shuffleboard/Logging/Scheduler": "Scheduler",
+      "/Shuffleboard/Logging/TrajectoryPose": "Field2d",
+      "/SmartDashboard/Auto Modes": "String Chooser",
       "/SmartDashboard/Elevator Sim": "Mechanism2d",
-      "/SmartDashboard/SendableChooser[0]": "String Chooser"
+      "/SmartDashboard/SendableChooser[0]": "String Chooser",
+      "/SmartDashboard/SendableChooser[1]": "String Chooser"
     },
     "windows": {
       "/Shuffleboard/Logging/RobotPose": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/Shuffleboard/Logging/TrajectoryPose": {
         "window": {
           "visible": true
         }
@@ -30,6 +38,12 @@
           "Scheduler": {
             "open": true
           },
+          "open": true
+        },
+        "open": true
+      },
+      "SmartDashboard": {
+        "Auto Modes": {
           "open": true
         },
         "open": true

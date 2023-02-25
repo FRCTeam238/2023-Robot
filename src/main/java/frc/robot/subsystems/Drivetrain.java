@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotMap;
@@ -72,7 +73,7 @@ public class Drivetrain extends SubsystemBase {
 
     m_driveSim = new DifferentialDrivetrainSim(
       // Create a linear system from our identification gains.
-      LinearSystemId.identifyDrivetrainSystem(RobotMap.DrivetrainParameters.kVLinear, RobotMap.DrivetrainParameters.kALinear, RobotMap.DrivetrainParameters.kVAngular, RobotMap.DrivetrainParameters.kAAngular),
+      LinearSystemId.identifyDrivetrainSystem(RobotMap.DrivetrainParameters.kV, RobotMap.DrivetrainParameters.kA, RobotMap.DrivetrainParameters.kVAngular, RobotMap.DrivetrainParameters.kAAngular),
       DCMotor.getFalcon500(2),       // 2 Falcon motors on each side of the drivetrain.
       10.86,                    // 10.86:1 gearing reduction.
       RobotMap.DrivetrainParameters.trackWidth,                  
@@ -164,11 +165,19 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void driveByVelocityOutput(double left, double right) {
+    double rightFF = feedForward.calculate(right);
+    double leftFF = feedForward.calculate(left);
+    SmartDashboard.putNumber("rightV", right);
+    SmartDashboard.putNumber("leftV", left);
+    SmartDashboard.putNumber("rightFF", rightFF);
+    SmartDashboard.putNumber("leftFF", leftFF);
+
     rightControllerDrive.set(ControlMode.Velocity, right, DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
     leftControllerDrive.set(ControlMode.Velocity, left, DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
+    diff.feed();
   }
 
-
+  
 
   public void tankDrive(double left, double right) {
     diff.tankDrive(left, right, false);
@@ -188,6 +197,7 @@ public class Drivetrain extends SubsystemBase {
     double avg = (left + right) / 2.0;
     rightControllerDrive.set(ControlMode.PercentOutput, avg);
     leftControllerDrive.set(ControlMode.PercentOutput, avg);
+    diff.feed();
   }
 
 

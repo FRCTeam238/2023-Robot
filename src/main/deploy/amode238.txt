@@ -16,6 +16,18 @@
     {
       "Commands": [
         {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "test"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "TestPaths"
+    },
+    {
+      "Commands": [
+        {
           "Name": "TopHeight",
           "Parameters": [
             "3"

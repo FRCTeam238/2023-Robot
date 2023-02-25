@@ -45,8 +45,9 @@ public class Drive extends CommandBase {
 		double leftOutput;
 		double rightOutput;
 		double multiplier;
+		double arcade = 0.5;
 		if (RobotMap.ControlParameters.left.getTrigger() || RobotMap.ControlParameters.right.getTrigger()){
-			multiplier = 0.5;
+			multiplier = 0.7;
 		} else {
 			multiplier = 1.0;
 		}
@@ -63,7 +64,7 @@ public class Drive extends CommandBase {
 				break;
 			case Arcade:
 				leftOutput = controls.getArcadePowers()[0] * multiplier;
-				rightOutput = controls.getArcadePowers()[1] * multiplier;
+				rightOutput = controls.getArcadePowers()[1] * multiplier * arcade;
 				drivetrain.arcadeDrive(leftOutput, rightOutput);
 				break;
 			case Cheesy:

@@ -34,24 +34,24 @@ public final class RobotMap {
         public static double currentLimit = 40;
         public static double triggerThresholdCurrent = 55;
         public static double triggerThresholdTime = 0.5;
-        public static double trackWidth = .7;
+        public static double trackWidth = .98006;
         public static double sensorUnitsPerRotation = 2048 * 10.86;
         public static double wheelDiameterInches = 6.18;
         public static double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
         public static double wheelCircumferenceMeters = Units.inchesToMeters(wheelCircumferenceInches);
         public static double maxVoltage = 12;
-        public static double kS;
-        public static double kV;
-        public static double kA;
+        public static double kS = 0.151;
+        public static double kV = 2.368;
+        public static double kA = 0.307;
+        public static double kP = 0.0011482;
+        public static double kD = 0;
         public static double maxVelocity = 2;
         public static double maxAccel = 2;
         public static double maxYTolerance = 0.05; // meters
         public static double maxXTolerance = 0.05; // meters
-        public static double maxAngle = 1;// in degrees
-        public static final double kVLinear = 2;
-        public static final double kALinear = .2;
-        public static final double kVAngular = 1.5;
-        public static final double kAAngular = .3;
+        public static double maxAngle = 1;// in degrees        
+        public static final double kVAngular = 1.3288;
+        public static final double kAAngular = 0.58306;
 
     }
 
