@@ -43,9 +43,10 @@ public final class RobotMap {
         public static double kS = 0.151;
         public static double kV = 2.368;
         public static double kA = 0.307;
-        public static double kP = 0.0011482;
+        public static double kP = 0.00;
         public static double kD = 0;
-        public static double maxVelocity = 2;
+        public static double maxVelocity = 1;
+        public static double maxVelocityFF = 3;
         public static double maxAccel = 2;
         public static double maxYTolerance = 0.05; // meters
         public static double maxXTolerance = 0.05; // meters

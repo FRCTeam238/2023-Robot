@@ -33,6 +33,32 @@
     {
       "Commands": [
         {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "New Path Copy",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StayLevelCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "New New Path",
+            "false"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testPath"
+    },
+    {
+      "Commands": [
+        {
           "Name": "TopHeight",
           "Parameters": [
             "3"

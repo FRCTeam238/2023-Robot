@@ -53,7 +53,7 @@ public class Drivetrain extends SubsystemBase {
   public static DifferentialDriveOdometry differentialDriveOdometry;
 
   public static SimpleMotorFeedforward feedForward = new SimpleMotorFeedforward(RobotMap.DrivetrainParameters.kS, RobotMap.DrivetrainParameters.kV, RobotMap.DrivetrainParameters.kA);
-
+  private double lastLVel=0, lastRVel=0;
   protected Field2d robotPose;
   
   Pose2d currentPose;
@@ -175,8 +175,8 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void driveByVelocityOutput(double left, double right) {
-    double rightFF = feedForward.calculate(right);
-    double leftFF = feedForward.calculate(left);
+    double rightFF = feedForward.calculate(right, (right-lastRVel)/.02);
+    double leftFF = feedForward.calculate(left, (left-lastLVel)/.02);
     SmartDashboard.putNumber("rightVDesired", right);
     SmartDashboard.putNumber("leftVDesired", left);
     SmartDashboard.putNumber("rightFF", rightFF);
@@ -188,6 +188,8 @@ public class Drivetrain extends SubsystemBase {
     rightControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(right), DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
     leftControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(left), DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
     diff.feed();
+    lastLVel = left;
+    lastRVel = right;
   }
 
   
@@ -231,7 +233,18 @@ public class Drivetrain extends SubsystemBase {
     leftControllerDrive.set(ControlMode.PercentOutput, avg);
     diff.feed();
   }
+  
+  public double getPitch() {
+    return navx.getPitch();
+  }
 
+  public double getRoll() {
+    return navx.getRoll();
+  }
+
+  public double getYaw() {
+    return navx.getYaw();
+  }
 
 
   public static double stepsToMeters(double steps) {
@@ -261,6 +274,7 @@ public class Drivetrain extends SubsystemBase {
   public static double insPerSecToStepsToDecisec(double inchesPerSecond) {
     return insToSteps(inchesPerSecond) * 0.1;
   }
+
 
   @Override
   public void simulationPeriodic()

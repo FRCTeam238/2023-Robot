@@ -7,6 +7,8 @@ package frc.robot;
 import java.io.File;
 import java.util.HashMap;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -61,6 +63,7 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     oi = new OI(driveType.Tank);
 
+
     if(isSimulation())
     {
       setDeployDirectory();
@@ -113,6 +116,10 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    NetworkTableInstance.getDefault().flush();
+    SmartDashboard.putNumber("Pitch", drivetrain.getPitch());
+    SmartDashboard.putNumber("Roll", drivetrain.getRoll());
+    SmartDashboard.putNumber("Yaw", drivetrain.getYaw());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

@@ -21,6 +21,7 @@ import frc.robot.commands.MidCubeHeight;
 import frc.robot.commands.OpenIntakeCommand;
 import frc.robot.commands.ReleaseGamepieceCommand;
 import frc.robot.commands.Scoringposition;
+import frc.robot.commands.StayLevelCommand;
 import frc.robot.commands.StowCommand;
 import frc.robot.commands.TopHeight;
 import frc.robot.commands.Travelposition;
@@ -89,6 +90,9 @@ public class OI {
 		//Back button
 		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
 		stowPos.onTrue(new StowCommand().withTimeout(5));
+
+		JoystickButton level = new JoystickButton(rightJoystick, 5);
+		level.onTrue(new StayLevelCommand());
 	}
 	
 		
