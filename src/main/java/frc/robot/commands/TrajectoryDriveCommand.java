@@ -12,6 +12,7 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.core238.autonomous.AutonomousModeAnnotation;
+import frc.core238.wrappers.ReverseChecker;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Drivetrain;
@@ -41,7 +42,8 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
   public void setParameters(List<String> parameters) {
     // TODO Auto-generated method stub
     isFirstPath = Boolean.parseBoolean(parameters.get(1));
-    trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel, true);
+    boolean isReversed = ReverseChecker.checkReversed(parameters.get(0));
+    trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
     LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, isFirstPath, drivetrain);
     addCommands(ltv);
     

@@ -27,9 +27,7 @@ public class StowCommand extends SequentialCommandGroup implements IAutonomousCo
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new Travelposition());
     addCommands(new WaitCommand(.5));
-    System.out.println("Done Waitaing ------------------------------------------------------");
     addCommands(new FloorHeight());
-    System.out.println("DONE FLOORING--------------------------------------------------------");
     addCommands(new RetractAll());
   }
   @Override
