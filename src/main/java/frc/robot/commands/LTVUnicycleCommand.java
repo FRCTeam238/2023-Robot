@@ -111,6 +111,12 @@ public class LTVUnicycleCommand extends CommandBase {
     // Returns true when the command should end.
     @Override
     public boolean isFinished() {
+        //If time is less than the trajectory time we're not done yet. This prevents false stopping if a path doubles back
+        if(currentTime < finalTrajectory.getTotalTimeSeconds()){
+            return false;
+        }
+
+        //Otherwise, check if our actual state is close enough to where we want to be.
         Pose2d diff = finalTrajectory.getEndState().poseMeters.relativeTo(m_pose.get());
         if (Math.abs(diff.getX()) < RobotMap.DrivetrainParameters.maxXTolerance) {
             if (Math.abs(diff.getY()) < RobotMap.DrivetrainParameters.maxYTolerance) {
