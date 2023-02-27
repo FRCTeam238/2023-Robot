@@ -93,11 +93,6 @@ public class Drivetrain extends SubsystemBase {
     leftFollower.follow(leftControllerDrive);
     rightFollower.follow(rightControllerDrive);
 
-    rightControllerDrive.setNeutralMode(NeutralMode.Brake);
-    rightFollower.setNeutralMode(NeutralMode.Brake);
-
-    leftControllerDrive.setNeutralMode(NeutralMode.Brake);
-    leftFollower.setNeutralMode(NeutralMode.Brake);
     rightControllerDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     leftControllerDrive.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     rightFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
@@ -107,6 +102,26 @@ public class Drivetrain extends SubsystemBase {
     initPID(leftControllerDrive);
     initPID(rightControllerDrive);
     
+  }
+
+  public void setBrake()
+  {
+    System.out.println("Setting brake");
+    rightControllerDrive.setNeutralMode(NeutralMode.Brake);
+    rightFollower.setNeutralMode(NeutralMode.Brake);
+
+    leftControllerDrive.setNeutralMode(NeutralMode.Brake);
+    leftFollower.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public void setCoast()
+  {
+    System.out.println("Setting coast");
+    rightControllerDrive.setNeutralMode(NeutralMode.Coast);
+    rightFollower.setNeutralMode(NeutralMode.Coast);
+
+    leftControllerDrive.setNeutralMode(NeutralMode.Coast);
+    leftFollower.setNeutralMode(NeutralMode.Coast);
   }
 
   /**
