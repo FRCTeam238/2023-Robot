@@ -33,9 +33,47 @@
     {
       "Commands": [
         {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "90",
+            "2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testPath"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TopHeight",
+          "Parameters": [
+            ""
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "New Path Copy",
+            "Cable_Cube3_Charge_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube3_Charge_2",
             "true"
           ],
           "ParallelType": "None"
@@ -44,17 +82,9 @@
           "Name": "StayLevelCommand",
           "Parameters": [],
           "ParallelType": "None"
-        },
-        {
-          "Name": "TrajectoryDriveCommand",
-          "Parameters": [
-            "New New Path",
-            "false"
-          ],
-          "ParallelType": "None"
         }
       ],
-      "Name": "testPath"
+      "Name": "Cable_Cube3_Charge"
     },
     {
       "Commands": [
