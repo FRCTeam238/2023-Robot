@@ -22,26 +22,218 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Station_Cube3_Mobi_1",
+            "Cable_Cube3_Mobi_1",
             "true"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "Station_Cube3_Mobi"
+      "Name": "Cable_Cube3_Mobi"
     },
     {
       "Commands": [
         {
+          "Name": "TopHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube3_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "90",
-            "2"
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoCone",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "testPath"
+      "Name": "Cable_Cube3_2PieceCone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoCone",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube2_2PieceCone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoCone",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone2_2PieceCone"
     },
     {
       "Commands": [
@@ -89,15 +281,32 @@
     {
       "Commands": [
         {
+          "Name": "TopHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "New New New Path",
+            "Station_Cube3_Mobi_1",
             "true"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "testRunOver"
+      "Name": "Station_Cube3_Mobi"
     },
     {
       "Commands": [
@@ -121,69 +330,34 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Cable_Cube3_Mobi_1",
+            "Station_Cube3_Mobi_1",
             "true"
           ],
           "ParallelType": "None"
-        }
-      ],
-      "Name": "Cable_Cube3_Mobi"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "MidCubeHeight",
-          "Parameters": [],
-          "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "StowCommand",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "TrajectoryDriveCommand",
+          "Name": "GyroTurnCommand",
           "Parameters": [
-            "Cable_Cube2_Mobi_1",
-            "true"
+            "180",
+            "1.8"
           ],
           "ParallelType": "None"
-        }
-      ],
-      "Name": "Cable_Cube2_Mobi"
-    },
-    {
-      "Commands": [
+        },
         {
-          "Name": "MidConeHeight",
+          "Name": "GrabAutoCone",
           "Parameters": [],
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "StowCommand",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "TrajectoryDriveCommand",
+          "Name": "GyroTurnCommand",
           "Parameters": [
-            "Cable_Cone2_Mobi_1",
-            "true"
+            "180",
+            "1.8"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "Cable_Cone2_Mobi"
+      "Name": "Station_Cube3_2PieceCone"
     },
     {
       "Commands": [
@@ -216,6 +390,55 @@
     {
       "Commands": [
         {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoCone",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cube2_2PieceCone"
+    },
+    {
+      "Commands": [
+        {
           "Name": "MidConeHeight",
           "Parameters": [],
           "ParallelType": "None"
@@ -240,6 +463,81 @@
         }
       ],
       "Name": "Station_Cone2_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoCone",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "1.8"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cone2_2PieceCone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "90",
+            "2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testPath"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "New New New Path",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testRunOver"
     }
   ]
 }
