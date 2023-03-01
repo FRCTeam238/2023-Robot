@@ -79,7 +79,7 @@
           "ParallelType": "None"
         }
       ],
-      "Name": "Cable_Cube3_2PieceCone"
+      "Name": "Cable_Cube3_Cone2"
     },
     {
       "Commands": [
@@ -154,9 +154,32 @@
             "1.8"
           ],
           "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube2_Cone2_2",
+            "false"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
         }
       ],
-      "Name": "Cable_Cube2_2PieceCone"
+      "Name": "Cable_Cube2_Cone2"
     },
     {
       "Commands": [
@@ -220,7 +243,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAutoCube",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -238,6 +261,21 @@
             "Cable_Cone2_Cube2",
             "false"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
           "ParallelType": "None"
         }
       ],
@@ -265,7 +303,7 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Cable_Cube3_Charge_1",
+            "Charge_Cube3_Charge_1",
             "true"
           ],
           "ParallelType": "None"
@@ -273,7 +311,7 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Cable_Cube3_Charge_2",
+            "Charge_Cube3_Charge_2",
             "true"
           ],
           "ParallelType": "None"
@@ -284,7 +322,7 @@
           "ParallelType": "None"
         }
       ],
-      "Name": "Cable_Cube3_Charge"
+      "Name": "Charge_Cube3_Charge"
     },
     {
       "Commands": [
@@ -365,7 +403,7 @@
           "ParallelType": "None"
         }
       ],
-      "Name": "Station_Cube3_2PieceCone"
+      "Name": "Station_Cube3_Cone2"
     },
     {
       "Commands": [
@@ -440,9 +478,39 @@
             "1.8"
           ],
           "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube2_Cone2_2",
+            "false"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "1.5"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
         }
       ],
-      "Name": "Station_Cube2_2PieceCone"
+      "Name": "Station_Cube2_Cone2"
     },
     {
       "Commands": [
@@ -506,7 +574,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAutoCube",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -517,35 +585,39 @@
             "1.8"
           ],
           "ParallelType": "None"
-        }
-      ],
-      "Name": "Station_Cone2_2PieceCone"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "GyroTurnCommand",
-          "Parameters": [
-            "90",
-            "2"
-          ],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "testPath"
-    },
-    {
-      "Commands": [
+        },
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "New New New Path",
-            "true"
+            "Station_Cone2_Cube2_2",
+            "false"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "MidCubeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "1.5"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
           "ParallelType": "None"
         }
       ],
-      "Name": "testRunOver"
+      "Name": "Station_Cone2_Cube2"
     }
   ]
 }
