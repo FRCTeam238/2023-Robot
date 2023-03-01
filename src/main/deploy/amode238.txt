@@ -231,9 +231,17 @@
             "1.8"
           ],
           "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone2_Cube2",
+            "false"
+          ],
+          "ParallelType": "None"
         }
       ],
-      "Name": "Cable_Cone2_2PieceCone"
+      "Name": "Cable_Cone2_Cube2"
     },
     {
       "Commands": [
