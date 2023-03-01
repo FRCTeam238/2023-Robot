@@ -59,6 +59,19 @@
     {
       "Commands": [
         {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "New New New Path",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testRunOver"
+    },
+    {
+      "Commands": [
+        {
           "Name": "TopHeight",
           "Parameters": [
             "3"
