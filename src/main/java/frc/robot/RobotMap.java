@@ -56,7 +56,7 @@ public final class RobotMap {
         public static final double kPSpin = .01;
         public static final double kISpin = 0;
         public static final double kDSpin = 0;
-        public static double angleTolerance = .5;
+        public static double angleTolerance = 3;
 
     }
 

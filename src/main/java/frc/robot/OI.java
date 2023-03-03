@@ -21,6 +21,8 @@ import frc.robot.commands.MidCubeHeight;
 import frc.robot.commands.OpenIntakeCommand;
 import frc.robot.commands.ReleaseGamepieceCommand;
 import frc.robot.commands.Scoringposition;
+import frc.robot.commands.SetBrakeCommand;
+import frc.robot.commands.SetCoastCommand;
 import frc.robot.commands.StayLevelCommand;
 import frc.robot.commands.StowCommand;
 import frc.robot.commands.TopHeight;
@@ -91,8 +93,9 @@ public class OI {
 		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
 		stowPos.onTrue(new StowCommand().withTimeout(5));
 
-		JoystickButton level = new JoystickButton(rightJoystick, 5);
-		level.onTrue(new StayLevelCommand());
+		JoystickButton brakeModeButton = new JoystickButton(rightJoystick, 3);
+		brakeModeButton.onTrue(new SetBrakeCommand());
+		brakeModeButton.onFalse(new SetCoastCommand());
 	}
 	
 		

@@ -24,6 +24,12 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
     addRequirements(Robot.drivetrain);
   }
 
+  public DriveStraightInches(double distanceInches, double speed) {
+    target = distanceInches;
+    this.speed = speed;
+    addRequirements(Robot.drivetrain);
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -38,7 +44,9 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("DONE DRIVING______________");
+  }
 
   // Returns true when the command should end.
   @Override

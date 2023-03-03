@@ -7,6 +7,8 @@ package frc.robot;
 import java.io.File;
 import java.util.HashMap;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DataLogManager;
@@ -43,6 +45,7 @@ public class Robot extends TimedRobot {
   public static Drivetrain drivetrain;
   public static Elevator elevator;
   public static Intake intake;
+  public UsbCamera intakeCamera;
   OI oi;
   HashMap<String, Command> m_autoModes;
   SendableChooser<String> m_chooser = new SendableChooser<>();
@@ -64,6 +67,9 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     intake = new Intake();
     oi = new OI(driveType.Tank);
+    intakeCamera = CameraServer.startAutomaticCapture();
+    intakeCamera.setResolution(160, 120);
+    intakeCamera.setFPS(20);
 
     new Trigger(this::isEnabled)
     .negate()
@@ -132,6 +138,7 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
+    drivetrain.setBrake();
   }
 
   @Override
@@ -178,7 +185,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
 
-    drivetrain.setBrake();
+    drivetrain.setCoast();
   }
 
   /** This function is called periodically during operator control. */

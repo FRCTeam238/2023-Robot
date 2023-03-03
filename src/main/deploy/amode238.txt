@@ -137,8 +137,8 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
-            "1.8"
+            "0",
+            "0.6"
           ],
           "ParallelType": "None"
         },
@@ -148,10 +148,24 @@
           "ParallelType": "None"
         },
         {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "1"
+          ],
+          "ParallelType": "None"
+        },
+        {
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "1.8"
+            "0.6"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "1"
           ],
           "ParallelType": "None"
         },
@@ -159,7 +173,7 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube2_Cone2_2",
-            "false"
+            "true"
           ],
           "ParallelType": "None"
         },
