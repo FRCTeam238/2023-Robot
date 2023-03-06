@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.PoseHelper;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.KindaRunIntakeCommand;
 
 public class Intake extends SubsystemBase {
   

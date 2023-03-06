@@ -27,8 +27,8 @@ public class Drive extends CommandBase {
 				RobotMap.ControlParameters.right);
 
 		addRequirements(drivetrain);
-		controlType.setDefaultOption("Tank", driveType.Tank);
-    	controlType.addOption("Arcade", driveType.Arcade);
+		controlType.setDefaultOption("Arcade", driveType.Arcade);
+    	controlType.addOption("Tank", driveType.Tank);
 		controlType.addOption("Cheesy", driveType.Cheesy);
 		SmartDashboard.putData(controlType);
 	}
@@ -47,7 +47,7 @@ public class Drive extends CommandBase {
 		double multiplier;
 		double arcade = 0.5;
 		if (RobotMap.ControlParameters.left.getTrigger() || RobotMap.ControlParameters.right.getTrigger()){
-			multiplier = 0.7;
+			multiplier = 0.427;
 		} else {
 			multiplier = 1.0;
 		}
@@ -59,6 +59,7 @@ public class Drive extends CommandBase {
 
 				if (RobotMap.ControlParameters.left.getRawButton(2)) {
 					leftOutput = rightOutput;
+					
 				}
 				drivetrain.tankDrive(leftOutput, rightOutput);
 				break;

@@ -272,7 +272,7 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Cable_Cone2_Cube2",
+            "Cable_Cone2_Cube2_2",
             "false"
           ],
           "ParallelType": "None"
@@ -328,7 +328,14 @@
             "Charge_Cube3_Charge_2",
             "true"
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "5"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "StayLevelCommand",

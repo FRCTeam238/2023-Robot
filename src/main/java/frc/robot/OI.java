@@ -16,6 +16,7 @@ import frc.robot.commands.Drive;
 import frc.robot.commands.ElevatorManualCommand;
 import frc.robot.commands.FloorHeight;
 import frc.robot.commands.IntakeInOutCommand;
+import frc.robot.commands.KindaRunIntakeCommand;
 import frc.robot.commands.MidConeHeight;
 import frc.robot.commands.MidCubeHeight;
 import frc.robot.commands.OpenIntakeCommand;
@@ -45,6 +46,9 @@ public class OI {
 	Drive driveCommand;
 
 	public OI(driveType controlType) {
+
+		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
+
 		
 		driveCommand = new Drive();
 		elevatorManualCommand = new ElevatorManualCommand();
@@ -95,7 +99,6 @@ public class OI {
 
 		JoystickButton brakeModeButton = new JoystickButton(rightJoystick, 3);
 		brakeModeButton.onTrue(new SetBrakeCommand());
-		brakeModeButton.onFalse(new SetCoastCommand());
 	}
 	
 		

@@ -67,9 +67,12 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     intake = new Intake();
     oi = new OI(driveType.Tank);
-    intakeCamera = CameraServer.startAutomaticCapture();
-    intakeCamera.setResolution(160, 120);
-    intakeCamera.setFPS(20);
+    if (isReal()) {
+      intakeCamera = CameraServer.startAutomaticCapture();
+      intakeCamera.setResolution(160, 120);
+      intakeCamera.setFPS(20);
+
+    }
 
     new Trigger(this::isEnabled)
     .negate()
