@@ -6,6 +6,7 @@ package frc.robot;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
@@ -47,10 +48,13 @@ public class Robot extends TimedRobot {
   public static Intake intake;
   public UsbCamera intakeCamera;
   OI oi;
+  String lastSelectedAuto;
   HashMap<String, Command> m_autoModes;
+  List<String> autoModeNames;
   SendableChooser<String> m_chooser = new SendableChooser<>();
   boolean fmsConnected = false;
   boolean m_allowAuto = true;
+  AutonomousModesReader reader;
 
 
   /**
@@ -60,7 +64,24 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer. This will perform all our button bindings,
+    // Instantiate our     // m_autoModes = reader.getAutonmousModes();
+  
+    //   if (m_autoModes.size() > 0) {
+    //     Boolean first = true;
+  
+    //     for (var entry : m_autoModes.entrySet()) {
+    //       String name = entry.getKey();
+    //       if (first) {
+    //         first = false;
+    //         m_chooser.setDefaultOption(name, name);
+    //       } else {
+    //         m_chooser.addOption(name, name);
+    //       }
+    //     }
+    //     SmartDashboard.putData("Auto Modes", m_chooser);
+    //   }
+    // }
+    // {RobotContainer. This will perform all our button bindings,
     // and put our
     // autonomous chooser on the dashboard.
     drivetrain = new Drivetrain();
@@ -87,25 +108,33 @@ public class Robot extends TimedRobot {
 
     // initialize the automodes list
     IAutonomousModeDataSource autoModesDataSource = new DataFileAutonomousModeDataSource(Filesystem.getDeployDirectory() + "/amode238.txt");
-    AutonomousModesReader reader = new AutonomousModesReader(autoModesDataSource);
-    m_autoModes = reader.getAutonmousModes();
-  
-      if (m_autoModes.size() > 0) {
-        Boolean first = true;
-  
-        for (var entry : m_autoModes.entrySet()) {
-          String name = entry.getKey();
-          if (first) {
-            first = false;
-            m_chooser.setDefaultOption(name, name);
-          } else {
-            m_chooser.addOption(name, name);
-          }
-        }
-        SmartDashboard.putData("Auto Modes", m_chooser);
-      }
+    reader = new AutonomousModesReader(autoModesDataSource);
+    autoModeNames = reader.GetAutoNames();
+    for (String name : autoModeNames) {
+      m_chooser.addOption(name, name);
+      System.out.println("ADDED" + name);
     }
-    {
+    SmartDashboard.putData("Auto Modes", m_chooser);
+
+    lastSelectedAuto = m_chooser.getSelected();
+    // m_autoModes = reader.getAutonmousModes();
+  
+    //   if (m_autoModes.size() > 0) {
+    //     Boolean first = true;
+  
+    //     for (var entry : m_autoModes.entrySet()) {
+    //       String name = entry.getKey();
+    //       if (first) {
+    //         first = false;
+    //         m_chooser.setDefaultOption(name, name);
+    //       } else {
+    //         m_chooser.addOption(name, name);
+    //       }
+    //     }
+    //     SmartDashboard.putData("Auto Modes", m_chooser);
+    //   }
+    // }
+    // {
     DataLogManager.start();
     Shuffleboard.getTab("Logging").add(CommandScheduler.getInstance());
     DriverStation.startDataLog(DataLogManager.getLog());
@@ -124,6 +153,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+
+    if (lastSelectedAuto != m_chooser.getSelected()) {
+      m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
+      lastSelectedAuto = m_chooser.getSelected();
+    }
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -157,13 +191,11 @@ public class Robot extends TimedRobot {
 
     drivetrain.setBrake();
 
+    m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
     String autoMode = m_chooser.getSelected();
 
     // schedule the autonomous command (example)
-    if (m_allowAuto && m_autoModes.containsKey(autoMode)) {
-      m_autonomousCommand = m_autoModes.get(autoMode);
-      m_autonomousCommand.schedule();
-    }
+    m_autonomousCommand.schedule();
 
     // prevent the robot from rerunning auto mode a second time without a restart
     if (DriverStation.isFMSAttached()) {
