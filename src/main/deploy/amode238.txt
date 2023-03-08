@@ -33,19 +33,6 @@
     {
       "Commands": [
         {
-          "Name": "TrajectoryDriveCommand",
-          "Parameters": [
-            "Cable_Cone2_Mobi_1",
-            "true"
-          ],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "Test"
-    },
-    {
-      "Commands": [
-        {
           "Name": "TopHeight",
           "Parameters": [
             "3"
@@ -652,6 +639,19 @@
         }
       ],
       "Name": "Station_Cone2_Cube2"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone2_Mobi_1",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Test"
     }
   ]
 }

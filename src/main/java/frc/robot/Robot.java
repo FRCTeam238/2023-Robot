@@ -111,7 +111,7 @@ public class Robot extends TimedRobot {
     reader = new AutonomousModesReader(autoModesDataSource);
     autoModeNames = reader.GetAutoNames();
     for (String name : autoModeNames) {
-      m_chooser.addOption(name, name);
+      m_chooser.setDefaultOption(name, name);
       System.out.println("ADDED" + name);
     }
     SmartDashboard.putData("Auto Modes", m_chooser);

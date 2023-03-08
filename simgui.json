@@ -45,6 +45,9 @@
         "Auto Modes": {
           "open": true
         },
+        "SendableChooser[1]": {
+          "open": true
+        },
         "open": true
       }
     }
