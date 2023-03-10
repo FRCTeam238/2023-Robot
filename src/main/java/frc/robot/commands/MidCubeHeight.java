@@ -20,6 +20,11 @@ public class MidCubeHeight extends ElevatorTrapezoid implements IAutonomousComma
   }
 
   // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    Robot.elevator.putCommandString(this);
+    super.initialize();
+  }
   
   @Override
   public double getTimeout() {

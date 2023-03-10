@@ -34,6 +34,7 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   @Override
   public void initialize() {
     startingVal = Units.metersToInches(Robot.drivetrain.stepsToMeters(Robot.drivetrain.getLeftEncoderTicks()));
+    Robot.drivetrain.putCommandString(this);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

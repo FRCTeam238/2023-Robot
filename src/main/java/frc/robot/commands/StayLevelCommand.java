@@ -26,6 +26,7 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.drivetrain.putCommandString(this);
     lastAngle = Robot.drivetrain.getRoll();
   }
 
@@ -42,9 +43,7 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    SmartDashboard.putNumber("Trigger", Robot.drivetrain.getRoll() - lastAngle);
     if (Math.abs(Robot.drivetrain.getRoll())  < 12) {
-      System.out.println("DOOOOOOOOONNNNNEEEEEEEE_________________");
       return true;
     }
     lastAngle = Robot.drivetrain.getRoll();

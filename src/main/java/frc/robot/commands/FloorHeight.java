@@ -21,6 +21,12 @@ public class FloorHeight extends ElevatorTrapezoid implements IAutonomousCommand
     super(new TrapezoidProfile.State(RobotMap.ElevatorParameters.floorHeight, 0));
     // Use addRequirements() here to declare subsystem dependencies.
   }
+  
+  @Override
+  public void initialize() {
+    Robot.elevator.putCommandString(this);
+    super.initialize();
+  }
 
   @Override
   public double getTimeout() {

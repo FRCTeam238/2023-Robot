@@ -67,15 +67,16 @@ public class LTVUnicycleCommand extends CommandBase {
 
         m_field = new Field2d();
         
-        // Shuffleboard.getTab("Logging").add("TrajectoryPose", m_field);
         addRequirements(requirements);
         lu = new LTVUnicycleController(0.02);
-
+        
     }
-
+    
     // Called when the command is initially scheduled.
     @Override
     public void initialize() {
+        SmartDashboard.putData("TrajectoryPose", m_field);
+        Robot.drivetrain.putCommandString(this);
         if (isFirstPath) {
             PathPlannerState state = PathPlannerTrajectory.transformStateForAlliance(initialTrajectory.getInitialState(), DriverStation.getAlliance());
             Robot.drivetrain.resetOdometry(state.poseMeters);
@@ -91,7 +92,7 @@ public class LTVUnicycleCommand extends CommandBase {
     @Override
     public void execute() {
         currentTime = Timer.getFPGATimestamp() - startTime;
-        SmartDashboard.putNumber("StateV", finalTrajectory.sample(currentTime).velocityMetersPerSecond);
+        SmartDashboard.putNumber("TrajectoryStateVelocity", finalTrajectory.sample(currentTime).velocityMetersPerSecond);
         DifferentialDriveWheelSpeeds targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), finalTrajectory.sample(currentTime)));
         double leftOutput = targetWheelSpeeds.leftMetersPerSecond;
         double rightOutput = targetWheelSpeeds.rightMetersPerSecond;

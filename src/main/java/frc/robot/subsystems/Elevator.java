@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.simulation.ElevatorSim;
 import edu.wpi.first.wpilibj.simulation.PWMSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.PoseHelper;
 import frc.robot.Robot;
@@ -91,20 +92,26 @@ public class Elevator extends SubsystemBase {
 
   @Override
   public void periodic() {
+
     // This method will be called once per scheduler run
     if(elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed()) {
     }
     poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
-    SmartDashboard.putNumber("Encoder", getEncoderPosition());
+    SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
+  }
+  
+  public void putCommandString(Command command) {
+    SmartDashboard.putString("Elevator Command", command.getName());
+
   }
 
   public void PIDdrive(TrapezoidProfile.State state) {
-    SmartDashboard.putNumber("Desired V", state.velocity);
-    SmartDashboard.putNumber("Desired Pos", state.position);
-    SmartDashboard.putNumber("Actual V", getVelocity());
-    SmartDashboard.putNumber("Actual Pos", getEncoderPosition());
+    SmartDashboard.putNumber("Elevator Desired V", state.velocity);
+    SmartDashboard.putNumber("Elevator Desired Pos", state.position);
+    SmartDashboard.putNumber("Elevator Actual V", getVelocity());
+    SmartDashboard.putNumber("Elevator Actual Pos", getEncoderPosition());
     double feed = FF.calculate(state.velocity, (state.velocity - getVelocity())/.02);
-    SmartDashboard.putNumber("FF", feed);
+    SmartDashboard.putNumber("Elevator FF", feed);
     if(Robot.isReal()){
     elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
     }

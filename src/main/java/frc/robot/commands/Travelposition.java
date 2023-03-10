@@ -20,6 +20,7 @@ public class Travelposition extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.intake.putCommandString(this);
     Robot.intake.extendShort();
     Robot.intake.retractLong();
     

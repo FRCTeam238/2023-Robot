@@ -54,6 +54,7 @@ public class AutonomousModesReader {
             
             final String name = modeDescriptor.getName();
             final List<CommandGroupBase> parallelCommandGroups = new ArrayList<>();
+            parallelCommandGroups.add(new ParallelCommandGroup());
             final List<Boolean> isParallelList = new ArrayList<>();
             if (modeDescriptor.getName().equals(autoName)) {
             modeDescriptor.getCommands().forEach(commandDescriptor -> {

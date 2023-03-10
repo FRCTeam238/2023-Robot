@@ -8,7 +8,8 @@
       "/SmartDashboard/Auto Modes": "String Chooser",
       "/SmartDashboard/Elevator Sim": "Mechanism2d",
       "/SmartDashboard/SendableChooser[0]": "String Chooser",
-      "/SmartDashboard/SendableChooser[1]": "String Chooser"
+      "/SmartDashboard/SendableChooser[1]": "String Chooser",
+      "/SmartDashboard/TrajectoryPose": "Field2d"
     },
     "windows": {
       "/Shuffleboard/Logging/RobotPose": {
@@ -16,12 +17,17 @@
           "visible": true
         }
       },
-      "/Shuffleboard/Logging/TrajectoryPose": {
+      "/SmartDashboard/Auto Modes": {
         "window": {
           "visible": true
         }
       },
       "/SmartDashboard/Elevator Sim": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/TrajectoryPose": {
         "window": {
           "visible": true
         }

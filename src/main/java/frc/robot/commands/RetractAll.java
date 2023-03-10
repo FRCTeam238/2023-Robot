@@ -19,6 +19,7 @@ public class RetractAll extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.intake.putCommandString(this);
     Robot.intake.retractShort();
     Robot.intake.retractLong();
   }

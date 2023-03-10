@@ -21,6 +21,7 @@ public class Scoringposition extends InstantCommand implements IAutonomousComman
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.intake.putCommandString(this);
     Robot.intake.extendLong();
     Robot.intake.retractShort();
   }

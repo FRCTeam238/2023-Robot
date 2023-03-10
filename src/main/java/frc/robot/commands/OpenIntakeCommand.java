@@ -23,6 +23,7 @@ public class OpenIntakeCommand extends InstantCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    intake.putCommandString(this);
     intake.openIntake();
   }
 

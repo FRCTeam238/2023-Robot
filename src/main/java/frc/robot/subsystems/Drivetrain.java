@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -102,6 +103,10 @@ public class Drivetrain extends SubsystemBase {
     initPID(leftControllerDrive);
     initPID(rightControllerDrive);
     
+  }
+  public void putCommandString(Command command) {
+    SmartDashboard.putString("Drivetrain Command", command.getName());
+
   }
 
   public void setBrake()

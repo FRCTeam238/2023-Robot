@@ -22,6 +22,12 @@ public class TopHeight extends ElevatorTrapezoid implements IAutonomousCommand {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
+  @Override
+  public void initialize() {
+    Robot.elevator.putCommandString(this);
+    super.initialize();
+  }
+
   // Called when the command is initially scheduled.
  
   @Override

@@ -23,6 +23,12 @@ public class MidConeHeight extends ElevatorTrapezoid implements IAutonomousComma
   }
 
   @Override
+  public void initialize() {
+    Robot.elevator.putCommandString(this);
+    super.initialize();
+  }
+
+  @Override
   public double getTimeout() {
       // TODO Auto-generated method stub
       return 0;

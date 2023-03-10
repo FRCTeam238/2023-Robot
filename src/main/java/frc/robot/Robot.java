@@ -64,26 +64,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // Instantiate our     // m_autoModes = reader.getAutonmousModes();
-  
-    //   if (m_autoModes.size() > 0) {
-    //     Boolean first = true;
-  
-    //     for (var entry : m_autoModes.entrySet()) {
-    //       String name = entry.getKey();
-    //       if (first) {
-    //         first = false;
-    //         m_chooser.setDefaultOption(name, name);
-    //       } else {
-    //         m_chooser.addOption(name, name);
-    //       }
-    //     }
-    //     SmartDashboard.putData("Auto Modes", m_chooser);
-    //   }
-    // }
-    // {RobotContainer. This will perform all our button bindings,
-    // and put our
-    // autonomous chooser on the dashboard.
+    
     drivetrain = new Drivetrain();
     elevator = new Elevator();
     intake = new Intake();
@@ -94,6 +75,8 @@ public class Robot extends TimedRobot {
       intakeCamera.setFPS(20);
 
     }
+
+    SmartDashboard.putBoolean("Autos Ready", true);
 
     new Trigger(this::isEnabled)
     .negate()
@@ -117,24 +100,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto Modes", m_chooser);
 
     lastSelectedAuto = m_chooser.getSelected();
-    // m_autoModes = reader.getAutonmousModes();
-  
-    //   if (m_autoModes.size() > 0) {
-    //     Boolean first = true;
-  
-    //     for (var entry : m_autoModes.entrySet()) {
-    //       String name = entry.getKey();
-    //       if (first) {
-    //         first = false;
-    //         m_chooser.setDefaultOption(name, name);
-    //       } else {
-    //         m_chooser.addOption(name, name);
-    //       }
-    //     }
-    //     SmartDashboard.putData("Auto Modes", m_chooser);
-    //   }
-    // }
-    // {
+    
+    m_autonomousCommand = reader.getAutonomousMode(lastSelectedAuto);
+
     DataLogManager.start();
     Shuffleboard.getTab("Logging").add(CommandScheduler.getInstance());
     DriverStation.startDataLog(DataLogManager.getLog());
@@ -154,10 +122,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
 
-    if (lastSelectedAuto != m_chooser.getSelected()) {
-      m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
-      lastSelectedAuto = m_chooser.getSelected();
-    }
     // Runs the Scheduler. This is responsible for polling buttons, adding
     // newly-scheduled
     // commands, running already-scheduled commands, removing finished or
@@ -166,7 +130,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    NetworkTableInstance.getDefault().flush();
+    //NetworkTableInstance.getDefault().flush();
     SmartDashboard.putNumber("Pitch", drivetrain.getPitch());
     SmartDashboard.putNumber("Roll", drivetrain.getRoll());
     SmartDashboard.putNumber("Yaw", drivetrain.getYaw());
@@ -180,6 +144,15 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+    if (lastSelectedAuto != m_chooser.getSelected()) {
+      SmartDashboard.putBoolean("Autos Ready", false);
+      NetworkTableInstance.getDefault().flush();
+      m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
+      SmartDashboard.putBoolean("Autos Ready", true);
+
+
+      lastSelectedAuto = m_chooser.getSelected();
+    }
   }
 
   /**

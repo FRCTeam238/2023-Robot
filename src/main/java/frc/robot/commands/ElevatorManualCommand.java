@@ -20,7 +20,9 @@ public class ElevatorManualCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    elevator.putCommandString(this);
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override

@@ -645,7 +645,7 @@
         {
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
-            "Cable_Cone2_Mobi_1",
+            "New Path",
             "true"
           ],
           "ParallelType": "None"

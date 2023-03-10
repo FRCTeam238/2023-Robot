@@ -23,6 +23,7 @@ public class CloseIntakeCommand extends InstantCommand {
     Intake intake = Robot.intake;
     addRequirements(intake);
     intake.closeIntake();
+    intake.putCommandString(this);
   }
 
   // Called once the command ends or is interrupted.
