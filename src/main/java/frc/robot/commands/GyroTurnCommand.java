@@ -57,6 +57,7 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.drivetrain.arcadeDrive(0, 0);
   }
 
   // Returns true when the command should end.
