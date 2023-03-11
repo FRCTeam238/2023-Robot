@@ -7,6 +7,9 @@ package frc.robot.commands;
 import java.util.List;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
@@ -48,6 +51,7 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
     double turnValue = controller.calculate(Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
     SmartDashboard.putNumber("Current Pose Degrees", Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
     SmartDashboard.putNumber("Gyro Turn Setpoint", controller.getSetpoint());
+    turnValue += Math.copySign(RobotMap.DrivetrainParameters.minTurnValue, turnValue);
     turnValue = Math.min(turnValue, maxSpeed);
     turnValue = Math.max(turnValue, -maxSpeed);
     SmartDashboard.putNumber("Gyro Turn Output", turnValue);

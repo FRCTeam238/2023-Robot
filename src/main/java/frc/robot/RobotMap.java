@@ -53,10 +53,12 @@ public final class RobotMap {
         public static double maxAngle = 4;// in degrees
         public static final double kVAngular = 1.3288;
         public static final double kAAngular = .58306;
-        public static final double kPSpin = .01;
+        public static final double kPSpin = .005;
         public static final double kISpin = 0;
-        public static final double kDSpin = 0;
-        public static double angleTolerance = 3;
+        public static final double kDSpin = 0.001;
+        public static final double angleVelocityTolerance = 3;
+        public static final double minTurnValue = 0.07;
+        public static double angleTolerance = 1;
 
     }
 
