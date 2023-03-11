@@ -193,9 +193,9 @@ public class Drivetrain extends SubsystemBase {
     return leftControllerDrive.getSelectedSensorPosition();
   }
 
-  public void driveByVelocityOutput(double left, double right) {
-    double rightFF = feedForward.calculate(right, (right-lastRVel)/.02);
-    double leftFF = feedForward.calculate(left, (left-lastLVel)/.02);
+  public void driveByVelocityOutput(double left, double right, double leftAccel, double rightAccel) {
+    double rightFF = feedForward.calculate(right, rightAccel);
+    double leftFF = feedForward.calculate(left, leftAccel);
     SmartDashboard.putNumber("rightVDesired", right);
     SmartDashboard.putNumber("leftVDesired", left);
     SmartDashboard.putNumber("rightFF", rightFF);

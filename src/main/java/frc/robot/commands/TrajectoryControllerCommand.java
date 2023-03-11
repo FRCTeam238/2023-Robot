@@ -12,9 +12,12 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
 
 import edu.wpi.first.math.controller.LTVUnicycleController;
+import edu.wpi.first.math.controller.RamseteController;
 import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.trajectory.Trajectory.State;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -35,7 +38,7 @@ import frc.robot.subsystems.Drivetrain;
  * while this could be modified to include PIDs, we did not need it,
  * so we didnt make it.
  **/
-public class LTVUnicycleCommand extends CommandBase {
+public class TrajectoryControllerCommand extends CommandBase {
     /**
      * Creates a new LTVUnicycleCommand.
      */
@@ -44,17 +47,23 @@ public class LTVUnicycleCommand extends CommandBase {
     private double currentTime;
     private final Supplier<Pose2d> m_pose;
     private final DifferentialDriveKinematics m_kinematics;
-    private final BiConsumer<Double, Double> m_output;
     private PathPlannerTrajectory initialTrajectory;
     private PathPlannerTrajectory finalTrajectory;
     private boolean isFirstPath;
     LTVUnicycleController lu;
+    RamseteController rc;
     private Field2d m_field;
+    private ControllerType type = ControllerType.LTV;
 
-    public LTVUnicycleCommand(PathPlannerTrajectory trajectory,
+    public enum ControllerType{
+        LTV,
+        RAMSETE,
+        NONE
+    }
+
+    public TrajectoryControllerCommand(PathPlannerTrajectory trajectory,
                               Supplier<Pose2d> pose,
                               DifferentialDriveKinematics kinematics,
-                              BiConsumer<Double, Double> outputMetersPerSecond,
                               boolean isFirstPath,
                               SubsystemBase... requirements) {
         // Use addRequirements() here to declare subsystem dependencies.
@@ -62,14 +71,13 @@ public class LTVUnicycleCommand extends CommandBase {
         m_pose = pose;
 
         m_kinematics = kinematics;
-        m_output = outputMetersPerSecond;
         this.isFirstPath = isFirstPath;
 
         m_field = new Field2d();
         
         addRequirements(requirements);
         lu = new LTVUnicycleController(0.02);
-        
+        rc = new RamseteController();
     }
     
     // Called when the command is initially scheduled.
@@ -93,11 +101,31 @@ public class LTVUnicycleCommand extends CommandBase {
     public void execute() {
         currentTime = Timer.getFPGATimestamp() - startTime;
         SmartDashboard.putNumber("TrajectoryStateVelocity", finalTrajectory.sample(currentTime).velocityMetersPerSecond);
-        DifferentialDriveWheelSpeeds targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), finalTrajectory.sample(currentTime)));
+        DifferentialDriveWheelSpeeds targetWheelSpeeds;
+        DifferentialDriveWheelSpeeds nextWheelSpeeds;
+        switch(type){
+            case LTV:
+                targetWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), finalTrajectory.sample(currentTime)));
+                nextWheelSpeeds = m_kinematics.toWheelSpeeds(lu.calculate(m_pose.get(), finalTrajectory.sample(currentTime+.02)));
+                break;
+            case RAMSETE:
+                targetWheelSpeeds = m_kinematics.toWheelSpeeds(rc.calculate(m_pose.get(), finalTrajectory.sample(currentTime)));
+                nextWheelSpeeds = m_kinematics.toWheelSpeeds(rc.calculate(m_pose.get(), finalTrajectory.sample(currentTime+.02)));
+                break;
+            case NONE:
+            default:
+                State desiredState = finalTrajectory.sample(currentTime);
+                targetWheelSpeeds = m_kinematics.toWheelSpeeds(new ChassisSpeeds(desiredState.velocityMetersPerSecond, 0, desiredState.velocityMetersPerSecond * desiredState.curvatureRadPerMeter));
+                desiredState = finalTrajectory.sample(currentTime+.02);
+                nextWheelSpeeds = m_kinematics.toWheelSpeeds(new ChassisSpeeds(desiredState.velocityMetersPerSecond, 0, desiredState.velocityMetersPerSecond * desiredState.curvatureRadPerMeter));
+        }
+         
         double leftOutput = targetWheelSpeeds.leftMetersPerSecond;
         double rightOutput = targetWheelSpeeds.rightMetersPerSecond;
+        double leftAccel = (nextWheelSpeeds.leftMetersPerSecond - leftOutput)/.02;
+        double rightAccel = (nextWheelSpeeds.rightMetersPerSecond - rightOutput)/.02;
         // should call the method given as the parameter for the BiConsumer
-        m_output.accept(leftOutput, rightOutput);
+        Robot.drivetrain.driveByVelocityOutput(leftOutput, rightOutput, leftAccel, rightAccel);
         m_field.setRobotPose(finalTrajectory.sample(currentTime).poseMeters);
 
     }

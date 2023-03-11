@@ -25,12 +25,11 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
   DifferentialDriveKinematics kinematics;
   Drivetrain drivetrain = Robot.drivetrain;
   PathPlannerTrajectory trajectory;
-  BiConsumer<Double, Double> output;
   private boolean isFirstPath;
   /** Creates a new TrajectoryDriveCommand. */
   public TrajectoryDriveCommand() {
     kinematics = Drivetrain.kinematics;
-    output = drivetrain::driveByVelocityOutput;
+
 
     addRequirements(Robot.drivetrain);
     // Add your commands in the addCommands() call, e.g.
@@ -44,7 +43,7 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
     isFirstPath = Boolean.parseBoolean(parameters.get(1));
     boolean isReversed = ReverseChecker.checkReversed(parameters.get(0));
     trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
-    LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, isFirstPath, drivetrain);
+    TrajectoryControllerCommand ltv = new TrajectoryControllerCommand(trajectory, drivetrain::getCurrentPose, kinematics, isFirstPath, drivetrain);
     addCommands(ltv);
     
   }

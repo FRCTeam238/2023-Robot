@@ -20,13 +20,11 @@ public class GeneratePathLive extends SequentialCommandGroup {
     Drivetrain drivetrain = Robot.drivetrain;
     Translation2d endTranslation;
     Rotation2d endRotation;
-    BiConsumer<Double, Double> output;
 
     public GeneratePathLive(Translation2d endTranslation, Rotation2d endRotation) {
         this.endRotation = endRotation;
         this.endTranslation = endTranslation;
         kinematics = Drivetrain.kinematics;
-        output = drivetrain::driveByVelocityOutput;
 
         double posX = drivetrain.getCurrentPose().getX();
         double posY = drivetrain.getCurrentPose().getY();
@@ -35,6 +33,6 @@ public class GeneratePathLive extends SequentialCommandGroup {
                                                                                         RobotMap.DrivetrainParameters.maxAccel),
                                                                     new PathPoint(new Translation2d(posX, posY), rot),
                                                                     new PathPoint(endTranslation, endRotation));
-        LTVUnicycleCommand ltv = new LTVUnicycleCommand(trajectory, drivetrain::getCurrentPose, kinematics, output, false, drivetrain);
+        TrajectoryControllerCommand ltv = new TrajectoryControllerCommand(trajectory, drivetrain::getCurrentPose, kinematics, false, drivetrain);
     }
 }
