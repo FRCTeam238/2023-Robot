@@ -45,10 +45,6 @@ public class Drivetrain extends SubsystemBase {
   public static final WPI_TalonFX rightFollower = RobotMap.DrivetrainParameters.rightDrivetrainFollower;
   private static final int kTimeoutMs = 30;
   private static final int kPIDLoopIdx = 0;
-  private static final double kP = 0;
-  private static final double kI = 0;
-  private static final double kD = 0;
-  private static final double kF = 0;
   public static DifferentialDrive diff = new DifferentialDrive(leftControllerDrive, rightControllerDrive);
   public static DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(RobotMap.DrivetrainParameters.trackWidth);
   public static DifferentialDriveOdometry differentialDriveOdometry;
@@ -147,10 +143,10 @@ public class Drivetrain extends SubsystemBase {
        talon.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
    
        /* Config closed loop gains for Primary closed loop (Current) */
-       talon.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
-       talon.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
-       talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
-       talon.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+       talon.config_kP(kPIDLoopIdx, RobotMap.DrivetrainParameters.kP, kTimeoutMs);
+       //talon.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+       //talon.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+       //talon.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
        //talon.config_IntegralZone(kPIDLoopIdx, kIzone, kTimeoutMs);
        
        // Config encoders and set them to update every 1ms to minimize latency/jitter
