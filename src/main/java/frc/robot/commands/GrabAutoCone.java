@@ -10,6 +10,7 @@ import java.util.List;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
+import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,9 +23,9 @@ public class GrabAutoCone extends SequentialCommandGroup implements IAutonomousC
   public GrabAutoCone() {
     // Add your commands in the addCommands() call, e.g.
     addCommands(new Armdown());
-    addCommands(new WaitCommand(2));
+    addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
     addCommands(new OpenIntakeCommand());
-    addCommands(new DriveStraightInches(6, 1));
+    addCommands(new DriveStraightInches(6, .2));
     addCommands(new CloseIntakeCommand());
     // addCommands(new FooCommand(), new BarCommand());
     

@@ -69,12 +69,12 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     intake = new Intake();
     oi = new OI(driveType.Tank);
-    if (isReal()) {
+    /*if (isReal()) {
       intakeCamera = CameraServer.startAutomaticCapture();
       intakeCamera.setResolution(160, 120);
       intakeCamera.setFPS(20);
 
-    }
+    }*/
 
     SmartDashboard.putBoolean("Autos Ready", true);
 
@@ -130,7 +130,7 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    //NetworkTableInstance.getDefault().flush();
+    NetworkTableInstance.getDefault().flush();
     SmartDashboard.putNumber("Pitch", drivetrain.getPitch());
     SmartDashboard.putNumber("Roll", drivetrain.getRoll());
     SmartDashboard.putNumber("Yaw", drivetrain.getYaw());
@@ -164,7 +164,10 @@ public class Robot extends TimedRobot {
 
     drivetrain.setBrake();
 
-    m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
+    if (lastSelectedAuto != m_chooser.getSelected() || m_autonomousCommand.equals(null)) {
+      m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
+      lastSelectedAuto = m_chooser.getSelected();
+    }
     String autoMode = m_chooser.getSelected();
 
     // schedule the autonomous command (example)

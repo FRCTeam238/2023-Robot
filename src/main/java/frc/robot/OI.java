@@ -14,6 +14,7 @@ import frc.robot.commands.Armdown;
 import frc.robot.commands.CloseIntakeCommand;
 import frc.robot.commands.Drive;
 import frc.robot.commands.ElevatorManualCommand;
+import frc.robot.commands.FlickCone3Command;
 import frc.robot.commands.FloorHeight;
 import frc.robot.commands.IntakeInOutCommand;
 import frc.robot.commands.KindaRunIntakeCommand;
@@ -99,6 +100,9 @@ public class OI {
 
 		JoystickButton brakeModeButton = new JoystickButton(rightJoystick, 3);
 		brakeModeButton.onTrue(new SetBrakeCommand());
+
+		JoystickButton flickCube = new JoystickButton(operatorController, XboxController.Button.kStart.value);
+		flickCube.onTrue(new FlickCone3Command());
 	}
 	
 		

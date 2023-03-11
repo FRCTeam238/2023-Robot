@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 /**
  * {@summary moves to scoring position, waits 3 seconds, and opens the intake}
  */
@@ -21,8 +22,8 @@ public class ScoreAuto extends SequentialCommandGroup implements IAutonomousComm
   public ScoreAuto() {
     addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(new Scoringposition());
-    addCommands(new WaitCommand(2));
+    addCommands(new Armdown());
+    addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
     addCommands(new OpenIntakeCommand());  
   }
   

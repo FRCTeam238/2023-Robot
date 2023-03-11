@@ -174,6 +174,8 @@ public class Drivetrain extends SubsystemBase {
     differentialDriveOdometry.update(navx.getRotation2d(), stepsToMeters(getLeftEncoderTicks()), stepsToMeters(getRightEncoderTicks()));
     currentPose = differentialDriveOdometry.getPoseMeters();
     robotPose.setRobotPose(currentPose);
+    SmartDashboard.putNumber("Disabled Left", getLeftEncoderTicks());
+    SmartDashboard.putNumber("Disabled Right", getRightEncoderTicks());
   }
 
   public void resetOdometry(Pose2d pose) {

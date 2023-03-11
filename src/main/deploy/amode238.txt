@@ -60,7 +60,7 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
+            "0",
             "1.8"
           ],
           "ParallelType": "None"
@@ -173,7 +173,7 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube2_Cone2_2",
-            "true"
+            "false"
           ],
           "ParallelType": "None"
         },
@@ -251,8 +251,8 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
-            "1.8"
+            "0",
+            ".39"
           ],
           "ParallelType": "None"
         },
@@ -262,10 +262,22 @@
           "ParallelType": "None"
         },
         {
+          "Name": "RetractAll",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "2"
+          ],
+          "ParallelType": "None"
+        },
+        {
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "1.8"
+            ".5"
           ],
           "ParallelType": "None"
         },
@@ -294,6 +306,19 @@
         }
       ],
       "Name": "Cable_Cone2_Cube2"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "New Path",
+            "true"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "TestPath"
     },
     {
       "Commands": [
@@ -405,7 +430,7 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
+            "0",
             "1.8"
           ],
           "ParallelType": "None"
@@ -482,7 +507,7 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
+            "0",
             "1.8"
           ],
           "ParallelType": "None"
@@ -589,7 +614,7 @@
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
-            "180",
+            "0",
             "1.8"
           ],
           "ParallelType": "None"
@@ -643,15 +668,28 @@
     {
       "Commands": [
         {
-          "Name": "TrajectoryDriveCommand",
+          "Name": "GyroTurnCommand",
           "Parameters": [
-            "New Path",
-            "true"
+            "180",
+            ".5"
           ],
           "ParallelType": "None"
         }
       ],
-      "Name": "Test"
+      "Name": "TEs Gyro Turn 180"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            ".5"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "TEs Gyro Turn 0"
     }
   ]
 }

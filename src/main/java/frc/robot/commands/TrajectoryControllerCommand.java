@@ -53,7 +53,7 @@ public class TrajectoryControllerCommand extends CommandBase {
     LTVUnicycleController lu;
     RamseteController rc;
     private Field2d m_field;
-    private ControllerType type = ControllerType.LTV;
+    private ControllerType type = ControllerType.RAMSETE;
 
     public enum ControllerType{
         LTV,
@@ -77,7 +77,7 @@ public class TrajectoryControllerCommand extends CommandBase {
         
         addRequirements(requirements);
         lu = new LTVUnicycleController(0.02);
-        rc = new RamseteController();
+        rc = new RamseteController(3,.7);
     }
     
     // Called when the command is initially scheduled.
