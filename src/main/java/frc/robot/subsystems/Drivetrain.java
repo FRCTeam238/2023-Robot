@@ -140,7 +140,7 @@ public class Drivetrain extends SubsystemBase {
         * Config the allowable closed-loop error, Closed-Loop output will be
         * neutral within this range.
         */
-       talon.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
+       talon.configAllowableClosedloopError(kPIDLoopIdx, 0, kTimeoutMs);
    
        /* Config closed loop gains for Primary closed loop (Current) */
        talon.config_kP(kPIDLoopIdx, RobotMap.DrivetrainParameters.kP, kTimeoutMs);
@@ -163,6 +163,9 @@ public class Drivetrain extends SubsystemBase {
        talon.configVelocityMeasurementWindow(2);
    
        talon.setSelectedSensorPosition(0);
+
+       talon.configVoltageCompSaturation(RobotMap.DrivetrainParameters.maxVoltage);
+       talon.enableVoltageCompensation(true);
      }
 
   @Override
