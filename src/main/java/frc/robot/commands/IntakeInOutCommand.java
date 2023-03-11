@@ -41,7 +41,6 @@ public class IntakeInOutCommand extends CommandBase {
     } else {
       intake.runIntake(RobotMap.IntakeParameters.intakeEjectSpeed);
     }
-    System.out.println("Intake");
   }
 
   // Called once the command ends or is interrupted.
