@@ -25,8 +25,8 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
     addRequirements(Robot.drivetrain);
     controller = new PIDController(RobotMap.DrivetrainParameters.kPSpin, RobotMap.DrivetrainParameters.kISpin,
         RobotMap.DrivetrainParameters.kDSpin);
-    controller.enableContinuousInput(0, 360);
     controller.setTolerance(RobotMap.DrivetrainParameters.angleTolerance);
+    controller.enableContinuousInput(-180, 180);
   }
 
   // Called when the command is initially scheduled.
