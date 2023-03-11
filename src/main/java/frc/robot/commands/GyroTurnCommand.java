@@ -32,8 +32,13 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Rotation2d rotation = new Rotation2d(Units.degreesToRadians(angle));
+    if(DriverStation.getAlliance() == DriverStation.Alliance.Red)
+    {
+      rotation.times(-1);
+    }
     Robot.drivetrain.putCommandString(this);
-    controller.setSetpoint(angle);
+    controller.setSetpoint(rotation.getDegrees());
 
   }
 
