@@ -204,8 +204,8 @@ public class Drivetrain extends SubsystemBase {
     SmartDashboard.putNumber("rightVActual", stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
     SmartDashboard.putNumber("leftVActual", stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
 
-    rightControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(right), DemandType.ArbitraryFeedForward, feedForward.calculate(right) / RobotMap.DrivetrainParameters.maxVoltage);
-    leftControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(left), DemandType.ArbitraryFeedForward, feedForward.calculate(left) / RobotMap.DrivetrainParameters.maxVoltage);
+    rightControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(right), DemandType.ArbitraryFeedForward, rightFF / RobotMap.DrivetrainParameters.maxVoltage);
+    leftControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(left), DemandType.ArbitraryFeedForward, leftFF / RobotMap.DrivetrainParameters.maxVoltage);
     diff.feed();
     lastLVel = left;
     lastRVel = right;
