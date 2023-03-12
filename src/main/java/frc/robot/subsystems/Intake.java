@@ -6,26 +6,24 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
-
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.util.datalog.BooleanLogEntry;
+import edu.wpi.first.util.datalog.DoubleArrayLogEntry;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.util.datalog.StringLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.PoseHelper;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.commands.KindaRunIntakeCommand;
 
 public class Intake extends SubsystemBase {
   
@@ -33,6 +31,13 @@ public class Intake extends SubsystemBase {
   GenericEntry armPoseEntry;
   GenericEntry armTextEntry;
   Pose3d armPose = new Pose3d();
+
+  DoubleArrayLogEntry logPose;
+  BooleanLogEntry logShort;
+  BooleanLogEntry logLong;
+  BooleanLogEntry logIntake;
+  StringLogEntry logCommand;
+  DoubleLogEntry logSpeed;
   
   /** Creates a new Intake. */
   public Intake() {
@@ -42,8 +47,14 @@ public class Intake extends SubsystemBase {
     intakeMotor.configPeakCurrentDuration(RobotMap.IntakeParameters.peakDuration);
     intakeMotor.enableCurrentLimit(true);
     intakeMotor.setNeutralMode(NeutralMode.Brake);
-    armPoseEntry = Shuffleboard.getTab("Logging").add("ArmPose", PoseHelper.PoseToArray(armPose)).getEntry();
-    armTextEntry = Shuffleboard.getTab("Logging").add("ArmText", "False, False").getEntry();
+
+    logShort = new BooleanLogEntry(DataLogManager.getLog(), "Intake:Short");
+    logLong = new BooleanLogEntry(DataLogManager.getLog(), "Intake:Long");
+    logPose = new DoubleArrayLogEntry(DataLogManager.getLog(), "Intake:Pose");
+    logIntake = new BooleanLogEntry(DataLogManager.getLog(), "Intake:Grip");
+    logCommand = new StringLogEntry(DataLogManager.getLog(), "Intake:Command");
+    logSpeed = new DoubleLogEntry(DataLogManager.getLog(), "Intake:Speed");
+
     retractLong();
     retractShort();
     closeIntake();
@@ -61,13 +72,11 @@ public class Intake extends SubsystemBase {
     {
       armPose = armPose.plus(new Transform3d(new Translation3d(-.15,0,.32), new Rotation3d(0, Math.toRadians(67.4), 0)));
     }
-    armPoseEntry.setDoubleArray(PoseHelper.PoseToArray(armPose));
-    armTextEntry.setString(getShort() + ", " + getLong());
+    logPose.append(PoseHelper.PoseToArray(armPose));
   }
 
   public void putCommandString(Command command) {
-    SmartDashboard.putString("Intake Command", command.getName());
-
+    logCommand.append(command.getName());
   }
 
   public void runIntake(double intakeSpeed) {
@@ -78,31 +87,37 @@ public class Intake extends SubsystemBase {
     } else {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
     }
+    logSpeed.append(intakeSpeed);
   }
 
   public void openIntake() {
     RobotMap.IntakeParameters.intakeSolenoid.set(Value.kReverse);
+    logIntake.append(false);
   }
 
   public void closeIntake() {
     RobotMap.IntakeParameters.intakeSolenoid.set(Value.kForward);
+    logIntake.append(true);
   }
 
   public void extendLong() {
     RobotMap.IntakeParameters.longArm.set(Value.kForward);
+    logLong.append(true);
   }
 
   public void retractLong() {
     RobotMap.IntakeParameters.longArm.set(Value.kReverse);
+    logLong.append(false);
   }
 
   public void extendShort() {
     RobotMap.IntakeParameters.shortArm.set(Value.kForward);
+    logShort.append(true);
   }
 
   public void retractShort() {
     RobotMap.IntakeParameters.shortArm.set(Value.kReverse);
-
+    logShort.append(false);
   }
 
   public boolean getShort() {
