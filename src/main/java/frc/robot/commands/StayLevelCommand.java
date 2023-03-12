@@ -27,7 +27,7 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   @Override
   public void initialize() {
     Robot.drivetrain.putCommandString(this);
-    lastAngle = Robot.drivetrain.getRoll();
+    lastAngle = Robot.drivetrain.getPitch();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

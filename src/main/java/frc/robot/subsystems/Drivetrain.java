@@ -255,14 +255,17 @@ public class Drivetrain extends SubsystemBase {
     diff.feed();
   }
   
+  //Flipped because navX is rotated 90 degrees to robot frame around the Z axis
   public double getPitch() {
-    return navx.getPitch();
-  }
-
-  public double getRoll() {
     return navx.getRoll();
   }
 
+   //Flipped because navX is rotated 90 degrees to robot frame around the Z axis
+  public double getRoll() {
+    return navx.getPitch();
+  }
+
+  //Rotation is around this axis so this one stays
   public double getYaw() {
     return navx.getYaw();
   }
