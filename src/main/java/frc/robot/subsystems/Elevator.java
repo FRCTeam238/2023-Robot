@@ -17,9 +17,13 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.util.datalog.BooleanLogEntry;
+import edu.wpi.first.util.datalog.DoubleArrayLogEntry;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.util.datalog.StringLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.ElevatorSim;
 import edu.wpi.first.wpilibj.simulation.PWMSim;
@@ -38,15 +42,35 @@ public class Elevator extends SubsystemBase {
   protected Pose3d elevatorPose = new Pose3d();
   protected GenericEntry poseEntry;
 
+  protected DoubleArrayLogEntry logPose;
+  protected DoubleLogEntry logEncoder;
+  protected DoubleLogEntry logDesiredV;
+  protected DoubleLogEntry logActualV;
+  protected DoubleLogEntry logDesiredEncoder;
+  protected DoubleLogEntry logFF;
+  protected StringLogEntry logCommand;
+  protected BooleanLogEntry logLowerLimit;
+  protected BooleanLogEntry logUpperLimit;
+
   private final DCMotor m_simMotors = DCMotor.getNEO(2);
   private final ElevatorSim m_sim = new ElevatorSim(m_simMotors, 4, Units.lbsToKilograms(10), Units.inchesToMeters(.75), 0, Units.inchesToMeters(36), true, VecBuilder.fill(0));
   private final PWMSparkMax m_simMotor = new PWMSparkMax(0);
   private final PWMSim m_motorSim = new PWMSim(m_simMotor);
+
+  private static final boolean debug = false;
   
   /** Creates a new Elevator. */
   public Elevator() {
     initSparkMax();
-    poseEntry = Shuffleboard.getTab("Logging").add("ElevatorPose", PoseHelper.PoseToArray(elevatorPose)).getEntry();
+    logPose = new DoubleArrayLogEntry(DataLogManager.getLog(), "Elevator:Pose");
+    logEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Position");
+    logDesiredV = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Desired V");
+    logActualV = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Actual V");
+    logDesiredEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Desired Position");
+    logFF = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:FF");
+    logLowerLimit = new BooleanLogEntry(DataLogManager.getLog(), "Elevator:LowerLimit");
+    logUpperLimit = new BooleanLogEntry(DataLogManager.getLog(), "Elevator:UpperLimit");
+    logCommand = new StringLogEntry(DataLogManager.getLog(), "Elevator:Command");
   }
   
   public void initSparkMax() {
@@ -96,22 +120,45 @@ public class Elevator extends SubsystemBase {
     // This method will be called once per scheduler run
     if(elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed()) {
     }
-    poseEntry.setDoubleArray(PoseHelper.PoseToArray(getPose()));
-    SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
+
+    logPose.append(PoseHelper.PoseToArray(getPose()));
+    if(debug)
+    {
+      SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
+    } else {
+      logEncoder.append(getEncoderPosition());
+    }
   }
   
   public void putCommandString(Command command) {
-    SmartDashboard.putString("Elevator Command", command.getName());
-
+    if(debug){
+      SmartDashboard.putString("Elevator Command", command.getName());
+    } else {
+      logCommand.append(command.getName());
+    }
   }
 
   public void PIDdrive(TrapezoidProfile.State state) {
-    SmartDashboard.putNumber("Elevator Desired V", state.velocity);
-    SmartDashboard.putNumber("Elevator Desired Pos", state.position);
-    SmartDashboard.putNumber("Elevator Actual V", getVelocity());
-    SmartDashboard.putNumber("Elevator Actual Pos", getEncoderPosition());
     double feed = FF.calculate(state.velocity, (state.velocity - getVelocity())/.02);
-    SmartDashboard.putNumber("Elevator FF", feed);
+
+    if(debug)
+    {
+      SmartDashboard.putNumber("Elevator Desired V", state.velocity);
+      SmartDashboard.putNumber("Elevator Desired Pos", state.position);
+      SmartDashboard.putNumber("Elevator Actual V", getVelocity());
+      SmartDashboard.putNumber("Elevator Actual Pos", getEncoderPosition());
+      SmartDashboard.putNumber("Elevator FF", feed);
+      SmartDashboard.putBoolean("Elevator Lower Limit", getLowerLimit());
+      SmartDashboard.putBoolean("Elevator Upper Limit", getUpperLimit());
+    } else {
+      logDesiredV.append(state.velocity);
+      logDesiredEncoder.append(state.position);
+      logActualV.append(getVelocity());
+      logFF.append(feed);
+      logLowerLimit.append(getLowerLimit());
+      logUpperLimit.append(getUpperLimit());
+    }
+
     if(Robot.isReal()){
     elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
     }
@@ -119,7 +166,6 @@ public class Elevator extends SubsystemBase {
       feed = feed + 1*(state.position - getEncoderPosition());
       m_simMotor.setVoltage(feed);
     }
-
   }
 
   public double getVelocity() {
@@ -134,6 +180,10 @@ public class Elevator extends SubsystemBase {
 
   public boolean getLowerLimit() {
     return elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed();
+  }
+
+  public boolean getUpperLimit() {
+    return elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).isPressed();
   }
 
   public void simulationPeriodic() {
