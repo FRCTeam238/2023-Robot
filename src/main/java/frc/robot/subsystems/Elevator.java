@@ -17,6 +17,7 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.util.datalog.BooleanLogEntry;
 import edu.wpi.first.util.datalog.DoubleArrayLogEntry;
 import edu.wpi.first.util.datalog.DoubleLogEntry;
@@ -125,6 +126,7 @@ public class Elevator extends SubsystemBase {
     if(debug)
     {
       SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
+      NetworkTableInstance.getDefault().flush();
     } else {
       logEncoder.append(getEncoderPosition());
     }

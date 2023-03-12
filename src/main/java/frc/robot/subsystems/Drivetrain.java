@@ -211,6 +211,7 @@ public class Drivetrain extends SubsystemBase {
       logRightV.append(stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
       logLeftV.append(stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
       logPitch.append(getPitch()); 
+      NetworkTableInstance.getDefault().flush();
     }
   }
 
