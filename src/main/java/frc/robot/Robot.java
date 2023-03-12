@@ -146,7 +146,6 @@ public class Robot extends TimedRobot {
       m_autonomousCommand = reader.getAutonomousMode(m_chooser.getSelected());
       SmartDashboard.putBoolean("Autos Ready", true);
 
-
       lastSelectedAuto = m_chooser.getSelected();
     }
   }
@@ -166,8 +165,10 @@ public class Robot extends TimedRobot {
     }
     String autoMode = m_chooser.getSelected();
 
-    // schedule the autonomous command (example)
-    m_autonomousCommand.schedule();
+    if(m_allowAuto) {
+      // schedule the autonomous command (example)
+      m_autonomousCommand.schedule();
+    }
 
     // prevent the robot from rerunning auto mode a second time without a restart
     if (DriverStation.isFMSAttached()) {
