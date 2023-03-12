@@ -24,6 +24,11 @@ import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.util.datalog.BooleanLogEntry;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.util.datalog.StringLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.simulation.BatterySim;
@@ -31,10 +36,8 @@ import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.RobotMap;
 
 public class Drivetrain extends SubsystemBase {
@@ -50,7 +53,6 @@ public class Drivetrain extends SubsystemBase {
   public static DifferentialDriveOdometry differentialDriveOdometry;
 
   public static SimpleMotorFeedforward feedForward = new SimpleMotorFeedforward(RobotMap.DrivetrainParameters.kS, RobotMap.DrivetrainParameters.kV, RobotMap.DrivetrainParameters.kA);
-  private double lastLVel=0, lastRVel=0;
   protected Field2d robotPose;
   
   Pose2d currentPose;
@@ -59,6 +61,15 @@ public class Drivetrain extends SubsystemBase {
   DifferentialDrivetrainSim m_driveSim;
   TalonFXSimCollection m_leftDriveSim = leftControllerDrive.getSimCollection();
   TalonFXSimCollection m_rightDriveSim = rightControllerDrive.getSimCollection();
+
+  protected StringLogEntry logCommand;
+  protected BooleanLogEntry logBrake;
+  protected DoubleLogEntry logRightVDesired;
+  protected DoubleLogEntry logLeftVDesired;
+  protected DoubleLogEntry logLeftV;
+  protected DoubleLogEntry logRightV;
+  protected DoubleLogEntry logPitch;
+  protected final boolean debug = true;
 
   /**
    * {@summary} the {@link SubsystemBase} of the robot drivetrain
@@ -79,6 +90,14 @@ public class Drivetrain extends SubsystemBase {
       RobotMap.DrivetrainParameters.trackWidth,                  
       Units.inchesToMeters(RobotMap.DrivetrainParameters.wheelDiameterInches/2),
       null);
+
+    logCommand = new StringLogEntry(DataLogManager.getLog(), "Drivetrain:Command");
+    logBrake = new BooleanLogEntry(DataLogManager.getLog(), "Drivetrain:Brake");
+    logRightV = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:RightV");
+    logLeftV = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:LeftV");
+    logRightVDesired = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:RightVDesired");
+    logLeftVDesired = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:LeftVDesired");
+    logPitch = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:Pitch");
   }
 
   /**
@@ -95,34 +114,44 @@ public class Drivetrain extends SubsystemBase {
     rightFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
     leftFollower.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, RobotMap.DrivetrainParameters.currentLimit, RobotMap.DrivetrainParameters.triggerThresholdCurrent, 0.5));
 
-    //Set the encoder status frame to update every 1ms to minimize latency and jitter
     initPID(leftControllerDrive);
-    initPID(rightControllerDrive);
-    
+    initPID(rightControllerDrive); 
   }
+
   public void putCommandString(Command command) {
     SmartDashboard.putString("Drivetrain Command", command.getName());
-
   }
 
   public void setBrake()
   {
-    System.out.println("Setting brake");
     rightControllerDrive.setNeutralMode(NeutralMode.Brake);
     rightFollower.setNeutralMode(NeutralMode.Brake);
 
     leftControllerDrive.setNeutralMode(NeutralMode.Brake);
     leftFollower.setNeutralMode(NeutralMode.Brake);
+
+    if(debug)
+    {
+      SmartDashboard.putBoolean("Drivetrain Brake", true);
+    } else {
+      logBrake.append(true);
+    }
   }
 
   public void setCoast()
   {
-    System.out.println("Setting coast");
     rightControllerDrive.setNeutralMode(NeutralMode.Coast);
     rightFollower.setNeutralMode(NeutralMode.Coast);
 
     leftControllerDrive.setNeutralMode(NeutralMode.Coast);
     leftFollower.setNeutralMode(NeutralMode.Coast);
+
+    if(debug)
+    {
+      SmartDashboard.putBoolean("Drivetrain Brake", false);
+    } else {
+      logBrake.append(false);
+    }
   }
 
   /**
@@ -174,8 +203,15 @@ public class Drivetrain extends SubsystemBase {
     differentialDriveOdometry.update(navx.getRotation2d(), stepsToMeters(getLeftEncoderTicks()), stepsToMeters(getRightEncoderTicks()));
     currentPose = differentialDriveOdometry.getPoseMeters();
     robotPose.setRobotPose(currentPose);
-    SmartDashboard.putNumber("Disabled Left", getLeftEncoderTicks());
-    SmartDashboard.putNumber("Disabled Right", getRightEncoderTicks());
+
+    if(debug){
+      SmartDashboard.putNumber("rightVActual", stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
+      SmartDashboard.putNumber("leftVActual", stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
+    } else {
+      logRightV.append(stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
+      logLeftV.append(stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
+      logPitch.append(getPitch()); 
+    }
   }
 
   public void resetOdometry(Pose2d pose) {
@@ -190,7 +226,6 @@ public class Drivetrain extends SubsystemBase {
     return rightControllerDrive.getSelectedSensorPosition();
   }
 
-
   public double getLeftEncoderTicks() {
     return leftControllerDrive.getSelectedSensorPosition();
   }
@@ -198,22 +233,20 @@ public class Drivetrain extends SubsystemBase {
   public void driveByVelocityOutput(double left, double right, double leftAccel, double rightAccel) {
     double rightFF = feedForward.calculate(right, rightAccel);
     double leftFF = feedForward.calculate(left, leftAccel);
-    SmartDashboard.putNumber("rightVDesired", right);
-    SmartDashboard.putNumber("leftVDesired", left);
-    SmartDashboard.putNumber("rightFF", rightFF);
-    SmartDashboard.putNumber("leftFF", leftFF);
-
-    SmartDashboard.putNumber("rightVActual", stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
-    SmartDashboard.putNumber("leftVActual", stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
 
     rightControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(right), DemandType.ArbitraryFeedForward, rightFF / RobotMap.DrivetrainParameters.maxVoltage);
     leftControllerDrive.set(ControlMode.Velocity, metersPerSecToStepsPerDecisec(left), DemandType.ArbitraryFeedForward, leftFF / RobotMap.DrivetrainParameters.maxVoltage);
     diff.feed();
-    lastLVel = left;
-    lastRVel = right;
-  }
 
-  
+    if(debug) {
+      SmartDashboard.putNumber("rightVDesired", right);
+      SmartDashboard.putNumber("leftVDesired", left);
+    } else {
+      logRightVDesired.append(right);
+      logLeftVDesired.append(left);
+    }
+
+  }
 
   /**
    * {@summary} calls {@link DifferentialDrive}.tankDrive() 
@@ -246,8 +279,6 @@ public class Drivetrain extends SubsystemBase {
     diff.curvatureDrive(xSpeed, zRotation, turnInPlace);
   }
 
-
-  
   public void driveStraight(double left, double right) {
     double avg = (left + right) / 2.0;
     rightControllerDrive.set(ControlMode.PercentOutput, avg);
@@ -269,7 +300,6 @@ public class Drivetrain extends SubsystemBase {
   public double getYaw() {
     return navx.getYaw();
   }
-
 
   public static double stepsToMeters(double steps) {
     return (RobotMap.DrivetrainParameters.wheelCircumferenceMeters / RobotMap.DrivetrainParameters.sensorUnitsPerRotation) * steps;
@@ -298,7 +328,6 @@ public class Drivetrain extends SubsystemBase {
   public static double insPerSecToStepsToDecisec(double inchesPerSecond) {
     return insToSteps(inchesPerSecond) * 0.1;
   }
-
 
   @Override
   public void simulationPeriodic()
