@@ -6,17 +6,17 @@ package frc.robot.commands;
 
 import java.util.List;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
-import frc.robot.subsystems.Drivetrain;
 
 @AutonomousModeAnnotation(parameterNames = {})
 public class StayLevelCommand extends CommandBase implements IAutonomousCommand {
   /** Creates a new StayLevelCommand. */
 
-  double lastAngle = 0;
+  final double triggerAngle = 12;
+  final double driveSpeed = .12;
+
   public StayLevelCommand() {
     addRequirements(Robot.drivetrain);
 
@@ -27,13 +27,12 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   @Override
   public void initialize() {
     Robot.drivetrain.putCommandString(this);
-    lastAngle = Robot.drivetrain.getPitch();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.tankDrive(0.12, 0.12);
+    Robot.drivetrain.arcadeDrive(driveSpeed, 0);
   }
 
   // Called once the command ends or is interrupted.
@@ -43,10 +42,9 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(Robot.drivetrain.getRoll())  < 12) {
+    if (Math.abs(Robot.drivetrain.getPitch())  < triggerAngle) {
       return true;
     }
-    lastAngle = Robot.drivetrain.getRoll();
     return false;
   }
 
