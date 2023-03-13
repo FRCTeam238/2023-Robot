@@ -4,10 +4,8 @@
 
 package frc.robot.commands;
 
-import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
-import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.PathPlannerTrajectory.PathPlannerState;
 
@@ -20,15 +18,12 @@ import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.trajectory.Trajectory.State;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Drivetrain;
 
 /**
  * a command that uses an {@link LTVUnicycleController} to follow
@@ -100,7 +95,6 @@ public class TrajectoryControllerCommand extends CommandBase {
     @Override
     public void execute() {
         currentTime = Timer.getFPGATimestamp() - startTime;
-        SmartDashboard.putNumber("TrajectoryStateVelocity", finalTrajectory.sample(currentTime).velocityMetersPerSecond);
         DifferentialDriveWheelSpeeds targetWheelSpeeds;
         DifferentialDriveWheelSpeeds nextWheelSpeeds;
         switch(type){
@@ -133,7 +127,6 @@ public class TrajectoryControllerCommand extends CommandBase {
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-        System.out.println("END_______________________________________________");
         Robot.drivetrain.tankDrive(0, 0);
     }
 
@@ -150,7 +143,6 @@ public class TrajectoryControllerCommand extends CommandBase {
         if (Math.abs(diff.getX()) < RobotMap.DrivetrainParameters.maxXTolerance) {
             if (Math.abs(diff.getY()) < RobotMap.DrivetrainParameters.maxYTolerance) {
                 if (Math.abs(diff.getRotation().getDegrees()) < RobotMap.DrivetrainParameters.maxAngle) {
-                    System.out.println("DONE___________________________________________");
                     return true;
                 }
             }

@@ -69,7 +69,7 @@ public class Drivetrain extends SubsystemBase {
   protected DoubleLogEntry logLeftV;
   protected DoubleLogEntry logRightV;
   protected DoubleLogEntry logPitch;
-  protected final boolean debug = true;
+  protected final boolean debug = false;
 
   /**
    * {@summary} the {@link SubsystemBase} of the robot drivetrain
@@ -80,7 +80,7 @@ public class Drivetrain extends SubsystemBase {
     initTalons();
     
     robotPose = new Field2d();
-    Shuffleboard.getTab("Logging").add("RobotPose", robotPose);
+    SmartDashboard.putData("RobotPose", robotPose);
 
     m_driveSim = new DifferentialDrivetrainSim(
       // Create a linear system from our identification gains.
@@ -119,7 +119,11 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void putCommandString(Command command) {
+    if(debug){
     SmartDashboard.putString("Drivetrain Command", command.getName());
+    } else {
+      logCommand.append(command.getName());
+    }
   }
 
   public void setBrake()

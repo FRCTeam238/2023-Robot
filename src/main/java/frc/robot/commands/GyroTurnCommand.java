@@ -9,6 +9,8 @@ import java.util.List;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -22,6 +24,12 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
   double angle;
   double maxSpeed;
   PIDController controller;
+  boolean debug = false;
+
+  DoubleLogEntry logSetpoint;
+  DoubleLogEntry logOutput;
+  DoubleLogEntry logCurrent;
+  DoubleLogEntry logMax;
 
   public GyroTurnCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -30,6 +38,11 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
         RobotMap.DrivetrainParameters.kDSpin);
     controller.enableContinuousInput(-180, 180);
     controller.setTolerance(RobotMap.DrivetrainParameters.angleTolerance, RobotMap.DrivetrainParameters.angleVelocityTolerance);
+
+    logSetpoint = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:/GyroTurn/Setpoint");
+    logOutput = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:/GyroTurn/Output");
+    logCurrent = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:/GyroTurn/Pose Rotation");
+    logMax = new DoubleLogEntry(DataLogManager.getLog(), "Drivetrain:/GyroTurn/MaxSpeed");
   }
 
   // Called when the command is initially scheduled.
@@ -42,20 +55,27 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
     }
     Robot.drivetrain.putCommandString(this);
     controller.setSetpoint(rotation.getDegrees());
-
+    logMax.append(maxSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     double turnValue = controller.calculate(Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
-    SmartDashboard.putNumber("Current Pose Degrees", Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
-    SmartDashboard.putNumber("Gyro Turn Setpoint", controller.getSetpoint());
     turnValue += Math.copySign(RobotMap.DrivetrainParameters.minTurnValue, turnValue);
     turnValue = Math.min(turnValue, maxSpeed);
     turnValue = Math.max(turnValue, -maxSpeed);
-    SmartDashboard.putNumber("Gyro Turn Output", turnValue);
     Robot.drivetrain.arcadeDrive(0, turnValue);
+
+    if(debug) {
+      SmartDashboard.putNumber("Current Pose Degrees", Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
+      SmartDashboard.putNumber("Gyro Turn Setpoint", controller.getSetpoint());
+      SmartDashboard.putNumber("Gyro Turn Output", turnValue);
+    } else {
+      logSetpoint.append(controller.getSetpoint());
+      logCurrent.append(Robot.drivetrain.getCurrentPose().getRotation().getDegrees());
+      logOutput.append(turnValue);
+    }
   }
 
   // Called once the command ends or is interrupted.

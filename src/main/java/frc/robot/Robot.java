@@ -104,7 +104,6 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = reader.getAutonomousMode(lastSelectedAuto);
 
     DataLogManager.start();
-    Shuffleboard.getTab("Logging").add(CommandScheduler.getInstance());
     DriverStation.startDataLog(DataLogManager.getLog());
   }
 

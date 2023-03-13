@@ -30,7 +30,7 @@ public class Drive extends CommandBase {
 		controlType.setDefaultOption("Arcade", driveType.Arcade);
     	controlType.addOption("Tank", driveType.Tank);
 		controlType.addOption("Cheesy", driveType.Cheesy);
-		SmartDashboard.putData(controlType);
+		SmartDashboard.putData("Drive Type", controlType);
 	}
 
 	@Override
