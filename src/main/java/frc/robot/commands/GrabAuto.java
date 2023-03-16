@@ -4,7 +4,9 @@
 
 package frc.robot.commands;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -15,13 +17,17 @@ import frc.robot.RobotMap;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class GrabAutoCube extends SequentialCommandGroup implements IAutonomousCommand {
+public class GrabAuto extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new GrabAuto. */
-  public GrabAutoCube() {
+  List<String> params = new ArrayList<String>();
+
+  public GrabAuto() {
     // Add your commands in the addCommands() call, e.g.
     addCommands(new Armdown());
     addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
-    addCommands(new DriveStraightInches(18, .2));
+    addCommands(new OpenIntakeCommand());
+    addCommands(new DriveStraightInches(6, .2));
+    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In));
     addCommands(new CloseIntakeCommand());
     // addCommands(new FooCommand(), new BarCommand());
     

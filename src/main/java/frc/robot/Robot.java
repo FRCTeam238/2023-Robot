@@ -69,12 +69,12 @@ public class Robot extends TimedRobot {
     elevator = new Elevator();
     intake = new Intake();
     oi = new OI(driveType.Tank);
-    /*if (isReal()) {
+    if (isReal()) {
       intakeCamera = CameraServer.startAutomaticCapture();
       intakeCamera.setResolution(160, 120);
       intakeCamera.setFPS(20);
 
-    }*/
+    }
 
     SmartDashboard.putBoolean("Autos Ready", true);
 

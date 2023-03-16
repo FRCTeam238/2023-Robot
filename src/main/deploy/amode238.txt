@@ -10,7 +10,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -40,7 +40,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -66,7 +66,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -89,7 +89,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -117,7 +117,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -143,7 +143,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -183,7 +183,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -203,7 +203,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreConeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -231,7 +231,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreConeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -257,7 +257,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCube",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -295,7 +295,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -330,7 +330,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -380,7 +380,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -410,7 +410,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -436,7 +436,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -459,7 +459,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -487,7 +487,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -513,7 +513,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCone",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -539,7 +539,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreConeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -566,7 +566,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreConeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -594,7 +594,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreConeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -620,7 +620,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoCube",
+          "Name": "GrabAuto",
           "Parameters": [],
           "ParallelType": "None"
         },
@@ -646,7 +646,7 @@
           "ParallelType": "None"
         },
         {
-          "Name": "ScoreAuto",
+          "Name": "ScoreCubeAuto",
           "Parameters": [],
           "ParallelType": "None"
         },

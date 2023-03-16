@@ -16,13 +16,13 @@ import frc.robot.RobotMap;
  * {@summary moves to scoring position, waits 3 seconds, and opens the intake}
  */
 @AutonomousModeAnnotation(parameterNames = {})
-public class ScoreAuto extends SequentialCommandGroup implements IAutonomousCommand {
+public class ScoreCubeAuto extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new Wait238. */
   
-  public ScoreAuto() {
+  public ScoreCubeAuto() {
     addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
-    addCommands(new Armdown());
+    addCommands(new Scoringposition());
     addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
     addCommands(new OpenIntakeCommand());  
   }

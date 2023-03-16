@@ -23,6 +23,7 @@ import frc.robot.commands.SetBrakeCommand;
 import frc.robot.commands.StowCommand;
 import frc.robot.commands.TopHeight;
 import frc.robot.commands.Travelposition;
+import frc.robot.commands.IntakeInOutCommand.Direction;
 
 /**
  * OI
@@ -52,23 +53,28 @@ public class OI {
 		Robot.drivetrain.setDefaultCommand(driveCommand);	
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
 
+		//Left Bumper
 		JoystickButton closeIntake = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
 		closeIntake.onTrue(new CloseIntakeCommand());
 
+		//B Button
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);
 		midCone.onTrue(new MidConeHeight());
-
+		
+		//X Button
 		JoystickButton midCube = new JoystickButton(operatorController, XboxController.Button.kX.value);
 		midCube.onTrue(new MidCubeHeight());
-
+		
+		//A Button
 		JoystickButton floorHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
 		floorHeight.onTrue(new FloorHeight());
 		
+		//Y Button
 		JoystickButton topHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
 		topHeight.onTrue(new TopHeight());
 
-		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(true));
-		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(false));
+		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.In));
+		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.Out));
 
 		JoystickButton dropGamepiece = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
 		dropGamepiece.whileTrue(new OpenIntakeCommand());
@@ -94,7 +100,8 @@ public class OI {
 
 		JoystickButton brakeModeButton = new JoystickButton(rightJoystick, 3);
 		brakeModeButton.onTrue(new SetBrakeCommand());
-
+		
+		//Start button
 		JoystickButton flickCube = new JoystickButton(operatorController, XboxController.Button.kStart.value);
 		flickCube.onTrue(new FlickCone3Command());
 	}

@@ -13,17 +13,12 @@ import frc.robot.subsystems.Intake;
 @AutonomousModeAnnotation(parameterNames = {})
 public class IntakeInOutCommand extends CommandBase {
   
-  boolean inOrOut;
+  Direction direction;
   Intake intake;
   
-  /** Creates a new IntakeInCommand. 
-   * 
-   * @param inOrOut   
-   * in is true, out is false
-   * 
-  */
-  public IntakeInOutCommand(boolean inOrOut) {
-    this.inOrOut = inOrOut;
+  
+    public IntakeInOutCommand(Direction direction) {
+    this.direction = direction;
     intake = Robot.intake;
   }
 
@@ -36,7 +31,7 @@ public class IntakeInOutCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (inOrOut) {
+    if (direction == Direction.In) {
       intake.runIntake(-1*RobotMap.IntakeParameters.intakeSpeed);
     } else {
       intake.runIntake(RobotMap.IntakeParameters.intakeEjectSpeed);
@@ -54,4 +49,10 @@ public class IntakeInOutCommand extends CommandBase {
   public boolean isFinished() {
     return false;
   }
+
+  public enum Direction {
+    In,
+    Out
+  }
+
 }
