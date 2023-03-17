@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import java.util.List;
 
+import edu.wpi.first.wpilibj2.command.SelectCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
@@ -25,8 +26,8 @@ public class StowCommand extends SequentialCommandGroup implements IAutonomousCo
     addRequirements(intake, elevator);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new Travelposition());
-    addCommands(new WaitCommand(.5));
+    addCommands(new Travelposition().unless(() -> elevator.getEncoderPosition() < 2));
+    addCommands(new WaitCommand(.5).unless(() -> elevator.getEncoderPosition() < 2));
     addCommands(new FloorHeight());
     addCommands(new RetractAll());
   }

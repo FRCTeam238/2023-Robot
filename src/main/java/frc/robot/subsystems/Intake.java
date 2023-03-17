@@ -81,7 +81,7 @@ public class Intake extends SubsystemBase {
 
   public void runIntake(double intakeSpeed) {
     intakeMotor.set(ControlMode.PercentOutput, intakeSpeed);
-    if (intakeMotor.getSupplyCurrent() > 15) {
+    if (intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.autoCloseCurrent) {
       closeIntake();
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
     } else {

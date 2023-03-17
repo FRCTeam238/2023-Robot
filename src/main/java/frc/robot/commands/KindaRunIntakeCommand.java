@@ -23,7 +23,7 @@ public class KindaRunIntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.runIntake(-0.1);
+    Robot.intake.runIntake(-0.2);
   }
 
   // Called once the command ends or is interrupted.

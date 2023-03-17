@@ -17,7 +17,7 @@ public class FlickCone3Command extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new Travelposition());
-    addCommands(new WaitCommand(0.4));
-    addCommands(new IntakeInOutCommand(Direction.Out));
+    addCommands(new WaitCommand(0.6));
+    addCommands(new IntakeInOutCommand(Direction.Out).withTimeout(0.5));
   }
 }

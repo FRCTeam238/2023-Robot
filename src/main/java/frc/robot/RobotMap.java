@@ -119,7 +119,8 @@ public final class RobotMap {
         public static int longArmBackChannel = 0;
         public static int intakeSolenoidForwardChannel = 4;
         public static int intakeSolenoidBackChannel = 5;
-        public static int armDelay = 2;
+        public static double armDelay = 1.25;
+        public static int autoCloseCurrent = 12;
 
         public static double intakeSpeed = 0.5;
         public static double intakeEjectSpeed = .5;
