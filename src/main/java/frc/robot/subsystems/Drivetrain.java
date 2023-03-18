@@ -211,6 +211,7 @@ public class Drivetrain extends SubsystemBase {
     if(debug){
       SmartDashboard.putNumber("rightVActual", stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
       SmartDashboard.putNumber("leftVActual", stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
+      SmartDashboard.putNumber("Pitch", getPitch());
     } else {
       logRightV.append(stepsPerDecisecToMetersToSec(rightControllerDrive.getSelectedSensorVelocity()));
       logLeftV.append(stepsPerDecisecToMetersToSec(leftControllerDrive.getSelectedSensorVelocity()));
