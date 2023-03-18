@@ -90,6 +90,8 @@ public final class RobotMap {
         public static double floorHeight = inchesToTicks(.25); // drive all the way down to soft limit
         public static double topHeight = inchesToTicks(35); // initial guess based on CAD
         public static double toleranceRotations = inchesToTicks(.5);
+        public static double topHeight = inchesToTicks(35.5); // initial guess based on CAD
+        public static double toleranceRotations = .7;//inchesToTicks(.5);
         public static double toleranceVelocity = .2; // in rotatation per sec
 
     }
