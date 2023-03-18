@@ -55,8 +55,10 @@ public class DriverControls {
 	}
 
 	public double[] getArcadePowers() {
-		double rightJoyValue = -right.getX();
-		double leftJoyValue = -left.getY();
+		double rightJoyValue = Math.abs(right.getX()) > 0.05 ? -right.getX() : 0;
+
+		double leftJoyValue = Math.abs(left.getY()) > 0.1? -left.getY() : 0;
+	;
 		double modifier = RobotMap.ControlParameters.cubicModifier;
 		double leftPower;
 		double rightPower;
