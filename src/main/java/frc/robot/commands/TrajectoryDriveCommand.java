@@ -20,7 +20,7 @@ import frc.robot.subsystems.Drivetrain;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-@AutonomousModeAnnotation(parameterNames = {"TrajectoryName", "IsFirstPath"})
+@AutonomousModeAnnotation(parameterNames = {"TrajectoryName", "IsFirstPath", "MaxVelocity"})
 public class TrajectoryDriveCommand extends SequentialCommandGroup implements IAutonomousCommand{
   DifferentialDriveKinematics kinematics;
   Drivetrain drivetrain = Robot.drivetrain;
@@ -42,7 +42,14 @@ public class TrajectoryDriveCommand extends SequentialCommandGroup implements IA
     // TODO Auto-generated method stub
     isFirstPath = Boolean.parseBoolean(parameters.get(1));
     boolean isReversed = ReverseChecker.checkReversed(parameters.get(0));
-    trajectory = PathPlanner.loadPath(parameters.get(0), RobotMap.DrivetrainParameters.maxVelocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
+    double velocity = 0;
+    try {
+      velocity = Double.parseDouble(parameters.get(2));
+    } catch (Exception e) {
+      velocity = RobotMap.DrivetrainParameters.maxVelocity;
+    }
+    System.out.println("Velocity: " + velocity);
+    trajectory = PathPlanner.loadPath(parameters.get(0), velocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
     TrajectoryControllerCommand ltv = new TrajectoryControllerCommand(trajectory, drivetrain::getCurrentPose, kinematics, isFirstPath, drivetrain);
     addCommands(ltv);
     

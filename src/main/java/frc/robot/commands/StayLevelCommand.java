@@ -15,7 +15,9 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   /** Creates a new StayLevelCommand. */
 
   final double triggerAngle = 12;
-  final double driveSpeed = .12;
+  final double driveSpeed = .09;
+  final double finishAngle = 5;
+  double lastPitchValue = 0;
 
   public StayLevelCommand() {
     addRequirements(Robot.drivetrain);
@@ -27,24 +29,38 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   @Override
   public void initialize() {
     Robot.drivetrain.putCommandString(this);
+    lastPitchValue = Robot.drivetrain.getPitch();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.drivetrain.arcadeDrive(driveSpeed, 0);
+    if (Math.abs(Robot.drivetrain.getPitch()) < triggerAngle) {
+      Robot.drivetrain.arcadeDrive(0, 0);
+      
+    } else {
+      
+      Robot.drivetrain.arcadeDrive(Math.copySign(driveSpeed, Robot.drivetrain.getPitch()), 0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Robot.drivetrain.arcadeDrive(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(Robot.drivetrain.getPitch())  < triggerAngle) {
+    if (Math.abs(Robot.drivetrain.getPitch())  < finishAngle && Math.abs(lastPitchValue - Robot.drivetrain.getPitch()) < 0.1) {
       return true;
     }
+
+
+
+    lastPitchValue = Robot.drivetrain.getPitch();
     return false;
   }
 

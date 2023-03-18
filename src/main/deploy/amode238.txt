@@ -23,7 +23,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube3_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -53,7 +54,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube3_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -102,7 +104,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -130,7 +133,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -173,7 +177,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cube2_Cone2_2",
-            "false"
+            "false",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -216,7 +221,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cone2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -244,7 +250,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cone2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -285,7 +292,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Cable_Cone2_Cube2_2",
-            "false"
+            "false",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -313,7 +321,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "New Path",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -343,24 +352,10 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Charge_Cube3_Charge_1",
-            "true"
+            "true",
+            "1.25"
           ],
           "ParallelType": "None"
-        },
-        {
-          "Name": "TrajectoryDriveCommand",
-          "Parameters": [
-            "Charge_Cube3_Charge_2",
-            "true"
-          ],
-          "ParallelType": "Race"
-        },
-        {
-          "Name": "DelayCommand",
-          "Parameters": [
-            "5"
-          ],
-          "ParallelType": "Race"
         },
         {
           "Name": "StayLevelCommand",
@@ -393,7 +388,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cube3_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -423,7 +419,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cube3_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -472,7 +469,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cube2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -500,7 +498,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cube2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -529,7 +528,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cube2_Cone2_2",
-            "false"
+            "false",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -579,7 +579,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cone2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         }
@@ -607,7 +608,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cone2_Mobi_1",
-            "true"
+            "true",
+            ""
           ],
           "ParallelType": "None"
         },
@@ -636,7 +638,8 @@
           "Name": "TrajectoryDriveCommand",
           "Parameters": [
             "Station_Cone2_Cube2_2",
-            "false"
+            "false",
+            ""
           ],
           "ParallelType": "None"
         },

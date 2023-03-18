@@ -19,34 +19,34 @@ import frc.core238.DriverControls.driveType;
 public final class RobotMap {
 
     public static class DrivetrainParameters {
-        public static int rightDTLeaderID = 14;
-        public static int leftDTLeaderID = 0;
-        public static int rightDTFollowerID = 15;
-        public static int leftDTFollowerID = 1;
-        public static WPI_TalonFX rightDrivetrainLeader = new WPI_TalonFX(rightDTLeaderID);
-        public static WPI_TalonFX leftDrivetrainLeader = new WPI_TalonFX(leftDTLeaderID);
-        public static WPI_TalonFX leftDrivetrainFollower = new WPI_TalonFX(leftDTFollowerID);
-        public static WPI_TalonFX rightDrivetrainFollower = new WPI_TalonFX(rightDTFollowerID);
-        public static double currentLimit = 40;
-        public static double triggerThresholdCurrent = 55;
-        public static double triggerThresholdTime = 0.5;
-        public static double trackWidth = .52192;
-        public static double sensorUnitsPerRotation = 2048 * 10.86;
-        public static double wheelDiameterInches = 6.214;
-        public static double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
-        public static double wheelCircumferenceMeters = Units.inchesToMeters(wheelCircumferenceInches);
-        public static double maxVoltage = 12;
-        public static double kS = 0.151;
-        public static double kV = 2.368;
-        public static double kA = 0.307;
-        public static double kP = .05;
-        public static double kD = 0;
-        public static double maxVelocity = 2.75;
-        public static double maxVelocityFF = 3;
-        public static double maxAccel = 2.25;
-        public static double maxYTolerance = 1; // meters
-        public static double maxXTolerance = 1; // meters
-        public static double maxAngle = 4;// in degrees
+        public static final int rightDTLeaderID = 14;
+        public static final int leftDTLeaderID = 0;
+        public static final int rightDTFollowerID = 15;
+        public static final int leftDTFollowerID = 1;
+        public static final WPI_TalonFX rightDrivetrainLeader = new WPI_TalonFX(rightDTLeaderID);
+        public static final WPI_TalonFX leftDrivetrainLeader = new WPI_TalonFX(leftDTLeaderID);
+        public static final WPI_TalonFX leftDrivetrainFollower = new WPI_TalonFX(leftDTFollowerID);
+        public static final WPI_TalonFX rightDrivetrainFollower = new WPI_TalonFX(rightDTFollowerID);
+        public static final double currentLimit = 40;
+        public static final double triggerThresholdCurrent = 55;
+        public static final double triggerThresholdTime = 0.5;
+        public static final double trackWidth = .52192;
+        public static final double sensorUnitsPerRotation = 2048 * 10.86;
+        public static final double wheelDiameterInches = 6.214;
+        public static final double wheelCircumferenceInches = wheelDiameterInches * Math.PI;
+        public static final double wheelCircumferenceMeters = Units.inchesToMeters(wheelCircumferenceInches);
+        public static final double maxVoltage = 12;
+        public static final double kS = 0.151;
+        public static final double kV = 2.368;
+        public static final double kA = 0.307;
+        public static final double kP = .05;
+        public static final double kD = 0;
+        public static final double maxVelocity = 2.75;
+        public static final double maxVelocityFF = 3;
+        public static final double maxAccel = 2.25;
+        public static final double maxYTolerance = 1; // meters
+        public static final double maxXTolerance = 1; // meters
+        public static final double maxAngle = 4;// in degrees
         public static final double kVAngular = 1.3288;
         public static final double kAAngular = .58306;
         public static final double kPSpin = .0055;
@@ -54,7 +54,7 @@ public final class RobotMap {
         public static final double kDSpin = 0.0007;
         public static final double angleVelocityTolerance = 5;
         public static final double minTurnValue = 0.065;
-        public static double angleTolerance = 1;
+        public static final double angleTolerance = 1;
 
     }
 
@@ -88,8 +88,6 @@ public final class RobotMap {
         public static double midCubeHeight = inchesToTicks(21.25); // initial guess based on CAD
         public static double midConeHeight = 29.22;// inchesToTicks(31.175); //initial guess based on CAD
         public static double floorHeight = inchesToTicks(.25); // drive all the way down to soft limit
-        public static double topHeight = inchesToTicks(35); // initial guess based on CAD
-        public static double toleranceRotations = inchesToTicks(.5);
         public static double topHeight = inchesToTicks(35.5); // initial guess based on CAD
         public static double toleranceRotations = .7;//inchesToTicks(.5);
         public static double toleranceVelocity = .2; // in rotatation per sec
