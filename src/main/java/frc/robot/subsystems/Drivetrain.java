@@ -78,6 +78,7 @@ public class Drivetrain extends SubsystemBase {
     navx = new AHRS(RobotMap.VisionParameters.navxPort);
     differentialDriveOdometry = new DifferentialDriveOdometry(navx.getRotation2d(), getLeftEncoderTicks(), getRightEncoderTicks());
     initTalons();
+    SmartDashboard.putBoolean("DrivetrainDebugging", debug);
     
     robotPose = new Field2d();
     SmartDashboard.putData("RobotPose", robotPose);
@@ -119,7 +120,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void putCommandString(Command command) {
-    if(debug){
+    if(SmartDashboard.getBoolean("DrivetrainDebugging", debug)){
     SmartDashboard.putString("Drivetrain Command", command.getName());
     } else {
       logCommand.append(command.getName());

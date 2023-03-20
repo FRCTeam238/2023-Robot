@@ -57,12 +57,14 @@ public class Elevator extends SubsystemBase {
   private final ElevatorSim m_sim = new ElevatorSim(m_simMotors, 4, Units.lbsToKilograms(10), Units.inchesToMeters(.75), 0, Units.inchesToMeters(36), true, VecBuilder.fill(0));
   private final PWMSparkMax m_simMotor = new PWMSparkMax(0);
   private final PWMSim m_motorSim = new PWMSim(m_simMotor);
+  
 
   private static final boolean debug = false;
   
   /** Creates a new Elevator. */
   public Elevator() {
     initSparkMax();
+    SmartDashboard.putBoolean("ElevatorDebugging", debug);
     logPose = new DoubleArrayLogEntry(DataLogManager.getLog(), "Elevator:Pose");
     logEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Position");
     logDesiredV = new DoubleLogEntry(DataLogManager.getLog(), "Elevator:Desired V");
@@ -123,7 +125,7 @@ public class Elevator extends SubsystemBase {
     }
 
     logPose.append(PoseHelper.PoseToArray(getPose()));
-    if(debug)
+    if(SmartDashboard.getBoolean("ElevatorLogging", debug))
     {
       SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
       NetworkTableInstance.getDefault().flush();
@@ -133,7 +135,7 @@ public class Elevator extends SubsystemBase {
   }
   
   public void putCommandString(Command command) {
-    if(debug){
+    if(SmartDashboard.getBoolean("ElevatorLogging", debug)){
       SmartDashboard.putString("Elevator Command", command.getName());
     } else {
       logCommand.append(command.getName());
@@ -143,7 +145,7 @@ public class Elevator extends SubsystemBase {
   public void PIDdrive(TrapezoidProfile.State state) {
     double feed = FF.calculate(state.velocity, (state.velocity - getVelocity())/.02);
 
-    if(debug)
+    if(SmartDashboard.getBoolean("Elevator", debug))
     {
       SmartDashboard.putNumber("Elevator Desired V", state.velocity);
       SmartDashboard.putNumber("Elevator Desired Pos", state.position);

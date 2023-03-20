@@ -35,9 +35,23 @@
       "/Shuffleboard/Logging/RobotPose": "Field2d",
       "/Shuffleboard/Logging/Scheduler": "Scheduler",
       "/SmartDashboard/Auto Modes": "String Chooser",
+      "/SmartDashboard/Drive Type": "String Chooser",
+      "/SmartDashboard/RobotPose": "Field2d",
       "/SmartDashboard/SendableChooser[0]": "String Chooser",
       "/SmartDashboard/SendableChooser[1]": "String Chooser",
       "/SmartDashboard/TrajectoryPose": "Field2d"
+    },
+    "windows": {
+      "/SmartDashboard/RobotPose": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/TrajectoryPose": {
+        "window": {
+          "visible": true
+        }
+      }
     }
   },
   "NetworkTables Settings": {
@@ -163,7 +177,7 @@
     "Plot <3>": {
       "plots": [
         {
-          "height": 811,
+          "height": -46,
           "series": [
             {
               "color": [
