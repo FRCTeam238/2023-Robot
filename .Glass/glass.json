@@ -67,7 +67,7 @@
               "autoFit": true
             }
           ],
-          "height": -46,
+          "height": 589,
           "series": [
             {
               "color": [
@@ -76,7 +76,7 @@
                 0.6901960968971252,
                 1.0
               ],
-              "id": "NT:/SmartDashboard/Actual V"
+              "id": "NT:/SmartDashboard/Elevator Desired V"
             },
             {
               "color": [
@@ -85,25 +85,7 @@
                 0.32156863808631897,
                 1.0
               ],
-              "id": "NT:/SmartDashboard/Desired V"
-            },
-            {
-              "color": [
-                0.3333333432674408,
-                0.658823549747467,
-                0.4078431725502014,
-                1.0
-              ],
-              "id": "NT:/SmartDashboard/Desired Pos"
-            },
-            {
-              "color": [
-                0.7686275243759155,
-                0.30588236451148987,
-                0.32156863808631897,
-                1.0
-              ],
-              "id": "NT:/SmartDashboard/Actual Pos"
+              "id": "NT:/SmartDashboard/Elevator Actual V"
             }
           ]
         }

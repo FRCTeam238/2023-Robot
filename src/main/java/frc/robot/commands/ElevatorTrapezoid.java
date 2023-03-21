@@ -19,7 +19,7 @@ public class ElevatorTrapezoid extends CommandBase {
   Timer timer;
   TrapezoidProfile profile;
   Elevator elevator = Robot.elevator;
-  State currentState;
+  State currentState, nextState;
   /** Creates a new Trapezoid238. */
   public ElevatorTrapezoid(State goal) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -47,7 +47,8 @@ public class ElevatorTrapezoid extends CommandBase {
   @Override
   public void execute() {
     currentState = profile.calculate(timer.get());
-    elevator.PIDdrive(currentState);
+    nextState = profile.calculate(timer.get() +.02);
+    elevator.PIDdrive(currentState, nextState);
   }
 
   // Called once the command ends or is interrupted.

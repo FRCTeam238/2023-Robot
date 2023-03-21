@@ -59,7 +59,7 @@ public class Elevator extends SubsystemBase {
   private final PWMSim m_motorSim = new PWMSim(m_simMotor);
   
 
-  private static final boolean debug = false;
+  private static boolean debug = false;
   
   /** Creates a new Elevator. */
   public Elevator() {
@@ -80,8 +80,8 @@ public class Elevator extends SubsystemBase {
     elevatorFollower.follow(elevatorLeader);
     elevatorLeader.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
     elevatorFollower.setSmartCurrentLimit(RobotMap.ElevatorParameters.sparkCurrentLimit);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, (float)RobotMap.ElevatorParameters.softLimitForward);
-    elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, (float)RobotMap.ElevatorParameters.softLimitBackward);
+    //elevatorLeader.setSoftLimit(SoftLimitDirection.kForward, (float)RobotMap.ElevatorParameters.softLimitForward);
+    //elevatorLeader.setSoftLimit(SoftLimitDirection.kReverse, (float)RobotMap.ElevatorParameters.softLimitBackward);
     elevatorLeader.getForwardLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).enableLimitSwitch(true);
     elevatorLeader.getPIDController().setP(ElevatorParameters.kp);
@@ -89,6 +89,8 @@ public class Elevator extends SubsystemBase {
     elevatorLeader.getPIDController().setD(ElevatorParameters.kd);
     elevatorLeader.getPIDController().setOutputRange(-.2, 1);
     elevatorLeader.getEncoder().setPosition(0);
+    elevatorLeader.getEncoder().setAverageDepth(2);
+    elevatorLeader.getEncoder().setMeasurementPeriod(16);
   }
 
   public void moveByPercentOutput(double percent) {
@@ -116,58 +118,60 @@ public class Elevator extends SubsystemBase {
   public Pose3d getPose() {
     return new Pose3d(getPositionMeters()*Math.sin(Math.toRadians(35)), 0, getPositionMeters()*Math.cos(Math.toRadians(35)), new Rotation3d());
   }
-
+  
   @Override
   public void periodic() {
 
+    debug = SmartDashboard.getBoolean("ElevatorDebugging", debug);
+    
     // This method will be called once per scheduler run
     if(elevatorLeader.getReverseLimitSwitch(Type.kNormallyOpen).isPressed()) {
     }
-
+    
     logPose.append(PoseHelper.PoseToArray(getPose()));
-    if(SmartDashboard.getBoolean("ElevatorLogging", debug))
+    if(SmartDashboard.getBoolean("ElevatorDebugging", debug))
     {
       SmartDashboard.putNumber("Elevator Encoder", getEncoderPosition());
+      SmartDashboard.putBoolean("Elevator Lower Limit", getLowerLimit());
+      SmartDashboard.putBoolean("Elevator Upper Limit", getUpperLimit());
       NetworkTableInstance.getDefault().flush();
     } else {
+      logLowerLimit.append(getLowerLimit());
+      logUpperLimit.append(getUpperLimit());
       logEncoder.append(getEncoderPosition());
     }
   }
   
   public void putCommandString(Command command) {
-    if(SmartDashboard.getBoolean("ElevatorLogging", debug)){
+    if(SmartDashboard.getBoolean("ElevatorDebugging", debug)){
       SmartDashboard.putString("Elevator Command", command.getName());
     } else {
       logCommand.append(command.getName());
     }
   }
 
-  public void PIDdrive(TrapezoidProfile.State state) {
-    double feed = FF.calculate(state.velocity, (state.velocity - getVelocity())/.02);
+  public void PIDdrive(TrapezoidProfile.State currentState, TrapezoidProfile.State nextState) {
+    double feed = FF.calculate(currentState.velocity, (nextState.velocity - currentState.velocity)/.02);
 
-    if(SmartDashboard.getBoolean("Elevator", debug))
+    if(SmartDashboard.getBoolean("ElevatorDebugging", debug))
     {
-      SmartDashboard.putNumber("Elevator Desired V", state.velocity);
-      SmartDashboard.putNumber("Elevator Desired Pos", state.position);
+      SmartDashboard.putNumber("Elevator Desired V", currentState.velocity);
+      SmartDashboard.putNumber("Elevator Desired Pos", currentState.position);
       SmartDashboard.putNumber("Elevator Actual V", getVelocity());
       SmartDashboard.putNumber("Elevator Actual Pos", getEncoderPosition());
       SmartDashboard.putNumber("Elevator FF", feed);
-      SmartDashboard.putBoolean("Elevator Lower Limit", getLowerLimit());
-      SmartDashboard.putBoolean("Elevator Upper Limit", getUpperLimit());
     } else {
-      logDesiredV.append(state.velocity);
-      logDesiredEncoder.append(state.position);
+      logDesiredV.append(currentState.velocity);
+      logDesiredEncoder.append(currentState.position);
       logActualV.append(getVelocity());
       logFF.append(feed);
-      logLowerLimit.append(getLowerLimit());
-      logUpperLimit.append(getUpperLimit());
     }
 
     if(Robot.isReal()){
-    elevatorLeader.getPIDController().setReference(state.position, ControlType.kPosition, 0, feed);
+    elevatorLeader.getPIDController().setReference(currentState.position, ControlType.kPosition, 0, feed);
     }
     else {
-      feed = feed + 1*(state.position - getEncoderPosition());
+      feed = feed + 1*(currentState.position - getEncoderPosition());
       m_simMotor.setVoltage(feed);
     }
   }

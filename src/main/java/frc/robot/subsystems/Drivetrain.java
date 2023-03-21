@@ -69,7 +69,7 @@ public class Drivetrain extends SubsystemBase {
   protected DoubleLogEntry logLeftV;
   protected DoubleLogEntry logRightV;
   protected DoubleLogEntry logPitch;
-  protected final boolean debug = false;
+  protected boolean debug = false;
 
   /**
    * {@summary} the {@link SubsystemBase} of the robot drivetrain
@@ -204,6 +204,8 @@ public class Drivetrain extends SubsystemBase {
 
   @Override
   public void periodic() {
+    debug = SmartDashboard.getBoolean("DrivetrainDebugging", debug);
+    
     // This method will be called once per scheduler run
     differentialDriveOdometry.update(navx.getRotation2d(), stepsToMeters(getLeftEncoderTicks()), stepsToMeters(getRightEncoderTicks()));
     currentPose = differentialDriveOdometry.getPoseMeters();
