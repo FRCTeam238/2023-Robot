@@ -7,23 +7,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
-import frc.robot.commands.Armdown;
-import frc.robot.commands.CloseIntakeCommand;
-import frc.robot.commands.Drive;
-import frc.robot.commands.ElevatorManualCommand;
-import frc.robot.commands.FlickCone3Command;
-import frc.robot.commands.FloorHeight;
-import frc.robot.commands.IntakeInOutCommand;
-import frc.robot.commands.KindaRunIntakeCommand;
-import frc.robot.commands.MidConeHeight;
-import frc.robot.commands.MidCubeHeight;
-import frc.robot.commands.OpenIntakeCommand;
-import frc.robot.commands.Scoringposition;
-import frc.robot.commands.SetBrakeCommand;
-import frc.robot.commands.StowCommand;
-import frc.robot.commands.TopHeight;
-import frc.robot.commands.Travelposition;
+import frc.robot.commands.*;
 import frc.robot.commands.IntakeInOutCommand.Direction;
+
+import javax.print.DocFlavor;
 
 /**
  * OI
@@ -104,7 +91,9 @@ public class OI {
 		//Start button
 		JoystickButton flickCube = new JoystickButton(operatorController, XboxController.Button.kStart.value);
 		flickCube.onTrue(new FlickCone3Command());
+
+
+		JoystickButton charge = new JoystickButton(leftJoystick, 5);
+		charge.whileTrue(new StayLevelCommand());
 	}
-	
-		
 }

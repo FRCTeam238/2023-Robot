@@ -90,6 +90,10 @@ public class Intake extends SubsystemBase {
     logSpeed.append(intakeSpeed);
   }
 
+  public Value getIntakePosition() {
+    return RobotMap.IntakeParameters.intakeSolenoid.get();
+  }
+
   public void openIntake() {
     RobotMap.IntakeParameters.intakeSolenoid.set(Value.kReverse);
     logIntake.append(false);

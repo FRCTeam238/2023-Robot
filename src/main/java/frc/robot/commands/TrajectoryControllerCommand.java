@@ -48,7 +48,7 @@ public class TrajectoryControllerCommand extends CommandBase {
     LTVUnicycleController lu;
     RamseteController rc;
     private Field2d m_field;
-    private ControllerType type = ControllerType.LTV;
+    private ControllerType type = ControllerType.RAMSETE;
 
     public enum ControllerType{
         LTV,

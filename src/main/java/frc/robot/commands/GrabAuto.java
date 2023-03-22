@@ -26,8 +26,7 @@ public class GrabAuto extends SequentialCommandGroup implements IAutonomousComma
     addCommands(new Armdown());
     addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
     addCommands(new OpenIntakeCommand());
-    addCommands(new DriveStraightInches(6, .165));
-    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In).withTimeout(1));
+    addCommands(new DriveStraightInches(12, .165).raceWith(new IntakeInOutCommand(IntakeInOutCommand.Direction.In)));
     addCommands(new CloseIntakeCommand());
     // addCommands(new FooCommand(), new BarCommand());
     
