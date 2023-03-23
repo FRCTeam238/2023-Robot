@@ -17,6 +17,7 @@ import edu.wpi.first.util.datalog.DoubleArrayLogEntry;
 import edu.wpi.first.util.datalog.DoubleLogEntry;
 import edu.wpi.first.util.datalog.StringLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -83,7 +84,9 @@ public class Intake extends SubsystemBase {
     intakeMotor.set(ControlMode.PercentOutput, intakeSpeed);
     if (intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.autoCloseCurrent) {
       closeIntake();
-      RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
+      if (!DriverStation.isAutonomous()) {
+        RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
+      }
     } else {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
     }
