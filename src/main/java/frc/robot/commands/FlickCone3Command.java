@@ -6,7 +6,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.IntakeInOutCommand.Direction;
+import frc.robot.commands.IntakeInOutAuto.Direction;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -18,6 +18,6 @@ public class FlickCone3Command extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new Travelposition());
     addCommands(new WaitCommand(0.6));
-    addCommands(new IntakeInOutCommand(Direction.Out).withTimeout(0.5));
+    addCommands(new IntakeInOutAuto(Direction.Out).withTimeout(0.5));
   }
 }

@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -43,12 +44,14 @@ public class Drive extends CommandBase {
 	@Override
 	public void execute() {
 
-		double leftOutput;
-		double rightOutput;
-		double multiplier;
-		double arcade = 0.5;
-		if (RobotMap.ControlParameters.left.getTrigger() || RobotMap.ControlParameters.right.getTrigger()){
-			multiplier = 0.427;
+		if (!DriverStation.isAutonomous()) {
+
+			double leftOutput;
+			double rightOutput;
+			double multiplier;
+			double arcade = 0.5;
+			if (RobotMap.ControlParameters.left.getTrigger() || RobotMap.ControlParameters.right.getTrigger()){
+				multiplier = 0.427;
 		} else {
 			multiplier = 1.0;
 		}
@@ -64,7 +67,7 @@ public class Drive extends CommandBase {
 				}
 				drivetrain.tankDrive(leftOutput, rightOutput);
 				break;
-			case Arcade:
+				case Arcade:
 				leftOutput = controls.getArcadePowers()[0] * multiplier;
 				rightOutput = controls.getArcadePowers()[1] * multiplier * arcade;
 				drivetrain.arcadeDrive(leftOutput, rightOutput);
@@ -76,10 +79,11 @@ public class Drive extends CommandBase {
 				break;
 
 				
+			}
 		}
 
 	}
-
+	
 	@Override
 	public void end(boolean interrupted) {
 		// TODO Auto-generated method stub

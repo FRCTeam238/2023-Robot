@@ -34,6 +34,16 @@
     {
       "Commands": [
         {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "TestAuto"
+    },
+    {
+      "Commands": [
+        {
           "Name": "TopHeight",
           "Parameters": [
             "3"
@@ -57,7 +67,14 @@
             "true",
             ""
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "GyroTurnCommand",
@@ -156,7 +173,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "0",
-            "0.6"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -176,7 +193,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "0.6"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -260,13 +277,20 @@
             "true",
             ""
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
             "0",
-            ".39"
+            ".25"
           ],
           "ParallelType": "None"
         },
@@ -283,7 +307,7 @@
         {
           "Name": "DelayCommand",
           "Parameters": [
-            "0.5"
+            "0.2"
           ],
           "ParallelType": "None"
         },
@@ -291,7 +315,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "0.35"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -321,20 +345,6 @@
         }
       ],
       "Name": "Cable_Cone2_Cube2"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "TrajectoryDriveCommand",
-          "Parameters": [
-            "New Path",
-            "true",
-            ""
-          ],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "TestPath"
     },
     {
       "Commands": [
@@ -409,6 +419,40 @@
     {
       "Commands": [
         {
+          "Name": "MidConeHeight",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ScoreCubeAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cone2_Charge_1",
+            "true",
+            "1.3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StayLevelCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Charge_Cone2_Charge"
+    },
+    {
+      "Commands": [
+        {
           "Name": "TopHeight",
           "Parameters": [
             "3"
@@ -463,13 +507,20 @@
             "true",
             ""
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
             "0",
-            "0.35"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -548,7 +599,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "0",
-            "0.3"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -561,7 +612,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "0.3"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -652,13 +703,20 @@
             "true",
             ""
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "GyroTurnCommand",
           "Parameters": [
             "0",
-            "0.3"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -671,7 +729,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "0.3"
+            "0.25"
           ],
           "ParallelType": "None"
         },
@@ -708,32 +766,6 @@
         }
       ],
       "Name": "Station_Cone2_Cube2"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "GyroTurnCommand",
-          "Parameters": [
-            "180",
-            ".5"
-          ],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "TEs Gyro Turn 180"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "GyroTurnCommand",
-          "Parameters": [
-            "0",
-            ".5"
-          ],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "TEs Gyro Turn 0"
     }
   ]
 }

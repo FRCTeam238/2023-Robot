@@ -46,7 +46,7 @@ public final class RobotMap {
         public static final double maxAccel = 2.25;
         public static final double maxYTolerance = 1; // meters
         public static final double maxXTolerance = 1; // meters
-        public static final double maxAngle = 4;// in degrees
+        public static final double maxAngle = 7.1;// in degrees
         public static final double kVAngular = 1.3288;
         public static final double kAAngular = .58306;
         public static final double kPSpin = .0055;
@@ -54,7 +54,7 @@ public final class RobotMap {
         public static final double kDSpin = 0.0007;
         public static final double angleVelocityTolerance = 5;
         public static final double minTurnValue = 0.065;
-        public static final double angleTolerance = 1;
+        public static final double angleTolerance = 3;
 
     }
 
@@ -120,7 +120,7 @@ public final class RobotMap {
         public static int intakeSolenoidForwardChannel = 4;
         public static int intakeSolenoidBackChannel = 5;
         public static double armDelay = 1.15;
-        public static int autoCloseCurrent = 12;
+        public static double autoCloseCurrent = 13.4;
 
         public static double intakeSpeed = 0.5;
         public static double intakeEjectSpeed = .5;
