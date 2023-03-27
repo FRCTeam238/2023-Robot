@@ -28,6 +28,7 @@ import frc.core238.DriverControls.driveType;
 import frc.core238.autonomous.AutonomousModesReader;
 import frc.core238.autonomous.DataFileAutonomousModeDataSource;
 import frc.core238.autonomous.IAutonomousModeDataSource;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -47,6 +48,7 @@ public class Robot extends TimedRobot {
   public static Elevator elevator;
   public static Intake intake;
   public UsbCamera intakeCamera;
+  public static Arm arm;
   OI oi;
   String lastSelectedAuto;
   HashMap<String, Command> m_autoModes;
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot {
     drivetrain = new Drivetrain();
     elevator = new Elevator();
     intake = new Intake();
+    arm = new Arm();
     oi = new OI(driveType.Tank);
     if (isReal()) {
       intakeCamera = CameraServer.startAutomaticCapture();
