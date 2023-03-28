@@ -270,7 +270,7 @@ public class MotionProfile {
         else if ((constraints.maxVelocity > va && s < sa) ||
         (constraints.maxVelocity < va && s < sa)) {
             //Type B or C.2, eqs 66,67,68
-            tj = Math.pow(s/(2*constraints.maxJerk), 1/3);
+            tj = Math.pow(s/(2*constraints.maxJerk), 1/3.);
             ta = tj;
             tv = 2*tj;
         }
