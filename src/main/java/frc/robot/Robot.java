@@ -28,9 +28,10 @@ import frc.core238.DriverControls.driveType;
 import frc.core238.autonomous.AutonomousModesReader;
 import frc.core238.autonomous.DataFileAutonomousModeDataSource;
 import frc.core238.autonomous.IAutonomousModeDataSource;
+import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.OldIntake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -45,7 +46,7 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public static Drivetrain drivetrain;
   public static Elevator elevator;
-  public static Intake intake;
+  public static OldIntake intake;
   public UsbCamera intakeCamera;
   OI oi;
   String lastSelectedAuto;
@@ -55,7 +56,7 @@ public class Robot extends TimedRobot {
   boolean fmsConnected = false;
   boolean m_allowAuto = true;
   AutonomousModesReader reader;
-
+  public static Gamepiece gamepiece = Gamepiece.Cube;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -67,7 +68,7 @@ public class Robot extends TimedRobot {
     
     drivetrain = new Drivetrain();
     elevator = new Elevator();
-    intake = new Intake();
+    intake = new OldIntake();
     oi = new OI(driveType.Tank);
     if (isReal()) {
       intakeCamera = CameraServer.startAutomaticCapture();

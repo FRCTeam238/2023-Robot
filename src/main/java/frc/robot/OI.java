@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
+import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.commands.*;
 import frc.robot.commands.IntakeInOutCommand.Direction;
 
@@ -41,9 +42,7 @@ public class OI {
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
 
 		//Left Bumper
-		JoystickButton closeIntake = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
-		closeIntake.onTrue(new CloseIntakeCommand());
-
+		
 		//B Button
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);
 		midCone.onTrue(new MidConeHeight());
@@ -62,9 +61,14 @@ public class OI {
 
 		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.In));
 		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.Out));
-
-		JoystickButton dropGamepiece = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
-		dropGamepiece.whileTrue(new OpenIntakeCommand());
+		
+		//Right Bumper
+		JoystickButton setCube = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);
+		setCube.onTrue(new SetMode(Gamepiece.CUBE));
+		
+		//Left Bumper
+		JoystickButton setCone = new JoystickButton(operatorController, XboxController.Button.kLeftBumper.value);
+		setCone.onTrue(new SetMode(Gamepiece.CONE));
 		
 		//Dpad up
 		POVButton Travelposition = new POVButton(operatorController, 0);

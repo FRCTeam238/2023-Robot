@@ -7,7 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.IntakeInOutCommand.Direction;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.OldIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -16,7 +16,7 @@ public class ReleaseGamepieceCommand extends SequentialCommandGroup {
   /** Creates a new ReleaseGamepieceCommand. */
   public ReleaseGamepieceCommand() {
     // Add your commands in the addCommands() call, e.g.
-    Intake intake = Robot.intake;
+    OldIntake intake = Robot.intake;
     addRequirements(intake);
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new OpenIntakeCommand());
