@@ -82,6 +82,12 @@ public class Arm extends SubsystemBase {
     // set PID values
     // set soft limits
   }
+
+  @Override
+  public void periodic()
+  {
+    logEncoder.append(getEncoder());
+  }
   
   public void simulationPeriodic() {
     // In this method, we update our simulation of what our elevator is doing
