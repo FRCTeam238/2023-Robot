@@ -4,44 +4,80 @@
 
 package frc.robot.subsystems;
 
-public class Arm extends SubsystemBase {
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.math.controller.ArmFeedforward;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.util.datalog.DoubleLogEntry;
+import edu.wpi.first.util.datalog.StringLogEntry;
+import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotMap;
 
 public class Arm extends SubsystemBase {
+
+  private final boolean debug = true;
   
-  private final TalonSRX armTalon = new RobotMap.armParameters.armMotor;
+  private final TalonSRX armTalon = RobotMap.ArmParameters.armMotor;
   private final SingleJointedArmSim m_armSim = new SingleJointedArmSim(
-    DCMotor.getVex775Pro(1), 200, 1.177, .3556, Units.degreesToRadians(-90), Units.degreesToRadians(155), true);
+    DCMotor.getVex775Pro(1), 374, 1.177, .3556, Units.degreesToRadians(-90), Units.degreesToRadians(155), true);
   private final TalonSRXSimCollection m_motorSim = armTalon.getSimCollection();
 
+  protected StringLogEntry logCommand;
+  protected DoubleLogEntry logEncoder;
+  protected DoubleLogEntry logDesiredV;
+  protected DoubleLogEntry logActualV;
+  protected DoubleLogEntry logDesiredEncoder;
+  protected DoubleLogEntry logFF;
+
+  //TODO: Needs an ArmFeedforward. Estimates: kG = 1.24, kV = 2.29, kA = 0.07, kS = 0
+  //TODO: Needs methods to get encoder value and encoder velocity
 
   /** Creates a new Arm. */
   public Arm() {
-  
+    logEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Position");
+    logDesiredV = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Desired V");
+    logActualV = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Actual V");
+    logDesiredEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Desired Position");
+    logFF = new DoubleLogEntry(DataLogManager.getLog(), "Arm:FF");
+    logCommand = new StringLogEntry(DataLogManager.getLog(), "Arm:Command");
   }
 
   public void moveArmPercent (double armPercent, double armVelocity) {
     RobotMap.ArmParameters.armMotor.set(ControlMode.PercentOutput, armPercent);
   }
 
+  //TODO: Should take a single input of type MotionProfile.State. This will have a position, velocity and acceleration
+  // Use velocity and acceleration to calculate feedforward voltage using ArmFeedforward
+  // Use position control mode on talon with value position and arbFeedForward as calculated
   public void moveArmVelocity() {
+
+    if(SmartDashboard.getBoolean("ArmDebugging", debug))
+    {
+      SmartDashboard.putNumber("Arm Desired V", currentState.velocity);
+      SmartDashboard.putNumber("Arm Desired Pos", currentState.position);
+      SmartDashboard.putNumber("Arm Actual V", getVelocity());
+      SmartDashboard.putNumber("Arm Actual Pos", getEncoderPosition());
+      SmartDashboard.putNumber("Arm FF", feed);
+    } else {
+      logDesiredV.append(currentState.velocity);
+      logDesiredEncoder.append(currentState.position);
+      logActualV.append(getVelocity());
+      logFF.append(feed);
+    }
   }
   
   public void initControls() {
-    // set current limit
+    // TODO set current limit
     // setup encoder
     // set PID values
     // set soft limits
@@ -63,4 +99,13 @@ public class Arm extends SubsystemBase {
     // SimBattery estimates loaded battery voltages
     RoboRioSim.setVInVoltage(
         BatterySim.calculateDefaultBatteryLoadedVoltage(m_armSim.getCurrentDrawAmps()));
+  }
+
+  public void putCommandString(Command command) {
+    if(debug){
+      SmartDashboard.putString("Arm Command", command.getName());
+    } else {
+      logCommand.append(command.getName());
+    }
+  }
 }
