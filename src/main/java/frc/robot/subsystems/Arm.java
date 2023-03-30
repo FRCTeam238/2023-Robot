@@ -40,7 +40,8 @@ public class Arm extends SubsystemBase {
   protected DoubleLogEntry logFF;
 
   //TODO: Needs an ArmFeedforward. Estimates: kG = 1.24, kV = 2.29, kA = 0.07, kS = 0
-  //TODO: Needs methods to get encoder value and encoder velocity
+  //TODO: Needs methods to get encoder value and encoder velocity. These should report in angle (degrees)
+  //TODO: Need methods to convert between Encoder units (4096/revolution) and angle units
 
   /** Creates a new Arm. */
   public Arm() {
@@ -58,7 +59,7 @@ public class Arm extends SubsystemBase {
 
   //TODO: Should take a single input of type MotionProfile.State. This will have a position, velocity and acceleration
   // Use velocity and acceleration to calculate feedforward voltage using ArmFeedforward
-  // Use position control mode on talon with value position and arbFeedForward as calculated
+  // Use position control mode on talon with value position (convert to 4096 units) and arbFeedForward as calculated
   public void moveArmVelocity() {
 
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
