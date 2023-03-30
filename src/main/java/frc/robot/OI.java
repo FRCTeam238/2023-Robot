@@ -30,19 +30,17 @@ public class OI {
 	Drive driveCommand;
 
 	public OI(driveType controlType) {
-
-		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
-
-		
+	
 		driveCommand = new Drive();
 		elevatorManualCommand = new ElevatorManualCommand();
 
 
 		Robot.drivetrain.setDefaultCommand(driveCommand);	
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
+		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
+		//TODO: Add arm default command
 
-		//Left Bumper
-		
+		//TODO: Buttons to fix: A,B,X,Y,DpadUp,DpadRight,DpadLeft,DpadDown
 		//B Button
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);
 		midCone.onTrue(new MidConeHeight());
@@ -59,6 +57,7 @@ public class OI {
 		JoystickButton topHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
 		topHeight.onTrue(new TopHeight());
 
+		//Triggers
 		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.In));
 		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(Direction.Out));
 		
@@ -92,11 +91,6 @@ public class OI {
 		JoystickButton brakeModeButton = new JoystickButton(rightJoystick, 3);
 		brakeModeButton.onTrue(new SetBrakeCommand());
 		
-		//Start button
-		JoystickButton flickCube = new JoystickButton(operatorController, XboxController.Button.kStart.value);
-		flickCube.onTrue(new FlickCone3Command());
-
-
 		JoystickButton charge = new JoystickButton(leftJoystick, 5);
 		charge.whileTrue(new StayLevelCommand());
 	}

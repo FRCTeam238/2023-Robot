@@ -2,6 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//TODO: Rework this for new intake. Should check gamepiece and determine setpoints
+//Then can set arm and elevator setpoints in parallel. Other setpoint commands should have same structure
+
 package frc.robot.commands;
 
 import java.util.List;

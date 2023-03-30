@@ -2,6 +2,11 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+
+//TODO: Reconnect to Intake. Needs to run intake in opposite direction depending on gamepiece type.
+//Probably should have 4 different speeds in case they need to be different
+//Intake speed and outtake speed for both types
+
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -17,7 +22,7 @@ public class IntakeInOutCommand extends CommandBase {
   OldIntake intake;
   
   
-    public IntakeInOutCommand(Direction direction) {
+  public IntakeInOutCommand(Direction direction) {
     this.direction = direction;
     intake = Robot.intake;
   }
