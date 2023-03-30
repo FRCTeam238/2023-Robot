@@ -2,6 +2,9 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//TODO: Rework this for new intake. Should check gamepiece and determine setpoints
+//Then can set arm and elevator setpoints in parallel. Other setpoint commands should have same structure
+
 package frc.robot.commands;
 
 import java.util.List;
@@ -12,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.OldIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,7 +24,7 @@ import frc.robot.subsystems.Intake;
 public class StowCommand extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new StowCommand. */
   public StowCommand() {
-    Intake intake = Robot.intake;
+    OldIntake intake = Robot.intake;
     Elevator elevator = Robot.elevator;
     addRequirements(intake, elevator);
     // Add your commands in the addCommands() call, e.g.

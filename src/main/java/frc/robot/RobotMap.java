@@ -137,6 +137,12 @@ public final class RobotMap {
         public static final int continuousCurrent = 10;
         public static final int peakCurrent = 20;
         public static final int peakDuration = 60;
+        public enum Gamepiece {CONE, CUBE};
+    }
+
+    public static class ArmParameters {
+        public static TalonSRX armMotor = new TalonSRX(2);
+        
     }
 
     public static class VisionParameters {

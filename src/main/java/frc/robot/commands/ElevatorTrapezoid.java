@@ -38,9 +38,6 @@ public class ElevatorTrapezoid extends CommandBase {
     profile = new TrapezoidProfile(constraints, goal, startPos);
     timer.reset();
     timer.start();
-    if (!Robot.intake.isEitherExtended()) {
-      Robot.intake.extendShort();
-    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

@@ -34,8 +34,11 @@
     {
       "Commands": [
         {
-          "Name": "GrabAuto",
-          "Parameters": [],
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "45",
+            "0.23"
+          ],
           "ParallelType": "None"
         }
       ],
@@ -92,6 +95,13 @@
         {
           "Name": "RetractAll",
           "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "0.2"
+          ],
           "ParallelType": "None"
         },
         {
@@ -307,7 +317,7 @@
         {
           "Name": "DelayCommand",
           "Parameters": [
-            "0.2"
+            "1.5"
           ],
           "ParallelType": "None"
         },
@@ -315,7 +325,7 @@
           "Name": "GyroTurnCommand",
           "Parameters": [
             "180",
-            "0.25"
+            "0.217"
           ],
           "ParallelType": "None"
         },
@@ -723,6 +733,18 @@
         {
           "Name": "GrabAuto",
           "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "RetractAll",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "0.2"
+          ],
           "ParallelType": "None"
         },
         {
