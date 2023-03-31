@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -21,6 +23,7 @@ import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.core238.MotionProfile;
 import frc.robot.RobotMap;
 
 public class Arm extends SubsystemBase {
@@ -38,10 +41,7 @@ public class Arm extends SubsystemBase {
   protected DoubleLogEntry logActualV;
   protected DoubleLogEntry logDesiredEncoder;
   protected DoubleLogEntry logFF;
-
-  //TODO: Needs an ArmFeedforward. Estimates: kG = 1.24, kV = 2.29, kA = 0.07, kS = 0
-  //TODO: Needs methods to get encoder value and encoder velocity. These should report in angle (degrees)
-  //TODO: Need methods to convert between Encoder units (4096/revolution) and angle units
+  protected ArmFeedforward ff;
 
   /** Creates a new Arm. */
   public Arm() {
@@ -51,16 +51,24 @@ public class Arm extends SubsystemBase {
     logDesiredEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Desired Position");
     logFF = new DoubleLogEntry(DataLogManager.getLog(), "Arm:FF");
     logCommand = new StringLogEntry(DataLogManager.getLog(), "Arm:Command");
+    ff = new ArmFeedforward(RobotMap.ArmParameters.kS, RobotMap.ArmParameters.kG, RobotMap.ArmParameters.kV, RobotMap.ArmParameters.kA);
+
   }
 
-  public void moveArmPercent (double armPercent, double armVelocity) {
+  public void moveArmPercent (double armPercent) {
     RobotMap.ArmParameters.armMotor.set(ControlMode.PercentOutput, armPercent);
   }
 
-  //TODO: Should take a single input of type MotionProfile.State. This will have a position, velocity and acceleration
   // Use velocity and acceleration to calculate feedforward voltage using ArmFeedforward
   // Use position control mode on talon with value position (convert to 4096 units) and arbFeedForward as calculated
-  public void moveArmVelocity() {
+  public void moveArmVelocity(MotionProfile.State currentState) {
+
+    double position = Units.degreesToRadians(currentState.position);
+    double acceleration = Units.degreesToRadians(currentState.acceleration);
+    double velocity = Units.degreesToRadians(currentState.velocity);
+    double feed = ff.calculate(position, velocity, acceleration);
+    armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
+
 
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
     {
@@ -77,17 +85,27 @@ public class Arm extends SubsystemBase {
     }
   }
   
+
+  public double getVelocity() {
+    return armTalon.getSelectedSensorVelocity() * 10.0 * (360.0/4096.0);
+  }
+
+  public double getEncoderPosition() {
+    return armTalon.getSelectedSensorPosition();
+  }
   public void initControls() {
-    // TODO set current limit
-    // setup encoder
-    // set PID values
-    // set soft limits
+    armTalon.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 40, 100));
+    // TODO setup encoder
+    
+    // TODO set PID values
+    // TODO set soft limits
+
   }
 
   @Override
   public void periodic()
   {
-    logEncoder.append(getEncoder());
+    logEncoder.append(getEncoderPosition());
   }
   
   public void simulationPeriodic() {
@@ -108,6 +126,8 @@ public class Arm extends SubsystemBase {
         BatterySim.calculateDefaultBatteryLoadedVoltage(m_armSim.getCurrentDrawAmps()));
   }
 
+
+
   public void putCommandString(Command command) {
     if(debug){
       SmartDashboard.putString("Arm Command", command.getName());
@@ -115,4 +135,7 @@ public class Arm extends SubsystemBase {
       logCommand.append(command.getName());
     }
   }
+
+
+
 }

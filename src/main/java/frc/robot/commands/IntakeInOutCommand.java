@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-//TODO: Reconnect to Intake. Needs to run intake in opposite direction depending on gamepiece type.
 //Probably should have 4 different speeds in case they need to be different
 //Intake speed and outtake speed for both types
 
@@ -13,13 +12,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.OldIntake;
+import frc.robot.RobotMap.IntakeParameters.Gamepiece;
+import frc.robot.subsystems.Intake;
 
 @AutonomousModeAnnotation(parameterNames = {})
 public class IntakeInOutCommand extends CommandBase {
   
   Direction direction;
-  OldIntake intake;
+  Gamepiece gamepiece = Robot.gamepiece;
+  Intake intake;
   
   
   public IntakeInOutCommand(Direction direction) {
@@ -37,16 +38,20 @@ public class IntakeInOutCommand extends CommandBase {
   @Override
   public void execute() {
     if (direction == Direction.In) {
-      intake.runIntake(-1*RobotMap.IntakeParameters.intakeSpeed);
+      intake.run(gamepiece == Gamepiece.CONE ? 
+      RobotMap.IntakeParameters.intakeSpeed : 
+      RobotMap.IntakeParameters.intakeSpeed * -1);
     } else {
-      intake.runIntake(RobotMap.IntakeParameters.intakeEjectSpeed);
+      intake.run(gamepiece == Gamepiece.CONE ? 
+      RobotMap.IntakeParameters.intakeSpeed * -1: 
+      RobotMap.IntakeParameters.intakeSpeed);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.runIntake(0);
+    intake.stop();
   }
 
   // Returns true when the command should end.
