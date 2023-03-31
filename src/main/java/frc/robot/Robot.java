@@ -228,6 +228,11 @@ public class Robot extends TimedRobot {
         userDir = userDir.substring(0, idx);
         System.setProperty("user.dir", userDir);
     }
-}
+  }
+
+  public static boolean isCube()
+  {
+    return Robot.gamepiece == RobotMap.IntakeParameters.Gamepiece.CUBE;
+  }
 
 }

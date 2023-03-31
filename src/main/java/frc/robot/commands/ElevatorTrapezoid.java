@@ -21,12 +21,13 @@ public class ElevatorTrapezoid extends CommandBase {
   Elevator elevator = Robot.elevator;
   State currentState, nextState;
   /** Creates a new Trapezoid238. */
-  public ElevatorTrapezoid(State goal) {
+  public ElevatorTrapezoid(State goal, String name) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.goal = goal;
     constraints = new Constraints(RobotMap.ElevatorParameters.MaxVel, RobotMap.ElevatorParameters.MaxAccel);
     timer = new Timer();
     addRequirements(Robot.elevator);
+    this.setName(name);
   }
 
   // Called when the command is initially scheduled.
