@@ -85,13 +85,21 @@ public final class RobotMap {
         public static double kp = .15;
         public static double ki;
         public static double kd;
-        public static double midCubeHeight = inchesToTicks(21.25); // initial guess based on CAD
-        public static double midConeHeight = 29.22;// inchesToTicks(31.175); //initial guess based on CAD
-        public static double floorHeight = inchesToTicks(.25); // drive all the way down to soft limit
-        public static double topHeight = inchesToTicks(35.5); // initial guess based on CAD
         public static double toleranceRotations = .7;//inchesToTicks(.5);
         public static double toleranceVelocity = .2; // in rotatation per sec
 
+        public static final double cubeFloor = inchesToTicks(11.57);
+        public static final double tippedConeFloor = 0;
+        public static final double standingCone = inchesToTicks(14.0);
+        public static final double coneLevel1 = inchesToTicks(11.5);
+        public static final double cubeLevel1 = inchesToTicks(13.25);
+        public static final double coneLevel2 = inchesToTicks(10.89);
+        public static final double cubeLevel2 = inchesToTicks(13.85);
+        public static final double coneLevel3 = inchesToTicks(35.65);
+        public static final double cubeLevel3 = inchesToTicks(31.75);
+        public static final double doubleSubCone = inchesToTicks(25.85);
+        public static final double doubleSubCube = inchesToTicks(23.85);
+        public static final double singleSubCone = inchesToTicks(8.13);
     }
 
     public static class ControlParameters {
@@ -152,7 +160,19 @@ public final class RobotMap {
         public static double kS = 0;
         public static double armCurrentLimit = 11; //?
 
-        
+        public static final double cubeFloor = -80;
+        public static final double tippedConeFloor = -39.8;
+        public static final double standingCone = -80;
+        public static final double coneLevel1 = -87;
+        public static final double cubeLevel1 = -87;
+        public static final double coneLevel2 = 83.3;
+        public static final double cubeLevel2 = 53.0;
+        public static final double coneLevel3 = 48.6;
+        public static final double cubeLevel3 = 32.2;
+        public static final double doubleSubCone = 123.25;
+        public static final double doubleSubCube = 103.33;
+        public static final double singleSubCone = 161; 
+        public static final double stow = 161;
     }
 
     public static class VisionParameters {
