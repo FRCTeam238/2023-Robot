@@ -2,8 +2,6 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-//TODO: Rework this for new intake. To release gamepiece run intake out for some short time
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -21,7 +19,6 @@ public class ReleaseGamepieceCommand extends SequentialCommandGroup {
     Intake intake = Robot.intake;
     addRequirements(intake);
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new OpenIntakeCommand());
-    addCommands(new IntakeInOutCommand(Direction.Out));
+    addCommands(new IntakeInOutCommand(Direction.Out).withTimeout(2));
   }
 }

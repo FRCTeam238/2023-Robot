@@ -104,6 +104,7 @@ public final class RobotMap {
         public static XboxController operatorController = new XboxController(xboxID);
         public static double elevatorThreshold = 0.1;
         public static double elevatorMultiplier = 0.125;
+        public static double armThreshold = 0.05;
 
         // we don't use this value, we have a sendable chooser for this in robot.java,
         // this is just backup
@@ -142,6 +143,12 @@ public final class RobotMap {
 
     public static class ArmParameters {
         public static TalonSRX armMotor = new TalonSRX(2);
+        public static double kG = 1.24;
+        public static double kV = 2.29;
+        public static double kA = 0.07;
+        public static double kS = 0;
+        public static double armCurrentLimit = 11; //?
+
         
     }
 
@@ -153,4 +160,7 @@ public final class RobotMap {
 
     public static class TrajectoryParameters {
     }
+
+    
+
 }

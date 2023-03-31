@@ -4,28 +4,29 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.RobotMap.ControlParameters;
 
-public class KindaRunIntakeCommand extends CommandBase {
-  /** Creates a new KindaRunIntakeCommand. */
-  public KindaRunIntakeCommand() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.intake);
+public class ArmManualCommand extends CommandBase {
+  /** Creates a new ArmManualCommand. */
+  public ArmManualCommand() { 
+  
+   // Use addRequirements() here to declare subsystem dependencies.
+   addRequirements(Robot.arm);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-    Robot.intake.putCommandString(this);
-  }
+  public void initialize() {}
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.run(-0.2);
-
+    if (Math.abs(ControlParameters.operatorController.getLeftY()) > ControlParameters.armThreshold) {
+      Robot.arm.moveArmPercent(ControlParameters.operatorController.getLeftY() * ControlParameters.elevatorMultiplier);
+    }
   }
 
   // Called once the command ends or is interrupted.

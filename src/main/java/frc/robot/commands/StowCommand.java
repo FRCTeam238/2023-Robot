@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.OldIntake;
+import frc.robot.subsystems.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -24,7 +24,7 @@ import frc.robot.subsystems.OldIntake;
 public class StowCommand extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new StowCommand. */
   public StowCommand() {
-    OldIntake intake = Robot.intake;
+    Intake intake = Robot.intake;
     Elevator elevator = Robot.elevator;
     addRequirements(intake, elevator);
     // Add your commands in the addCommands() call, e.g.

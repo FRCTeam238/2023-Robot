@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.OldIntake;
+import frc.robot.subsystems.Intake;
 
 @AutonomousModeAnnotation(parameterNames = {})
 public class IntakeInOutAuto extends CommandBase {
   
   Direction direction;
-  OldIntake intake;
+  Intake intake;
   
   
     public IntakeInOutAuto(Direction direction) {

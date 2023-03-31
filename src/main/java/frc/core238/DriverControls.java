@@ -22,7 +22,7 @@ public class DriverControls {
 	public static enum driveType {
 		Tank,
 		Arcade,
-		Cheesy // TODO: do we even want to try to make cheesy right now?
+		Cheesy
 	}
 
 	/**

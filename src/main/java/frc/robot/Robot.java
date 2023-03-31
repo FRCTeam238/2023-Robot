@@ -32,7 +32,7 @@ import frc.robot.subsystems.Arm;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.OldIntake;
+import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -44,10 +44,10 @@ import frc.robot.subsystems.OldIntake;
  * project.
  */
 public class Robot extends TimedRobot { 
-  private Command m_autonomousCommand;
+  private Command m_autonomousCommand; 
   public static Drivetrain drivetrain;
   public static Elevator elevator;
-  public static OldIntake intake;
+  public static Intake intake;
   public UsbCamera intakeCamera;
   public static Arm arm;
   OI oi;
@@ -58,7 +58,7 @@ public class Robot extends TimedRobot {
   boolean fmsConnected = false;
   boolean m_allowAuto = true;
   AutonomousModesReader reader;
-  public static Gamepiece gamepiece = Gamepiece.Cube;
+  public static Gamepiece gamepiece = Gamepiece.CUBE;
 
   /**
    * This function is run when the robot is first started up and should be used

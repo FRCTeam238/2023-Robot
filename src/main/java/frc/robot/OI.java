@@ -11,8 +11,6 @@ import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.commands.*;
 import frc.robot.commands.IntakeInOutCommand.Direction;
 
-import javax.print.DocFlavor;
-
 /**
  * OI
  * stands for operatorInterface
@@ -34,12 +32,11 @@ public class OI {
 		driveCommand = new Drive();
 		elevatorManualCommand = new ElevatorManualCommand();
 
-
 		Robot.drivetrain.setDefaultCommand(driveCommand);	
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
 		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
-		//TODO: Add arm default command
-
+		Robot.arm.setDefaultCommand(new ArmManualCommand());
+		
 		//TODO: Buttons to fix: A,B,X,Y,DpadUp,DpadRight,DpadLeft,DpadDown
 		//B Button
 		JoystickButton midCone = new JoystickButton(operatorController, XboxController.Button.kB.value);

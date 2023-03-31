@@ -23,6 +23,7 @@ public class Intake extends SubsystemBase {
     logIntake = new DoubleLogEntry(DataLogManager.getLog(), "Intake:Speed");
   }
 
+
   public void run (double intakeSpeed) {
     RobotMap.IntakeParameters.intakeMotor.set(ControlMode.PercentOutput, intakeSpeed);
     logIntake.append(intakeSpeed);
