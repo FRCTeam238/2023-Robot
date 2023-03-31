@@ -3,11 +3,29 @@ package frc.core238;
 import edu.wpi.first.wpilibj.Timer;
 
 public class MotionProfile {
+
+    /**
+         * {@summary} Class describing the motion constraints for the profile to obey
+         * 
+    **/
     public static class MotionConstraints {
         public double maxJerk;
         public double maxAccel;
         public double maxVelocity;
         public double velocityTolerance;
+        
+        /**
+         * {@summary} constructor for MotionConstraints
+         * 
+         * @param maxJerk
+         *                    max Jerk (derivative of Accel)
+         * @param maxAccel
+         *                    max Acceleration to be used in the profile
+         * @param maxVelocity
+         *                    max Velocity to be used in the profile
+         * @param velocityTolerance
+         *                    max initial velocity to be ignored (allowing us to use S-curve profile)
+         */ 
         public MotionConstraints(double maxJerk, double maxAccel, double maxVelocity, double velocityTolerance)
         {
             this.maxJerk = maxJerk;
@@ -17,32 +35,53 @@ public class MotionProfile {
         }
     }
 
+
     public static class State {
         public double velocity;
         public double acceleration;
         public double position;
+        /**
+         * {@summary} constructor for MotionProfile State
+         * 
+         * @param position
+         *                    the position represented by the state
+         * @param velocity
+         *                    the velocity represented by the state
+         * @param acceleration
+         *                    the acceleration represented by the state
+         */
         public State(double position, double velocity, double acceleration)
         {
             this.acceleration = acceleration;
             this.velocity = velocity;
             this.position = position;
         }
+                /**
+         * {@summary} constructor for MotionProfile State. Acceleration will be set to 0
+         * 
+         * @param position
+         *                    the position represented by the state
+         * @param velocity
+         *                    the velocity represented by the state
+         */
         public State(double position, double velocity)
         {
             this(velocity, position, 0);
         }
     }
 
+    //Timing of the end of various phases, measured in seconds from start of profile
     private class Timings {
-        double endRampUpAccel;
-        double endMaxAccel;
-        double endRampDownAccel;
-        double endMaxVelocity;
-        double endRampUpDeccel;
-        double endMaxDeccel;
-        double endRampDownDeccel;
+        double endRampUpAccel;      //done ramping up acceleration, accel is now at max
+        double endMaxAccel;         //done with max accel phase, ramp down accel
+        double endRampDownAccel;    //done ramping accel down, now at constant velocity
+        double endMaxVelocity;      //done with constant velocity phase, start decellerating
+        double endRampUpDeccel;     //done ramping up decell, now at max decel
+        double endMaxDeccel;        //done with max decel phase, ramping down to 0
+        double endRampDownDeccel;   //profile complete
     }
 
+    //Internal class representing the state at each of the phase transitions described in Timings above
     private class TransitionStates {
         State state1, state2, state3, state4, state5, state6;
         public TransitionStates()
@@ -81,6 +120,7 @@ public class MotionProfile {
         }
     }
 
+    //Enum representing types of profiles. Auto will choose SCurve if initial velocity is low enough, otherwise trapezoid
     public enum ProfileType {TRAPEZOID,SCURVE,AUTO};
     private int direction;
     private MotionConstraints constraints;
@@ -94,11 +134,14 @@ public class MotionProfile {
     public MotionProfile(State goal, State current, MotionConstraints constraints, ProfileType type)
     {
         this.constraints = constraints;
+        //It's easier to always calculate the profile the same way, so if the goal is less than current, flip them and we'll flip the result later
         direction = shouldFlipProfile(current, goal) ? -1 : 1;
         this.goal = direct(goal);
         this.initial = direct(current);
         timings = new Timings();
         timer = new Timer();
+
+        //Choose a profile type and calculate it. This will populate the Timings object and TransitionStates object as necessary
         if(current.velocity > constraints.velocityTolerance || goal.velocity !=0 || type == ProfileType.TRAPEZOID)
         {
             this.type = ProfileType.TRAPEZOID;
@@ -112,8 +155,11 @@ public class MotionProfile {
 
     public State sample()
     {
+        //Start timer, this no-ops if the timer is already running so will start it on the first call to sample()
         timer.start();
         State retval = new State(0,0,0);
+
+        //If we're following an S-curve use equations described in paper linked in calculateSCurve
         if(type == ProfileType.SCURVE){
             double time = timer.get();
             if(time < timings.endRampUpAccel)
@@ -175,7 +221,9 @@ public class MotionProfile {
                 return direct(goal);
             }
             return direct(retval);
-        }else {
+        }
+        //Otherwise we're following a trapezoid, implementation stolen from WPILib class
+        else {
             retval.velocity = initial.velocity;
             retval.position = initial.position;
             double t = timer.get();
