@@ -25,10 +25,14 @@ public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomo
   public FloorTippedHeight() { 
     Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
     Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "FloorTipped");
-    addCommands(new ConditionalCommand(ElevatorCube, ElevatorCone, Robot::isCube));
+    
+    //AsProxy means that this command group doesn't inherit the requirements. This is important so that the subsystems
+    //default commands will run after the setpoint is reached and hold the position while the other command completes
+    //Conditional command means it will check the BooleanSupplier parameter at runtime and pick the right command
+    addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
     Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor, 0), "FloorCube");
     Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.tippedConeFloor, 0), "FloorTipped");
-    addCommands(new ConditionalCommand(ArmCube, ArmCone, Robot::isCube));
+    addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
   }
 
   @Override
