@@ -142,6 +142,9 @@ public final class RobotMap {
     }
 
     public static class ArmParameters {
+        public static final int armUpperLimit = 0;  //In Talon native units, directly measure off absolute encoder in Phoenix Tuner
+        public static final int armLowerLimit = 0;  //In Talon native units, directly measure off absolute encoder in Phoenix Tuner
+        public static final int armOffset = 0;      //In Talon native units, directly measure off absolute encoder in Phoenix Tuner. Equal to negative of encoder value at arm horizontal position
         public static TalonSRX armMotor = new TalonSRX(2);
         public static double kG = 1.24;
         public static double kV = 2.29;

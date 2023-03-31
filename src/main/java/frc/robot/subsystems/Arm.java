@@ -4,8 +4,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.ErrorCode;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.TalonSRXSimCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -43,6 +45,8 @@ public class Arm extends SubsystemBase {
   protected DoubleLogEntry logFF;
   protected ArmFeedforward ff;
 
+  public boolean PIDEnabled = true;
+
   /** Creates a new Arm. */
   public Arm() {
     logEncoder = new DoubleLogEntry(DataLogManager.getLog(), "Arm:Position");
@@ -62,7 +66,10 @@ public class Arm extends SubsystemBase {
   // Use velocity and acceleration to calculate feedforward voltage using ArmFeedforward
   // Use position control mode on talon with value position (convert to 4096 units) and arbFeedForward as calculated
   public void moveArmVelocity(MotionProfile.State currentState) {
-
+    if(!PIDEnabled)
+    {
+      return;
+    }
     double position = Units.degreesToRadians(currentState.position);
     double acceleration = Units.degreesToRadians(currentState.acceleration);
     double velocity = Units.degreesToRadians(currentState.velocity);
@@ -85,21 +92,31 @@ public class Arm extends SubsystemBase {
     }
   }
   
-
   public double getVelocity() {
     return armTalon.getSelectedSensorVelocity() * 10.0 * (360.0/4096.0);
   }
 
   public double getEncoderPosition() {
-    return armTalon.getSelectedSensorPosition();
+    return armTalon.getSelectedSensorPosition() * (360.0/4096.0);
   }
   public void initControls() {
     armTalon.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 40, 100));
-    // TODO setup encoder
-    
-    // TODO set PID values
-    // TODO set soft limits
+    //setup encoder
+    armTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
+    ErrorCode code = armTalon.getSensorCollection().syncQuadratureWithPulseWidth(RobotMap.ArmParameters.armUpperLimit, RobotMap.ArmParameters.armLowerLimit, false, RobotMap.ArmParameters.armOffset, 100);
+    int i = 0;
+    //Don't think this setting is stored permanently in Talon so try 4 more times if setting it fails. Can remove if this can be flashed in
+    while (code != ErrorCode.OK && i <4) {
+      code = armTalon.getSensorCollection().syncQuadratureWithPulseWidth(RobotMap.ArmParameters.armUpperLimit, RobotMap.ArmParameters.armLowerLimit, false, RobotMap.ArmParameters.armOffset, 100);
+    }
+    if(code != ErrorCode.OK)
+    {
+      System.out.println("Fatal Error Configuring Arm Encoder, disabling PID Drive");
+      PIDEnabled = false;
+    }
 
+    // TODO set PID values (look at Drivetrain for example)
+    // TODO set soft limits (look at 2022 climber for example). Can set soft limits using the constants already in Arm Parameters. Forward = Up
   }
 
   @Override
