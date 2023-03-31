@@ -21,13 +21,13 @@ public class MotionProfile {
         public double velocity;
         public double acceleration;
         public double position;
-        public State(double velocity, double position, double acceleration)
+        public State(double position, double velocity, double acceleration)
         {
             this.acceleration = acceleration;
             this.velocity = velocity;
             this.position = position;
         }
-        public State(double velocity, double position)
+        public State(double position, double velocity)
         {
             this(velocity, position, 0);
         }
@@ -52,32 +52,32 @@ public class MotionProfile {
             a = constraints.maxJerk*timings.endRampUpAccel;
             v = constraints.maxJerk*Math.pow(t,2)/2;
             p = initial.position + constraints.maxJerk*Math.pow(t,3)/6;
-            state1 = new State(v,p,a);
+            state1 = new State(p,v,a);
             t = timings.endMaxAccel - timings.endRampUpAccel;
             a = state1.acceleration;
             v = state1.velocity + a*t;
             p = state1.position + state1.velocity*t + a*Math.pow(t,2)/2;
-            state2 = new State(v,p,a);
+            state2 = new State(p,v,a);
             t = timings.endRampDownAccel - timings.endMaxAccel;
             a = state2.acceleration - constraints.maxJerk*t;
             v = state2.velocity + state2.acceleration*t-constraints.maxJerk*Math.pow(t,2)/2;
             p = state2.position + state2.velocity*t + state2.acceleration*Math.pow(t,2)/2-constraints.maxJerk*Math.pow(t,3)/6;
-            state3 = new State(v,p,a);
+            state3 = new State(p,v,a);
             t = timings.endMaxVelocity - timings.endRampDownAccel;
             a = 0;
             v = state3.velocity;
             p = state3.position + state3.velocity*t;
-            state4 = new State(v,p,a);
+            state4 = new State(p,v,a);
             t = timings.endRampUpDeccel - timings.endMaxVelocity;
             a = -state1.acceleration;
             v = state4.velocity - constraints.maxJerk*Math.pow(t,2)/2;
             p = state4.position + state4.velocity*t - constraints.maxJerk*Math.pow(t,3)/6;
-            state5 = new State(v,p,a);
+            state5 = new State(p,v,a);
             t = timings.endMaxDeccel - timings.endRampUpDeccel;
             a = state5.acceleration;
             v = state5.velocity + a*t;
             p = state5.position + state5.velocity*t + state5.acceleration*Math.pow(t,2)/2;
-            state6 = new State(v,p,a);
+            state6 = new State(p,v,a);
         }
     }
 
@@ -87,7 +87,6 @@ public class MotionProfile {
     private State goal, initial;
     private Timings timings;
     private Timer timer;
-    private State last, lookback;
     double lastTime = 0;
     private TransitionStates states;
     private ProfileType type;
@@ -100,8 +99,6 @@ public class MotionProfile {
         this.initial = direct(current);
         timings = new Timings();
         timer = new Timer();
-        last = new State(initial.velocity,initial.position,initial.acceleration);
-        lookback = new State(0,0,0);
         if(current.velocity > constraints.velocityTolerance || goal.velocity !=0 || type == ProfileType.TRAPEZOID)
         {
             this.type = ProfileType.TRAPEZOID;
@@ -177,7 +174,6 @@ public class MotionProfile {
                 //profile complete, just return goal
                 return direct(goal);
             }
-            last = retval;
             return direct(retval);
         }else {
             retval.velocity = initial.velocity;
@@ -311,7 +307,7 @@ public class MotionProfile {
 
   // Flip the sign of the velocity and position if the profile is inverted
   private State direct(State in) {
-    State result = new State(in.velocity, in.position, in.acceleration);
+    State result = new State(in.position, in.velocity, in.acceleration);
     result.position = result.position * direction;
     result.velocity = result.velocity * direction;
     result.acceleration = result.acceleration * direction;
