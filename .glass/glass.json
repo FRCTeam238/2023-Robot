@@ -1,1 +1,11 @@
-{}
+{
+  "NetworkTables Info": {
+    "visible": true
+  },
+  "NetworkTables Log": {
+    "visible": true
+  },
+  "NetworkTables Settings": {
+    "visible": false
+  }
+}

@@ -24,9 +24,6 @@ import frc.robot.subsystems.Intake;
 public class StowCommand extends SequentialCommandGroup implements IAutonomousCommand {
   /** Creates a new StowCommand. */
   public StowCommand() {
-    Intake intake = Robot.intake;
-    Elevator elevator = Robot.elevator;
-    addRequirements(intake, elevator);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(new Travelposition().unless(() -> elevator.getEncoderPosition() < 2));

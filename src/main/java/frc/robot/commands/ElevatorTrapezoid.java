@@ -44,9 +44,14 @@ public class ElevatorTrapezoid extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    currentState = profile.calculate(timer.get());
-    nextState = profile.calculate(timer.get() +.02);
-    elevator.PIDdrive(currentState, nextState);
+    if (Robot.arm.isBonkable()) {
+      timer.restart();
+    } else {
+      currentState = profile.calculate(timer.get());
+      nextState = profile.calculate(timer.get() +.02);
+      elevator.PIDdrive(currentState, nextState);
+
+    }
   }
 
   // Called once the command ends or is interrupted.

@@ -111,6 +111,9 @@ Temporary Items
 !.vscode/extensions.json
 .fleet
 
+### IntelliJ ###
+.idea/*
+
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db

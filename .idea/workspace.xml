@@ -5,19 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED">
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorStandingHeight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SingleSubHeight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DoubleSubHeight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelOneHeight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelThreeHeight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelTwoHeight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/TestPositions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.glass/glass.json" beforeDir="false" afterPath="$PROJECT_DIR$/.glass/glass.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/amode238.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/amode238.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/core238/MotionProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/core238/MotionProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ElevatorTrapezoid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ElevatorTrapezoid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorStandingHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorStandingHeight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorTippedHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorTippedHeight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ReleaseGamepieceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ReleaseGamepieceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SetMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SetMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/LEDs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/LEDs.java" afterDir="false" />
     </list>
     <list id="ed172a05-e4fb-4a20-ae32-fd3a114398b6" name="Changes by Team238" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,30 +101,51 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java">
+      <ranges>
+        <range start1="11" end1="14" start2="11" end2="14" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="16" end1="16" start2="16" end2="17" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="26" end1="29" start2="27" end2="27" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="31" end1="35" start2="29" end2="36" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="36" end1="36" start2="37" end2="38" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/frc/robot/OI.java">
+      <ranges>
+        <range start1="4" end1="4" start2="4" end2="5" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="9" end1="9" start2="10" end2="11" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="11" end1="12" start2="13" end2="13" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="21" end1="21" start2="22" end2="23" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="25" end1="25" start2="27" end2="28" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="30" end1="31" start2="33" end2="34" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="32" end1="32" start2="35" end2="39" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="34" end1="35" start2="41" end2="42" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="38" end1="40" start2="45" end2="46" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="41" end1="44" start2="47" end2="50" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="45" end1="48" start2="51" end2="54" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="49" end1="52" start2="55" end2="62" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="53" end1="55" start2="63" end2="65" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="57" end1="60" start2="67" end2="70" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="63" end1="64" start2="73" end2="74" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="67" end1="71" start2="77" end2="80" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="72" end1="75" start2="81" end2="83" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="76" end1="78" start2="84" end2="86" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="79" end1="82" start2="87" end2="89" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="83" end1="84" start2="90" end2="90" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="89" end1="90" start2="95" end2="96" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+      </ranges>
+    </file>
     <file path="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java">
       <ranges>
-        <range start1="13" end1="13" start2="13" end2="14" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="102" end1="102" start2="103" end2="104" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="148" end1="149" start2="150" end2="157" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="160" end1="161" start2="168" end2="172" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="165" end1="166" start2="176" end2="176" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
-        <range start1="173" end1="174" start2="183" end2="185" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
-        <range start1="175" end1="175" start2="186" end2="190" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java">
-      <ranges>
-        <range start1="28" end1="28" start2="28" end2="29" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="117" end1="119" start2="118" end2="126" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutAuto.java">
-      <ranges>
-        <range start1="0" end1="3" start2="0" end2="5" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
-        <range start1="35" end1="36" start2="37" end2="38" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="37" end1="38" start2="39" end2="40" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="44" end1="45" start2="46" end2="47" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
-        <range start1="50" end1="55" start2="52" end2="53" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="122" end1="122" start2="122" end2="136" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="133" end1="134" start2="147" end2="148" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="153" end1="154" start2="167" end2="168" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="160" end1="163" start2="174" end2="177" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="171" end1="171" start2="185" end2="186" changelist="ed172a05-e4fb-4a20-ae32-fd3a114398b6" />
+        <range start1="177" end1="177" start2="192" end2="196" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="178" end1="179" start2="197" end2="197" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="180" end1="181" start2="198" end2="199" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
+        <range start1="190" end1="190" start2="208" end2="209" changelist="0ca35de4-8698-4794-aa5a-546b01ddd1c4" />
       </ranges>
     </file>
   </component>
@@ -117,6 +157,7 @@
       <option value="300" />
     </hideBySeverity>
     <option name="selectedTabId" value="ProjectErrors" />
+    <option name="sortByName" value="true" />
   </component>
   <component name="ProjectId" id="2NStogE5MlgLI6vl1PqqzYWJhuN" />
   <component name="ProjectViewState">
@@ -130,16 +171,45 @@
     "TODO_SCOPE": "All Places",
     "WebServerToolWindowFactoryState": "false",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "New-Intake",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.2023-robot [Glass]">
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="frc.robot.commands" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.2023-robot [deploy]">
+    <configuration name="2023-robot [DataLogTool]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="DataLogTool" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
     <configuration name="2023-robot [Glass]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -159,6 +229,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="2023-robot [InstallAllTools]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -180,6 +251,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="2023-robot [ShuffleBoard]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -201,6 +273,7 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="2023-robot [deploy]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -222,14 +295,16 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.2023-robot [Glass]" />
-        <item itemvalue="Gradle.2023-robot [InstallAllTools]" />
         <item itemvalue="Gradle.2023-robot [deploy]" />
+        <item itemvalue="Gradle.2023-robot [Glass]" />
+        <item itemvalue="Gradle.2023-robot [DataLogTool]" />
         <item itemvalue="Gradle.2023-robot [ShuffleBoard]" />
+        <item itemvalue="Gradle.2023-robot [InstallAllTools]" />
       </list>
     </recent_temporary>
   </component>
@@ -245,6 +320,10 @@
       <workItem from="1679690299841" duration="77000" />
       <workItem from="1680300459986" duration="1277000" />
       <workItem from="1680301888187" duration="8857000" />
+      <workItem from="1680310868316" duration="19000" />
+      <workItem from="1680351496710" duration="207000" />
+      <workItem from="1680359021442" duration="483000" />
+      <workItem from="1680359515383" duration="18854000" />
     </task>
     <servers />
   </component>

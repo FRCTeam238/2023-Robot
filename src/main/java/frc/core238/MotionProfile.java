@@ -68,6 +68,10 @@ public class MotionProfile {
         {
             this(velocity, position, 0);
         }
+
+        public State(double position) {
+            this(0, position, 0);
+        }
     }
 
     //Timing of the end of various phases, measured in seconds from start of profile

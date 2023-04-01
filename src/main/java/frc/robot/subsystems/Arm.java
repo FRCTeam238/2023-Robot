@@ -57,6 +57,7 @@ public class Arm extends SubsystemBase {
     logFF = new DoubleLogEntry(DataLogManager.getLog(), "Arm:FF");
     logCommand = new StringLogEntry(DataLogManager.getLog(), "Arm:Command");
     ff = new ArmFeedforward(RobotMap.ArmParameters.kS, RobotMap.ArmParameters.kG, RobotMap.ArmParameters.kV, RobotMap.ArmParameters.kA);
+    initControls();
 
   }
 
@@ -104,19 +105,20 @@ public class Arm extends SubsystemBase {
     armTalon.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 40, 100));
     //setup encoder
     armTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
-    ErrorCode code = armTalon.getSensorCollection().syncQuadratureWithPulseWidth(RobotMap.ArmParameters.armUpperLimit, RobotMap.ArmParameters.armLowerLimit, false, RobotMap.ArmParameters.armOffset, 100);
-    int i = 0;
-    //Don't think this setting is stored permanently in Talon so try 4 more times if setting it fails. Can remove if this can be flashed in
-    while (code != ErrorCode.OK && i <4) {
-      code = armTalon.getSensorCollection().syncQuadratureWithPulseWidth(RobotMap.ArmParameters.armUpperLimit, RobotMap.ArmParameters.armLowerLimit, false, RobotMap.ArmParameters.armOffset, 100);
+    int absPos = armTalon.getSensorCollection().getPulseWidthPosition();
+    int relPos;
+    System.out.println("Absolute Position: " + absPos);
+    if (absPos > 1600) {
+      relPos = RobotMap.ArmParameters.armOffset - absPos;
+    } else {
+      relPos = RobotMap.ArmParameters.armOffset - 4096 - absPos;
     }
-    if(code != ErrorCode.OK)
-    {
-      System.out.println("Fatal Error Configuring Arm Encoder, disabling PID Drive");
-      PIDEnabled = false;
-    }
+    System.out.println("Relative Position: " + relPos);
+    armTalon.setSelectedSensorPosition(-relPos);
 
+    armTalon.setSensorPhase(false);
 
+    armTalon.setInverted(true);
     armTalon.config_kP(0, RobotMap.ArmParameters.kP);
     armTalon.config_kI(0 ,RobotMap.ArmParameters.kI);
     armTalon.config_kD(0, RobotMap.ArmParameters.kD);
@@ -158,6 +160,10 @@ public class Arm extends SubsystemBase {
     } else {
       logCommand.append(command.getName());
     }
+  }
+
+  public boolean isBonkable() {
+   return getEncoderPosition() <= RobotMap.ArmParameters.cubeLevel1;
   }
 
 

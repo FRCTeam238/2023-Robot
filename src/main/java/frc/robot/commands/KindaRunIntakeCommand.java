@@ -7,8 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class KindaRunIntakeCommand extends CommandBase {
+  RobotMap.IntakeParameters.Gamepiece gamepiece = Robot.gamepiece;
+
   /** Creates a new KindaRunIntakeCommand. */
   public KindaRunIntakeCommand() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,7 +27,9 @@ public class KindaRunIntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.run(-0.2);
+    gamepiece = Robot.gamepiece;
+
+    Robot.intake.run(gamepiece == RobotMap.IntakeParameters.Gamepiece.CONE ? 0.2 : -0.2);
 
   }
 

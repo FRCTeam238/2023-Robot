@@ -11,13 +11,14 @@ import frc.robot.RobotMap;
 
 public class ArmProfile extends CommandBase {
 
-  private MotionProfile.State state;
+  private MotionProfile profile;
+  private MotionProfile.State goal;
   private MotionProfile.MotionConstraints constraints;
 
   /** Creates a new ArmProfile. */
-  public ArmProfile(MotionProfile.State state, String name) {
+  public ArmProfile(MotionProfile.State goal, String name) {
 
-    this.state = state;
+    this.goal = goal;
     addRequirements(Robot.arm);
     constraints = new MotionProfile.MotionConstraints(RobotMap.ArmParameters.maxJerk, RobotMap.ArmParameters.maxAccel, RobotMap.ArmParameters.maxVelocity, RobotMap.ArmParameters.velocityTolerance);
     this.setName(name);
@@ -26,15 +27,17 @@ public class ArmProfile extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    MotionProfile.State currentState = new MotionProfile.State(Robot.arm.getEncoderPosition(), Robot.arm.getVelocity());
 
-    //TODO should construct it's own MotionProfile.State describing the current state
-    //TODO Then create a MotionProfile object with those states and the MotionConstraints object
+    profile = new MotionProfile(goal, currentState, constraints, MotionProfile.ProfileType.SCURVE);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //TODO Should call sample() on MotionProfile and pass the state recieved to arm velocity drive
+    MotionProfile.State sampleState = profile.sample();
+    Robot.arm.moveArmVelocity(sampleState);
   }
 
   // Called once the command ends or is interrupted.
@@ -44,7 +47,7 @@ public class ArmProfile extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //TODO Should check if we are at the goal, should be pretty similar to elevator
-    return false;
+    return Math.abs(goal.position - Robot.arm.getEncoderPosition()) <= RobotMap.ArmParameters.tolerance
+            && Math.abs(goal.velocity - Robot.arm.getVelocity()) <= RobotMap.ArmParameters.velocityTolerance;
   }
 }

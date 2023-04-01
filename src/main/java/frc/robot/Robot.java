@@ -28,11 +28,8 @@ import frc.core238.DriverControls.driveType;
 import frc.core238.autonomous.AutonomousModesReader;
 import frc.core238.autonomous.DataFileAutonomousModeDataSource;
 import frc.core238.autonomous.IAutonomousModeDataSource;
-import frc.robot.subsystems.Arm;
+import frc.robot.subsystems.*;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
-import frc.robot.subsystems.Drivetrain;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Intake;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -51,6 +48,7 @@ public class Robot extends TimedRobot {
   public UsbCamera intakeCamera;
   public static Arm arm;
   OI oi;
+  LEDs leDs;
   String lastSelectedAuto;
   HashMap<String, Command> m_autoModes;
   List<String> autoModeNames;
@@ -77,7 +75,7 @@ public class Robot extends TimedRobot {
       intakeCamera = CameraServer.startAutomaticCapture();
       intakeCamera.setResolution(160, 120);
       intakeCamera.setFPS(20);
-
+      leDs = new LEDs();
     }
 
     SmartDashboard.putBoolean("Autos Ready", true);

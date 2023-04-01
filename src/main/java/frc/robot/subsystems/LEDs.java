@@ -19,9 +19,12 @@ public class LEDs extends SubsystemBase {
   Gamepiece gamepiece;
 
   public LEDs() {
+    gamepiece = Gamepiece.CUBE;
     ledStrip = new AddressableLED(9);
     buffer = new AddressableLEDBuffer(43);
     ledStrip.setLength(43);
+    setColor(RobotMap.IntakeParameters.yellow);
+    ledStrip.start();
   }
 
   @Override
@@ -29,7 +32,7 @@ public class LEDs extends SubsystemBase {
     if (gamepiece != Robot.gamepiece) {
       gamepiece = Robot.gamepiece;
       // set the color of the LEDs to match the new game piece setting
-      setColor(gamepiece == Gamepiece.CUBE ? RobotMap.IntakeParameters.purple : RobotMap.IntakeParameters.yellow);
+      setColor(gamepiece == Gamepiece.CUBE ? Color.kPurple : RobotMap.IntakeParameters.yellow);
     }
   }
 

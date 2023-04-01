@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.RobotMap;
-import frc.robot.commands.IntakeInOutAuto.Direction;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -23,26 +22,17 @@ public class GrabAuto extends SequentialCommandGroup implements IAutonomousComma
   List<String> params = new ArrayList<String>();
 
   public GrabAuto() {
-    // Add your commands in the addCommands() call, e.g.
-    addCommands(new Armdown());
-    addCommands(new WaitCommand(RobotMap.IntakeParameters.armDelay));
-    addCommands(new OpenIntakeCommand());
-    // addCommands(new DriveStraightInches(18, .165).raceWith(new IntakeInOutAuto(IntakeInOutAuto.Direction.In)));
-    addCommands(new IntakeInOutAuto(Direction.In).deadlineWith(new DriveStraightInches(18, .165)));
-    addCommands(new CloseIntakeCommand());
-    // addCommands(new FooCommand(), new BarCommand());
-    
+    addCommands(new FloorStandingHeight());
+    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In).deadlineWith(new DriveStraightInches(18, .165)));
   }
   
   @Override
   public void setParameters(List<String> parameters) {
-    // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public double getTimeout() {
-    // TODO Auto-generated method stub
     return 0;
   }
 }

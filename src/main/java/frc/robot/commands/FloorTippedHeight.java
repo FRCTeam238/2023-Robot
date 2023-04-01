@@ -16,7 +16,6 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 
-//TODO make all the other height commands based off how this one works
 @AutonomousModeAnnotation(parameterNames = {})
 public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomousCommand {
   /** Creates a new MidHeight. */
@@ -30,8 +29,8 @@ public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomo
     //default commands will run after the setpoint is reached and hold the position while the other command completes
     //Conditional command means it will check the BooleanSupplier parameter at runtime and pick the right command
     addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
-    Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor, 0), "FloorCube");
-    Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.tippedConeFloor, 0), "FloorTipped");
+    Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor), "FloorCube");
+    Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.tippedConeFloor), "FloorTipped");
     addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
   }
 
