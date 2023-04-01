@@ -145,7 +145,7 @@ public final class RobotMap {
         public static int intakeSolenoidForwardChannel = 4;
         public static int intakeSolenoidBackChannel = 5;
         public static double armDelay = 1.15;
-        public static double autoCloseCurrent = 13.4;
+        public static double stallCurrent = 13.4;
 
         public static double intakeSpeed = 0.5;
         public static double intakeEjectSpeed = .5;
@@ -183,6 +183,7 @@ public final class RobotMap {
         public static double kP = 0;
         public static double kI = 0;
         public static double kD = 0;
+
         public static double armCurrentLimit = 11; //?;
 
         public static final double cubeFloor = -80;

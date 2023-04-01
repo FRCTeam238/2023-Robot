@@ -9,11 +9,12 @@ package frc.robot.commands;
 
 import java.util.List;
 
-import edu.wpi.first.wpilibj2.command.SelectCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.wpilibj2.command.*;
+import frc.core238.MotionProfile;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
 
@@ -26,11 +27,15 @@ public class StowCommand extends SequentialCommandGroup implements IAutonomousCo
   public StowCommand() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new Travelposition().unless(() -> elevator.getEncoderPosition() < 2));
-    addCommands(new WaitCommand(.4).unless(() -> elevator.getEncoderPosition() < 2));
-    addCommands(new FloorHeight());
-    addCommands(new RetractAll());
+    Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCone");
+    Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCube");
+    addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
+
+    Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "StowCube");
+    Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "Lvl1Cone");
+    addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
   }
+
   @Override
   public double getTimeout() {
       // TODO Auto-generated method stub

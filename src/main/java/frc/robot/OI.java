@@ -43,8 +43,7 @@ public class OI {
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
 		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
 		Robot.arm.setDefaultCommand(new ArmManualCommand());
-		
-		//TODO: Buttons to fix: A,B,X,Y,DpadUp,DpadRight,DpadLeft,DpadDown
+
 		//B Button
 		JoystickButton levelTwoHeightB = new JoystickButton(operatorController, XboxController.Button.kB.value);
 		levelTwoHeightB.onTrue(new LevelTwoHeight());
