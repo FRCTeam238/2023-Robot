@@ -26,6 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.core238.MotionProfile;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 public class Arm extends SubsystemBase {
@@ -115,8 +116,14 @@ public class Arm extends SubsystemBase {
       PIDEnabled = false;
     }
 
-    // TODO set PID values (look at Drivetrain for example)
-    // TODO set soft limits (look at 2022 climber for example). Can set soft limits using the constants already in Arm Parameters. Forward = Up
+
+    armTalon.config_kP(0, RobotMap.ArmParameters.kP);
+    armTalon.config_kI(0 ,RobotMap.ArmParameters.kI);
+    armTalon.config_kD(0, RobotMap.ArmParameters.kD);
+
+
+    armTalon.configForwardSoftLimitThreshold(RobotMap.ArmParameters.armUpperLimit);
+    armTalon.configReverseSoftLimitThreshold(RobotMap.ArmParameters.armLowerLimit);
   }
 
   @Override

@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.AddressableLED;
 import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 
 public class LEDs extends SubsystemBase {
@@ -24,8 +26,11 @@ public class LEDs extends SubsystemBase {
 
   @Override
   public void periodic() {
-    //TODO: check if gamepiece stored in this class matches robot setting. If not, set the LED color to match the gamepiece
-    //and update the storage in here. Don't want to just blindly set every cycle because it's a little time intensive
+    if (gamepiece != Robot.gamepiece) {
+      gamepiece = Robot.gamepiece;
+      // set the color of the LEDs to match the new game piece setting
+      setColor(gamepiece == Gamepiece.CUBE ? RobotMap.IntakeParameters.purple : RobotMap.IntakeParameters.yellow);
+    }
   }
 
   public void setColor(Color color)

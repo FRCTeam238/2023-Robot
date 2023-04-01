@@ -18,7 +18,7 @@ import frc.robot.RobotMap;
 
 //TODO make all the other height commands based off how this one works
 @AutonomousModeAnnotation(parameterNames = {})
-public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomousCommand{
+public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomousCommand {
   /** Creates a new MidHeight. */
   
   

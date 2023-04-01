@@ -5,13 +5,21 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.core238.MotionProfile;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 public class ArmProfile extends CommandBase {
+
+  private MotionProfile.State state;
+  private MotionProfile.MotionConstraints constraints;
+
   /** Creates a new ArmProfile. */
-  public ArmProfile(String name) {
-    //TODO Should take a MotionProfile.State as a parameter and save it to a class variable, this is where the arm is trying to go
-    //TODO require arm after it gets added to Robot
-    //TODO create MotionConstraints object and add constants for it to RobotMap
+  public ArmProfile(MotionProfile.State state, String name) {
+
+    this.state = state;
+    addRequirements(Robot.arm);
+    constraints = new MotionProfile.MotionConstraints(RobotMap.ArmParameters.maxJerk, RobotMap.ArmParameters.maxAccel, RobotMap.ArmParameters.maxVelocity, RobotMap.ArmParameters.velocityTolerance);
     this.setName(name);
   }
 

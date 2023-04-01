@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.core238.DriverControls.driveType;
 
 /**
@@ -100,6 +101,7 @@ public final class RobotMap {
         public static final double doubleSubCone = inchesToTicks(25.85);
         public static final double doubleSubCube = inchesToTicks(23.85);
         public static final double singleSubCone = inchesToTicks(8.13);
+        public static final double singleSubCube = singleSubCone;
     }
 
     public static class ControlParameters {
@@ -146,7 +148,13 @@ public final class RobotMap {
         public static final int continuousCurrent = 10;
         public static final int peakCurrent = 20;
         public static final int peakDuration = 60;
-        public enum Gamepiece {CONE, CUBE};
+        public enum Gamepiece {CONE, CUBE}
+
+        // team color yellow to represent cones
+        public static Color yellow = new Color(238, 238, 0);
+        // color picker'd from the CAD drawing of the cube
+        public static Color purple = new Color(199, 73, 199);
+
     }
 
     public static class ArmParameters {
@@ -158,12 +166,14 @@ public final class RobotMap {
         public static double kV = 2.29;
         public static double kA = 0.07;
         public static double kS = 0;
-        public static double armCurrentLimit = 11; //?
+        public static double kP = 0;
+        public static double kI = 0;
+        public static double kD = 0;
+        public static double armCurrentLimit = 11; //?;
 
         public static final double cubeFloor = -80;
         public static final double tippedConeFloor = -39.8;
         public static final double standingCone = -80;
-        public static final double coneLevel1 = -87;
         public static final double cubeLevel1 = -87;
         public static final double coneLevel2 = 83.3;
         public static final double cubeLevel2 = 53.0;
@@ -171,8 +181,13 @@ public final class RobotMap {
         public static final double cubeLevel3 = 32.2;
         public static final double doubleSubCone = 123.25;
         public static final double doubleSubCube = 103.33;
-        public static final double singleSubCone = 161; 
+        public static final double singleSubCone = 161;
+        public static final double singleSubCube = 161;
         public static final double stow = 161;
+        public static double maxJerk = 0;
+        public static double maxAccel = 0;
+        public static double maxVelocity = 0;
+        public static double velocityTolerance = 0;
     }
 
     public static class VisionParameters {

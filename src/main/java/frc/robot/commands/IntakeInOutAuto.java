@@ -1,6 +1,8 @@
-// Copyright (c) FIRST and other WPILib contributors.
-// Open Source Software; you can modify and/or share it under the terms of
-// the WPILib BSD license file in the root directory of this project.
+/*
+ Copyright (c) FIRST and other WPILib contributors.
+ Open Source Software; you can modify and/or share it under the terms of
+ the WPILib BSD license file in the root directory of this project.
+*/
 
 package frc.robot.commands;
 
@@ -33,26 +35,22 @@ public class IntakeInOutAuto extends CommandBase {
   @Override
   public void execute() {
     if (direction == Direction.In) {
-      intake.runIntake(-1*RobotMap.IntakeParameters.intakeSpeed);
+      intake.run(-1*RobotMap.IntakeParameters.intakeSpeed);
     } else {
-      intake.runIntake(RobotMap.IntakeParameters.intakeEjectSpeed);
+      intake.run(RobotMap.IntakeParameters.intakeEjectSpeed);
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intake.runIntake(0);
+    intake.run(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (intake.getIntakePosition() == Value.kReverse) {
-      return false;
-    } else {
-      return true;
-    }
+    return false;
   }
 
   public enum Direction {
