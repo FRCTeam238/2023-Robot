@@ -75,9 +75,9 @@ public class Arm extends SubsystemBase {
     double acceleration = Units.degreesToRadians(currentState.acceleration);
     double velocity = Units.degreesToRadians(currentState.velocity);
     double feed = ff.calculate(position, velocity, acceleration);
-    armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
 
-
+    
+    
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
     {
       SmartDashboard.putNumber("Arm Desired V", currentState.velocity);
@@ -91,6 +91,9 @@ public class Arm extends SubsystemBase {
       logActualV.append(getVelocity());
       logFF.append(feed);
     }
+    feed = Math.min(Math.max(feed,-RobotMap.ArmParameters.voltageLimit),RobotMap.ArmParameters.voltageLimit);
+    SmartDashboard.putNumber("Arm FF Limited", feed);
+    armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
   }
   
   public void holdPosition(double position)

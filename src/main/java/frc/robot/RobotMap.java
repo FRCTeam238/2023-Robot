@@ -207,6 +207,7 @@ public final class RobotMap {
         public static double maxVelocity = 36;
         public static double velocityTolerance = 2;
         public static double tolerance = 2;
+        public static final double voltageLimit = 3;
     }
 
     public static class VisionParameters {
