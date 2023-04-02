@@ -118,6 +118,7 @@ public class Arm extends SubsystemBase {
   }
   public void initControls() {
     armTalon.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(true, 30, 40, 100));
+    armTalon.enableCurrentLimit(true);
     //setup encoder
     armTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     int absPos = armTalon.getSensorCollection().getPulseWidthPosition();
@@ -141,6 +142,8 @@ public class Arm extends SubsystemBase {
 
     armTalon.configForwardSoftLimitThreshold(RobotMap.ArmParameters.armUpperLimit);
     armTalon.configReverseSoftLimitThreshold(RobotMap.ArmParameters.armLowerLimit);
+    armTalon.configForwardSoftLimitEnable(true);
+    armTalon.configReverseSoftLimitEnable(true);
   }
 
   @Override
