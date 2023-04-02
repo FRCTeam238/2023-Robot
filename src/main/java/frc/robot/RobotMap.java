@@ -172,9 +172,9 @@ public final class RobotMap {
     }
 
     public static class ArmParameters {
-        public static final int armUpperLimit = 1712;  //In Talon native units, directly measure off absolute encoder in Phoenix Tuner
-        public static final int armLowerLimit = 356;  //In Talon native units, directly measure off absolute encoder in Phoenix Tuner
-        public static final int armOffset = 3631;      //In Talon native units, directly measure off absolute encoder in Phoenix Tuner. Equal to negative of encoder value at arm horizontal position
+        public static final int armUpperLimit = 1919-25;  //In Talon native units About 2 degrees (~25 units) short of max
+        public static final int armLowerLimit = 821+25;  //In Talon native units, about 2 degrees (~25 units) above min
+        public static final int armOffset = 3631;      //In Talon native units, Absolute encoder value at arm horizontal
         public static TalonSRX armMotor = new TalonSRX(2);
         public static double kG = 1.24;
         public static double kV = 2.29;
@@ -202,11 +202,11 @@ public final class RobotMap {
         public static final double singleSubCone = 161;
         public static final double singleSubCube = 161;
         public static final double stow = 161;
-        public static double maxJerk = 0;
-        public static double maxAccel = 0;
-        public static double maxVelocity = 0;
-        public static double velocityTolerance = 0;
-        public static double tolerance;
+        public static double maxJerk = 50;
+        public static double maxAccel = 18;
+        public static double maxVelocity = 36;
+        public static double velocityTolerance = 2;
+        public static double tolerance = 2;
     }
 
     public static class VisionParameters {
