@@ -58,7 +58,6 @@ public class Arm extends SubsystemBase {
     logCommand = new StringLogEntry(DataLogManager.getLog(), "Arm:Command");
     ff = new ArmFeedforward(RobotMap.ArmParameters.kS, RobotMap.ArmParameters.kG, RobotMap.ArmParameters.kV, RobotMap.ArmParameters.kA);
     initControls();
-
   }
 
   public void moveArmPercent (double armPercent) {
@@ -130,7 +129,10 @@ public class Arm extends SubsystemBase {
       relPos = RobotMap.ArmParameters.armOffset - 4096 - absPos;
     }
     System.out.println("Relative Position: " + relPos);
-    armTalon.setSelectedSensorPosition(-relPos);
+    if(Robot.isReal())
+    {
+      armTalon.setSelectedSensorPosition(-relPos);
+    }
 
     armTalon.setSensorPhase(false);
 
@@ -156,11 +158,11 @@ public class Arm extends SubsystemBase {
     // In this method, we update our simulation of what our elevator is doing
     // First, we set our "inputs" (voltages)
     m_armSim.setInput(armTalon.getMotorOutputVoltage() * RobotController.getBatteryVoltage());
-
+    SmartDashboard.putNumber("ArmOutput", armTalon.getMotorOutputPercent());
     // Next, we update it. The standard loop time is 20ms.
     m_armSim.update(0.020);
 
-    m_motorSim.addQuadraturePosition((int)(m_armSim.getAngleRads()*4096/(2*Math.PI)));
+    m_motorSim.setQuadratureRawPosition((int)(-m_armSim.getAngleRads()*4096/(2*Math.PI)));
     SmartDashboard.putNumber("Sim Arm Angle", Units.radiansToDegrees(m_armSim.getAngleRads()));
     SmartDashboard.putNumber("Sim Arm Encoder", (int)(m_armSim.getAngleRads()*4096/(2*Math.PI)));
 
