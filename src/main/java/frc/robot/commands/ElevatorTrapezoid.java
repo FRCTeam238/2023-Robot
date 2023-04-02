@@ -44,7 +44,7 @@ public class ElevatorTrapezoid extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.arm.isBonkable()) {
+    if (Robot.arm.hitsBumper()) {
       timer.restart();
     } else {
       currentState = profile.calculate(timer.get());
