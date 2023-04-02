@@ -36,6 +36,13 @@ public class ArmProfile extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    //check if going to cube 3
+    if(goal.position < 40 && goal.position > 20)
+    {
+      //if so, no-op until the elevator gets high enough
+      if(!Robot.elevator.clearCube3())
+        return;
+    }
     MotionProfile.State sampleState = profile.sample();
     Robot.arm.moveArmVelocity(sampleState);
   }
