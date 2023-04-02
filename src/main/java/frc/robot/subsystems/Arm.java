@@ -60,7 +60,18 @@ public class Arm extends SubsystemBase {
   }
 
   public void moveArmPercent (double armPercent) {
-    RobotMap.ArmParameters.armMotor.set(ControlMode.PercentOutput, armPercent);
+    if(!PIDEnabled)
+    {
+      armPercent = armPercent *1.5; //needs exra power if no feedforward to "float it"
+    }
+    double feed = ff.calculate(Units.degreesToRadians(getEncoderPosition()), 0)/12;
+    RobotMap.ArmParameters.armMotor.set(ControlMode.PercentOutput, armPercent + feed);
+    if(SmartDashboard.getBoolean("ArmDebugging", debug))
+    {
+      SmartDashboard.putNumber("Arm FF", feed*12);
+    } else {
+      logFF.append(feed*12);
+    }
   }
 
   // Use velocity and acceleration to calculate feedforward voltage using ArmFeedforward
@@ -97,6 +108,10 @@ public class Arm extends SubsystemBase {
   
   public void holdPosition(double position)
   {
+    if(!PIDEnabled)
+    {
+      return; //Can't hold position without encoder
+    }
     double feed = ff.calculate(Units.degreesToRadians(position), 0);
     armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
@@ -123,6 +138,12 @@ public class Arm extends SubsystemBase {
     //setup encoder
     armTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     int absPos = armTalon.getSensorCollection().getPulseWidthPosition();
+    //TODO: Is this what it returns if no sensor?
+    if(absPos == 0)
+    {
+      PIDEnabled = false;
+      return;
+    }
     int relPos;
     System.out.println("Absolute Position: " + absPos);
     if (absPos > 1600) {
@@ -187,7 +208,5 @@ public class Arm extends SubsystemBase {
   public boolean hitsBumper() {
    return getEncoderPosition() <= RobotMap.ArmParameters.tippedConeFloor;
   }
-
-
 
 }

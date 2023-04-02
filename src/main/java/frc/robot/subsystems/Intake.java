@@ -5,6 +5,8 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+
 import edu.wpi.first.util.datalog.DoubleLogEntry;
 import edu.wpi.first.util.datalog.StringLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
@@ -16,11 +18,16 @@ public class Intake extends SubsystemBase {
 
   protected DoubleLogEntry logIntake;
   protected StringLogEntry logCommand;
+  protected int stallCounter = 0;
 
   /** Creates a new Intake. */
   public Intake() {
     logCommand = new StringLogEntry(DataLogManager.getLog(), "Intake:Command");
     logIntake = new DoubleLogEntry(DataLogManager.getLog(), "Intake:Speed");
+
+    RobotMap.IntakeParameters.intakeMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(
+      true, RobotMap.IntakeParameters.continuousCurrent, 
+      RobotMap.IntakeParameters.peakCurrent, RobotMap.IntakeParameters.peakDuration));
   }
 
 
@@ -44,6 +51,17 @@ public class Intake extends SubsystemBase {
   }
 
   public boolean isStalling() {
-    return  RobotMap.IntakeParameters.intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.stallCurrent;
+    if (RobotMap.IntakeParameters.intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.stallCurrent)
+    {
+      stallCounter++;
+    } else {
+      stallCounter = 0;
+    }
+    if(stallCounter > 3)
+    {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

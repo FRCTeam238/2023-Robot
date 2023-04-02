@@ -101,7 +101,6 @@ public final class RobotMap {
         public static final double doubleSubCone = inchesToTicks(25.85);
         public static final double doubleSubCube = inchesToTicks(23.85);
         public static final double singleSubCone = inchesToTicks(8.13);
-        public static final double singleSubCube = singleSubCone;
     }
 
     public static class ControlParameters {
@@ -161,7 +160,13 @@ public final class RobotMap {
 
         public static final int continuousCurrent = 10;
         public static final int peakCurrent = 20;
-        public static final int peakDuration = 60;
+        public static final int peakDuration = 100;
+        public static final double holdSpeedCone = .1;
+        public static final double holdSpeedCube = .1;
+        public static final double intakeSpeedCone = .5;
+        public static final double intakeSpeedCube = .5;
+        public static final double outtakeSpeedCube = .5;
+        public static final double outtakeSpeedCone = .5;
         public enum Gamepiece {CONE, CUBE}
 
         // team color yellow to represent cones
@@ -200,7 +205,6 @@ public final class RobotMap {
         public static final double doubleSubCone = 123.25;
         public static final double doubleSubCube = 103.33;
         public static final double singleSubCone = 161;
-        public static final double singleSubCube = 161;
         public static final double stow = 161;
         public static double maxJerk = 50;
         public static double maxAccel = 18;

@@ -207,4 +207,9 @@ public class Elevator extends SubsystemBase {
     RoboRioSim.setVInVoltage(
         BatterySim.calculateDefaultBatteryLoadedVoltage(m_sim.getCurrentDrawAmps()));
   }
+
+  public boolean clearCube3()
+  {
+    return Units.inchesToMeters(getEncoderPosition()) > 14;
+  }
 }
