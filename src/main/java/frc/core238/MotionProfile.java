@@ -66,11 +66,11 @@ public class MotionProfile {
          */
         public State(double position, double velocity)
         {
-            this(velocity, position, 0);
+            this(position, velocity, 0);
         }
 
         public State(double position) {
-            this(0, position, 0);
+            this(position, 0, 0);
         }
     }
 
