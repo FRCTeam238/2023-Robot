@@ -29,7 +29,7 @@ public class ArmProfile extends CommandBase {
   public void initialize() {
     MotionProfile.State currentState = new MotionProfile.State(Robot.arm.getEncoderPosition(), Robot.arm.getVelocity());
 
-    profile = new MotionProfile(goal, currentState, constraints, MotionProfile.ProfileType.SCURVE);
+    profile = new MotionProfile(goal, currentState, constraints, MotionProfile.ProfileType.AUTO);
 
   }
 
