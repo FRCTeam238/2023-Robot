@@ -94,6 +94,21 @@ public class Arm extends SubsystemBase {
     }
   }
   
+  public void holdPosition(double position)
+  {
+    double feed = ff.calculate(Units.degreesToRadians(position), 0);
+    armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
+    if(SmartDashboard.getBoolean("ArmDebugging", debug))
+    {
+      SmartDashboard.putNumber("Arm FF", feed);
+      SmartDashboard.putNumber("Arm Actual Pos", getEncoderPosition());
+      SmartDashboard.putNumber("Arm Desired Pos", position);
+    } else {
+      logDesiredEncoder.append(position);
+      logFF.append(feed);
+    }
+  }
+
   public double getVelocity() {
     return armTalon.getSelectedSensorVelocity() * 10.0 * (360.0/4096.0);
   }

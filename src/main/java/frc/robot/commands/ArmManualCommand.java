@@ -6,10 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.RobotMap.ControlParameters;
 
 public class ArmManualCommand extends CommandBase {
+  
+  double position;
+
   /** Creates a new ArmManualCommand. */
   public ArmManualCommand() { 
   
@@ -19,13 +21,19 @@ public class ArmManualCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    position = Robot.arm.getEncoderPosition();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (Math.abs(ControlParameters.operatorController.getLeftY()) > ControlParameters.armThreshold) {
       Robot.arm.moveArmPercent(ControlParameters.operatorController.getLeftY() * ControlParameters.elevatorMultiplier);
+      position = Robot.arm.getEncoderPosition();
+    }
+    else {
+      Robot.arm.holdPosition(position);
     }
   }
 
