@@ -16,10 +16,10 @@ public class SingleSubHeight extends ParallelCommandGroup implements IAutonomous
 
     public SingleSubHeight() {
         Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.singleSubCone, 0), "SingleSubCone");
-        Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.singleSubCube, 0), "SingleSubCube");
+        Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "SingleSubCube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
-        Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.singleSubCube, 0), "SingleSubCube");
+        Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor, 0), "SingleSubCube");
         Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.singleSubCone, 0), "FloorStanding");
         addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
     }
