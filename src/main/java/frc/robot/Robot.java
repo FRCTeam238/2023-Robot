@@ -10,6 +10,7 @@ import java.util.List;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DataLogManager;
@@ -17,6 +18,9 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
+import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -57,6 +61,9 @@ public class Robot extends TimedRobot {
   boolean m_allowAuto = true;
   AutonomousModesReader reader;
   public static Gamepiece gamepiece = Gamepiece.CUBE;
+  Mechanism2d mechanism;
+  MechanismRoot2d root;
+  MechanismLigament2d elevator2D, carriage2D, arm2D, wrist2D;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -65,7 +72,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    
+    mechanism = new Mechanism2d(50, 40);
+    root = mechanism.getRoot("Mechanism", 5, 0);
+    elevator2D = new MechanismLigament2d("Elevator", 5, 55);
+    carriage2D = new MechanismLigament2d("Carriage", 24, -55);
+    arm2D = new MechanismLigament2d("Arm", 15, 150);
+    wrist2D = new MechanismLigament2d("Wrist", 14, -150);
+    arm2D.append(wrist2D);
+    carriage2D.append(arm2D);
+    elevator2D.append(carriage2D);
+    root.append(elevator2D);
+    SmartDashboard.putData("Mechanism", mechanism);
     drivetrain = new Drivetrain();
     elevator = new Elevator();
     intake = new Intake();
@@ -131,6 +148,9 @@ public class Robot extends TimedRobot {
     // robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    elevator2D.setLength(5+Units.metersToInches(elevator.getPositionMeters()));
+    arm2D.setAngle(arm.getEncoderPosition());
+    wrist2D.setAngle(-arm.getEncoderPosition());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
