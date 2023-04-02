@@ -89,11 +89,11 @@ public final class RobotMap {
         public static double toleranceRotations = .7;//inchesToTicks(.5);
         public static double toleranceVelocity = .2; // in rotatation per sec
 
-        public static final double cubeFloor = inchesToTicks(11.57);
+        public static final double cubeFloor = inchesToTicks(9.5);
         public static final double tippedConeFloor = 0;
-        public static final double standingCone = inchesToTicks(14.0);
-        public static final double coneLevel1 = inchesToTicks(11.5);
-        public static final double cubeLevel1 = inchesToTicks(13.25);
+        public static final double standingCone = inchesToTicks(10.5);
+        public static final double coneLevel1 = inchesToTicks(0);
+        public static final double cubeLevel1 = inchesToTicks(0);
         public static final double coneLevel2 = inchesToTicks(10.89);
         public static final double cubeLevel2 = inchesToTicks(13.85);
         public static final double coneLevel3 = inchesToTicks(35.65);
@@ -173,7 +173,7 @@ public final class RobotMap {
 
     public static class ArmParameters {
         public static final int armUpperLimit = 1919-25;  //In Talon native units About 2 degrees (~25 units) short of max
-        public static final int armLowerLimit = 821+25;  //In Talon native units, about 2 degrees (~25 units) above min
+        public static final int armLowerLimit = -821+25;  //In Talon native units, about 2 degrees (~25 units) above min
         public static final int armOffset = 3631;      //In Talon native units, Absolute encoder value at arm horizontal
         public static TalonSRX armMotor = new TalonSRX(2);
         public static double kG = 1.24;
@@ -186,17 +186,17 @@ public final class RobotMap {
 
         public static double armCurrentLimit = 11; //?;
 
-        public static final double cubeFloor = -80;
+        public static final double cubeFloor = -64;
         public static final double tippedConeFloor = -39.8;
-        public static final double standingCone = -80;
-        public static final double cubeLevel1 = -87;
+        public static final double standingCone = -67;
+        public static final double cubeLevel1 = 90;
         public static final double cubeLevel2 = 53.0;
         public static final double cubeLevel3 = 32.2;
 
 
         public static final double coneLevel2 = 83.3;
         public static final double coneLevel3 = 48.6;
-        public static final double coneLevel1 = -87;
+        public static final double coneLevel1 = 147;
         public static final double doubleSubCone = 123.25;
         public static final double doubleSubCube = 103.33;
         public static final double singleSubCone = 161;
