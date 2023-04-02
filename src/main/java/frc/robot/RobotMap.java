@@ -91,14 +91,17 @@ public final class RobotMap {
 
         public static final double cubeFloor = inchesToTicks(9.5);
         public static final double tippedConeFloor = 0;
-        public static final double standingCone = inchesToTicks(10.5);
+        public static final double standingCone = 11.4;
         public static final double coneLevel1 = inchesToTicks(0);
         public static final double cubeLevel1 = inchesToTicks(0);
-        public static final double coneLevel2 = inchesToTicks(10.89);
-        public static final double cubeLevel2 = inchesToTicks(13.85);
-        public static final double coneLevel3 = inchesToTicks(35.65);
-        public static final double cubeLevel3 = inchesToTicks(31.75);
-        public static final double doubleSubCone = inchesToTicks(25.85);
+//        public static final double coneLevel2 = inchesToTicks(10.89);
+        public static final double coneLevel2 = 9.8;
+        public static final double cubeLevel2 = 12.9;
+//        public static final double coneLevel3 = inchesToTicks(35.65);
+        public static final double coneLevel3 = 24;
+        public static final double cubeLevel3 = 29.5;
+        public static final double doubleSubCone = 8.47;
+        public static final double doubleSubConeStanding = 18.5;
         public static final double doubleSubCube = inchesToTicks(23.85);
         public static final double singleSubCone = inchesToTicks(8.13);
     }
@@ -113,6 +116,7 @@ public final class RobotMap {
         public static XboxController operatorController = new XboxController(xboxID);
         public static double elevatorThreshold = 0.1;
         public static double elevatorMultiplier = 0.125;
+        public static double armMultiplier = 0.2;//0.125;
         public static double armThreshold = 0.05;
 
         // we don't use this value, we have a sendable chooser for this in robot.java,
@@ -144,7 +148,7 @@ public final class RobotMap {
         public static int intakeSolenoidForwardChannel = 4;
         public static int intakeSolenoidBackChannel = 5;
         public static double armDelay = 1.15;
-        public static double stallCurrent = 13.4;
+        public static double stallCurrent = 12;
 
         public static double intakeSpeed = 0.5;
         public static double intakeEjectSpeed = .5;
@@ -160,13 +164,13 @@ public final class RobotMap {
 
         public static final int continuousCurrent = 10;
         public static final int peakCurrent = 20;
-        public static final int peakDuration = 100;
-        public static final double holdSpeedCone = .1;
+        public static final double peakDuration = .100;
+        public static final double holdSpeedCone = .2;
         public static final double holdSpeedCube = .1;
-        public static final double intakeSpeedCone = .5;
-        public static final double intakeSpeedCube = .5;
+        public static final double intakeSpeedCone = .75;
+        public static final double intakeSpeedCube = .75;
         public static final double outtakeSpeedCube = .5;
-        public static final double outtakeSpeedCone = .5;
+        public static final double outtakeSpeedCone = .3;
         public enum Gamepiece {CONE, CUBE}
 
         // team color yellow to represent cones
@@ -183,9 +187,9 @@ public final class RobotMap {
         public static TalonSRX armMotor = new TalonSRX(2);
         public static double kG = 1.24;
         public static double kV = 2.29;
-        public static double kA = 0.07;
+        public static double kA = 0.11;
         public static double kS = 0;
-        public static double kP = 0;
+        public static double kP = 1.2;
         public static double kI = 0;
         public static double kD = 0;
 
@@ -193,24 +197,24 @@ public final class RobotMap {
 
         public static final double cubeFloor = -64;
         public static final double tippedConeFloor = -39.8;
-        public static final double standingCone = -67;
-        public static final double cubeLevel1 = 90;
-        public static final double cubeLevel2 = 53.0;
-        public static final double cubeLevel3 = 32.2;
+        public static final double standingCone = -71;
+        public static final double cubeLevel1 = 82;
+        public static final double cubeLevel2 = 59;
+        public static final double cubeLevel3 = 40;
 
 
-        public static final double coneLevel2 = 83.3;
-        public static final double coneLevel3 = 48.6;
+        public static final double coneLevel2 = 93;
+        public static final double coneLevel3 = 68.5;
         public static final double coneLevel1 = 147;
-        public static final double doubleSubCone = 123.25;
+        public static final double doubleSubCone = 117;
         public static final double doubleSubCube = 103.33;
         public static final double singleSubCone = 161;
         public static final double stow = 161;
-        public static double maxJerk = 50;
-        public static double maxAccel = 18;
-        public static double maxVelocity = 36;
+        public static double maxJerk = 3000;
+        public static double maxAccel = 5000;
+        public static double maxVelocity = 150;
         public static double velocityTolerance = 2;
-        public static double tolerance = 2;
+        public static double tolerance = 5;
         public static final double voltageLimit = 3;
     }
 

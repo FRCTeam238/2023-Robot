@@ -17,19 +17,21 @@ public class ArmManualCommand extends CommandBase {
   
    // Use addRequirements() here to declare subsystem dependencies.
    addRequirements(Robot.arm);
+
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     position = Robot.arm.getEncoderPosition();
+    Robot.arm.putCommandString(this);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if (Math.abs(ControlParameters.operatorController.getLeftY()) > ControlParameters.armThreshold) {
-      Robot.arm.moveArmPercent(ControlParameters.operatorController.getLeftY() * ControlParameters.elevatorMultiplier);
+      Robot.arm.moveArmPercent(ControlParameters.operatorController.getLeftY() * ControlParameters.armMultiplier);
       position = Robot.arm.getEncoderPosition();
     }
     else {

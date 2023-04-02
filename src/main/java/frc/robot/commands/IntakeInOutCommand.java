@@ -9,6 +9,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
@@ -20,13 +21,13 @@ import frc.robot.subsystems.Intake;
 public class IntakeInOutCommand extends CommandBase {
   
   Direction direction;
-  Gamepiece gamepiece = Robot.gamepiece;
   Intake intake;
   
   
   public IntakeInOutCommand(Direction direction) {
     this.direction = direction;
     intake = Robot.intake;
+
   }
 
   // Called when the command is initially scheduled.
@@ -38,14 +39,23 @@ public class IntakeInOutCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (direction == Direction.In) {
-      intake.run(gamepiece == Gamepiece.CONE ? 
-      RobotMap.IntakeParameters.intakeSpeed : 
-      RobotMap.IntakeParameters.intakeSpeed * -1);
+    if(Robot.intake.isStalling() && direction == Direction.In)
+    {
+      RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
+      intake.run(Robot.gamepiece == Gamepiece.CONE ? 
+      RobotMap.IntakeParameters.holdSpeedCone: 
+      RobotMap.IntakeParameters.holdSpeedCube * -1);
     } else {
-      intake.run(gamepiece == Gamepiece.CONE ? 
-      RobotMap.IntakeParameters.intakeSpeed * -1: 
-      RobotMap.IntakeParameters.intakeSpeed);
+      RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
+      if (direction == Direction.In) {
+        intake.run(Robot.gamepiece == Gamepiece.CONE ? 
+        RobotMap.IntakeParameters.intakeSpeedCone : 
+        RobotMap.IntakeParameters.intakeSpeedCube * -1 );
+      } else {
+        intake.run(Robot.gamepiece == Gamepiece.CONE ? 
+        RobotMap.IntakeParameters.outtakeSpeedCone * -1:
+        RobotMap.IntakeParameters.outtakeSpeedCube);
+      }
     }
   }
 
@@ -53,6 +63,7 @@ public class IntakeInOutCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     intake.stop();
+    RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
   }
 
   // Returns true when the command should end.

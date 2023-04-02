@@ -22,7 +22,7 @@ import frc.robot.subsystems.Intake;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class StowCommand extends SequentialCommandGroup implements IAutonomousCommand {
+public class StowCommand extends ParallelCommandGroup implements IAutonomousCommand {
   /** Creates a new StowCommand. */
   public StowCommand() {
     // Add your commands in the addCommands() call, e.g.

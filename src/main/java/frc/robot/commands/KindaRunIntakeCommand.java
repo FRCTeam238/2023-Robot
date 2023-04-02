@@ -30,7 +30,7 @@ public class KindaRunIntakeCommand extends CommandBase {
     gamepiece = Robot.gamepiece;
 
     Robot.intake.run(gamepiece == RobotMap.IntakeParameters.Gamepiece.CONE ? RobotMap.IntakeParameters.holdSpeedCone 
-    : RobotMap.IntakeParameters.holdSpeedCube);
+    : RobotMap.IntakeParameters.holdSpeedCube*-1);
 
   }
 

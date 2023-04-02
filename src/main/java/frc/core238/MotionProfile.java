@@ -365,4 +365,9 @@ public class MotionProfile {
     result.acceleration = result.acceleration * direction;
     return result;
   }
+
+  public boolean isFinished()
+  {
+    return timer.get() > 0 && timer.get() > timings.endRampDownDeccel;
+  }
 }

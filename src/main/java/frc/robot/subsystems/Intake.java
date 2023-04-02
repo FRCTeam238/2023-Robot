@@ -53,15 +53,17 @@ public class Intake extends SubsystemBase {
   public boolean isStalling() {
     if (RobotMap.IntakeParameters.intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.stallCurrent)
     {
-      stallCounter++;
+      return true;
+      //stallCounter++;
     } else {
-      stallCounter = 0;
+      //stallCounter = 0;
+      return false;
     }
-    if(stallCounter > 3)
+    /*if(stallCounter > 3)
     {
       return true;
     } else {
       return false;
-    }
+    }*/
   }
 }

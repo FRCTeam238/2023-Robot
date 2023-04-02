@@ -30,6 +30,7 @@ public class ArmProfile extends CommandBase {
     MotionProfile.State currentState = new MotionProfile.State(Robot.arm.getEncoderPosition(), Robot.arm.getVelocity());
 
     profile = new MotionProfile(goal, currentState, constraints, MotionProfile.ProfileType.AUTO);
+    Robot.arm.putCommandString(this);
 
   }
 
@@ -54,6 +55,10 @@ public class ArmProfile extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if(!profile.isFinished())
+    {
+      return false;
+    }
     return Math.abs(goal.position - Robot.arm.getEncoderPosition()) <= RobotMap.ArmParameters.tolerance
             && Math.abs(goal.velocity - Robot.arm.getVelocity()) <= RobotMap.ArmParameters.velocityTolerance;
   }

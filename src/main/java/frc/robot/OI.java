@@ -21,7 +21,7 @@ public class OI {
 
 
 	Joystick leftJoystick = RobotMap.ControlParameters.left;
-	SendableChooser<Double> testArmChooser;
+//	SendableChooser<Double> testArmChooser;
 	Joystick rightJoystick = RobotMap.ControlParameters.right;
 	XboxController operatorController = RobotMap.ControlParameters.operatorController;
 	CommandXboxController commandController = new CommandXboxController(operatorController.getPort());
@@ -34,17 +34,21 @@ public class OI {
 	public OI(driveType controlType) {
 
 		driveCommand = new Drive();
-		testArmChooser = new SendableChooser<>();
-		testArmChooser.addOption("stow", RobotMap.ArmParameters.stow);
-		testArmChooser.addOption("doubleSub", RobotMap.ArmParameters.doubleSubCube);
-		testArmChooser.addOption("floorCube", RobotMap.ArmParameters.cubeFloor);
-		SmartDashboard.putData("ArmPositions", testArmChooser);
+//		testArmChooser = new SendableChooser<>();
+//		testArmChooser.addOption("stow", RobotMap.ArmParameters.stow);
+//		testArmChooser.setDefaultOption("doubleSub", RobotMap.ArmParameters.doubleSubCube);
+//		testArmChooser.addOption("floorCube", RobotMap.ArmParameters.cubeFloor);
+//		SmartDashboard.putData("ArmPositions", testArmChooser);
 		elevatorManualCommand = new ElevatorManualCommand();
 
 		Robot.drivetrain.setDefaultCommand(driveCommand);
 		Robot.elevator.setDefaultCommand(elevatorManualCommand);
 		Robot.intake.setDefaultCommand(new KindaRunIntakeCommand());
 		Robot.arm.setDefaultCommand(new ArmManualCommand());
+
+		//Start button
+		JoystickButton disablePID = new JoystickButton(operatorController, XboxController.Button.kStart.value);
+		disablePID.onTrue(new DisablePID());
 
 		//B Button
 		JoystickButton levelTwoHeightB = new JoystickButton(operatorController, XboxController.Button.kB.value);
@@ -55,12 +59,12 @@ public class OI {
 		levelTwoHeightX.onTrue(new LevelTwoHeight());
 
 		//A Button
-//		JoystickButton levelOneHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
-//		levelOneHeight.onTrue(new LevelOneHeight());
+		JoystickButton levelOneHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
+		levelOneHeight.onTrue(new LevelOneHeight());
 
 		//A Button test
-		JoystickButton testHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
-		testHeight.onTrue(new TestPositions(testArmChooser::getSelected));
+//		JoystickButton testHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
+//		testHeight.onTrue(new TestPositions(testArmChooser::getSelected));
 
 		//Y Button
 		JoystickButton levelThreeHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);

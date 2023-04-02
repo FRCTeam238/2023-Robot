@@ -89,9 +89,9 @@ public class Robot extends TimedRobot {
     arm = new Arm();
     oi = new OI(driveType.Tank);
     if (isReal()) {
-      intakeCamera = CameraServer.startAutomaticCapture();
-      intakeCamera.setResolution(160, 120);
-      intakeCamera.setFPS(20);
+      //intakeCamera = CameraServer.startAutomaticCapture();
+      //intakeCamera.setResolution(160, 120);
+      //intakeCamera.setFPS(20);
       leDs = new LEDs();
     }
 
@@ -151,6 +151,7 @@ public class Robot extends TimedRobot {
     elevator2D.setLength(5+Units.metersToInches(elevator.getPositionMeters()));
     arm2D.setAngle(arm.getEncoderPosition());
     wrist2D.setAngle(-arm.getEncoderPosition());
+    SmartDashboard.putString("Gamepiece", this.gamepiece.toString());
   }
 
   /** This function is called once each time the robot enters Disabled mode. */

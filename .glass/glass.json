@@ -1,4 +1,18 @@
 {
+  "NetworkTables": {
+    "transitory": {
+      "SmartDashboard": {
+        "open": true
+      }
+    },
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Auto Modes": "String Chooser",
+      "/SmartDashboard/Drive Type": "String Chooser",
+      "/SmartDashboard/Mechanism": "Mechanism2d",
+      "/SmartDashboard/RobotPose": "Field2d"
+    }
+  },
   "NetworkTables Info": {
     "visible": true
   },
@@ -6,6 +20,7 @@
     "visible": true
   },
   "NetworkTables Settings": {
-    "visible": false
+    "mode": "Client (NT4)",
+    "serverTeam": "238"
   }
 }

@@ -60,11 +60,14 @@ public class Arm extends SubsystemBase {
   }
 
   public void moveArmPercent (double armPercent) {
+    double feed;
     if(!PIDEnabled)
     {
-      armPercent = armPercent *1.5; //needs exra power if no feedforward to "float it"
+      armPercent = armPercent * 1.5; //needs exra power if no feedforward to "float it"
+      feed = 0;
+    } else {
+      feed = ff.calculate(Units.degreesToRadians(getEncoderPosition()), 0)/12;
     }
-    double feed = ff.calculate(Units.degreesToRadians(getEncoderPosition()), 0)/12;
     RobotMap.ArmParameters.armMotor.set(ControlMode.PercentOutput, armPercent + feed);
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
     {
@@ -106,6 +109,7 @@ public class Arm extends SubsystemBase {
     armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
   }
   
+  //position in degrees
   public void holdPosition(double position)
   {
     if(!PIDEnabled)
@@ -113,7 +117,7 @@ public class Arm extends SubsystemBase {
       return; //Can't hold position without encoder
     }
     double feed = ff.calculate(Units.degreesToRadians(position), 0);
-    armTalon.set(ControlMode.Position, position * 4096.0 / (2.0*Math.PI), DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
+    armTalon.set(ControlMode.Position, position * 4096.0 / 360, DemandType.ArbitraryFeedForward, feed / RobotMap.DrivetrainParameters.maxVoltage);
     if(SmartDashboard.getBoolean("ArmDebugging", debug))
     {
       SmartDashboard.putNumber("Arm FF", feed);
@@ -123,6 +127,10 @@ public class Arm extends SubsystemBase {
       logDesiredEncoder.append(position);
       logFF.append(feed);
     }
+  }
+
+  public void disablePID() {
+    PIDEnabled = false;
   }
 
   public double getVelocity() {
@@ -138,12 +146,13 @@ public class Arm extends SubsystemBase {
     //setup encoder
     armTalon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
     int absPos = armTalon.getSensorCollection().getPulseWidthPosition();
-    //TODO: Is this what it returns if no sensor?
     if(absPos == 0)
     {
       PIDEnabled = false;
+      SmartDashboard.putBoolean("ArmPID", false);
       return;
     }
+    SmartDashboard.putBoolean("ArmPID", true);
     int relPos;
     System.out.println("Absolute Position: " + absPos);
     if (absPos > 1600) {
