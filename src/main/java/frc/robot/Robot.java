@@ -28,6 +28,7 @@ import frc.core238.DriverControls.driveType;
 import frc.core238.autonomous.AutonomousModesReader;
 import frc.core238.autonomous.DataFileAutonomousModeDataSource;
 import frc.core238.autonomous.IAutonomousModeDataSource;
+import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Intake;
@@ -55,6 +56,7 @@ public class Robot extends TimedRobot {
   boolean fmsConnected = false;
   boolean m_allowAuto = true;
   AutonomousModesReader reader;
+  public static Gamepiece gamepiece = Gamepiece.CONE;
 
 
   /**

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
+import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.commands.*;
 import frc.robot.commands.IntakeInOutCommand.Direction;
 
@@ -95,5 +96,8 @@ public class OI {
 
 		JoystickButton charge = new JoystickButton(leftJoystick, 5);
 		charge.whileTrue(new StayLevelCommand());
+
+		commandController.axisGreaterThan(XboxController.Axis.kLeftY.value, .5).onTrue(new SetMode(Gamepiece.CONE));
+		commandController.axisLessThan(XboxController.Axis.kLeftY.value, -.5).onTrue(new SetMode(Gamepiece.CUBE));
 	}
 }

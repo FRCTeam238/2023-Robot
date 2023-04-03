@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.SPI.Port;
+import edu.wpi.first.wpilibj.util.Color;
 import frc.core238.DriverControls.driveType;
 
 /**
@@ -137,6 +138,9 @@ public final class RobotMap {
         public static final int continuousCurrent = 10;
         public static final int peakCurrent = 20;
         public static final int peakDuration = 60;
+
+        public enum Gamepiece {CONE, CUBE}
+        public static Color yellow = new Color(238, 170, 0);
     }
 
     public static class VisionParameters {
