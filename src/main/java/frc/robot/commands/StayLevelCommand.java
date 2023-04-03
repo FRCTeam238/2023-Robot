@@ -54,13 +54,14 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(Robot.drivetrain.getPitch())  < finishAngle && Math.abs(lastPitchValue - Robot.drivetrain.getPitch()) < 0.1) {
+    /*if (Math.abs(Robot.drivetrain.getPitch())  < finishAngle && Math.abs(lastPitchValue - Robot.drivetrain.getPitch()) < 0.1) {
       return true;
     }
 
 
 
     lastPitchValue = Robot.drivetrain.getPitch();
+    return false;*/
     return false;
   }
 
