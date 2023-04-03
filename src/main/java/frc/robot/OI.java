@@ -2,14 +2,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import frc.core238.DriverControls;
 import frc.core238.DriverControls.driveType;
-import frc.core238.MotionProfile;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.commands.*;
 
@@ -52,15 +49,15 @@ public class OI {
 
 		//B Button
 		JoystickButton levelTwoHeightB = new JoystickButton(operatorController, XboxController.Button.kB.value);
-		levelTwoHeightB.onTrue(new LevelTwoHeight());
+		levelTwoHeightB.onTrue(new LevelTwoHeight().withTimeout(3));
 
 		//X Button
 		JoystickButton levelTwoHeightX = new JoystickButton(operatorController, XboxController.Button.kX.value);
-		levelTwoHeightX.onTrue(new LevelTwoHeight());
+		levelTwoHeightX.onTrue(new LevelTwoHeight().withTimeout(3));
 
 		//A Button
 		JoystickButton levelOneHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
-		levelOneHeight.onTrue(new LevelOneHeight());
+		levelOneHeight.onTrue(new LevelOneHeight().withTimeout(3));
 
 		//A Button test
 //		JoystickButton testHeight = new JoystickButton(operatorController, XboxController.Button.kA.value);
@@ -68,7 +65,7 @@ public class OI {
 
 		//Y Button
 		JoystickButton levelThreeHeight = new JoystickButton(operatorController, XboxController.Button.kY.value);
-		levelThreeHeight.onTrue(new LevelThreeHeight());
+		levelThreeHeight.onTrue(new LevelThreeHeight().withTimeout(3));
 
 		//Triggers
 		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(IntakeInOutCommand.Direction.In));
@@ -83,16 +80,16 @@ public class OI {
 		setCone.onTrue(new SetMode(Gamepiece.CONE));
 
 		POVButton doubleSub = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.UP.value);
-		doubleSub.onTrue(new DoubleSubHeight());
+		doubleSub.onTrue(new DoubleSubHeight().withTimeout(3));
 
 		POVButton StandingGamepiece = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.LEFT.value);
-		StandingGamepiece.onTrue(new FloorStandingHeight());
+		StandingGamepiece.onTrue(new FloorStandingHeight().withTimeout(3));
 
 		POVButton tippedGamepiece = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.RIGHT.value);
-		tippedGamepiece.onTrue(new FloorTippedHeight());
+		tippedGamepiece.onTrue(new FloorTippedHeight().withTimeout(3));
 
 		POVButton singleSub = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.DOWN.value);
-		singleSub.onTrue(new SingleSubHeight());
+		singleSub.onTrue(new SingleSubHeight().withTimeout(3));
 
 		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
 		stowPos.onTrue(new StowCommand().withTimeout(5));
