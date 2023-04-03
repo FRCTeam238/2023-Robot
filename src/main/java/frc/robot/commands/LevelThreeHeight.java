@@ -11,8 +11,9 @@ import frc.robot.RobotMap;
 
 import java.util.List;
 
-@AutonomousModeAnnotation(parameterNames = {})
+@AutonomousModeAnnotation(parameterNames = {"Timeout"})
 public class LevelThreeHeight extends ParallelCommandGroup implements IAutonomousCommand {
+    double timeout;
 
     public LevelThreeHeight() {
         Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.coneLevel3, 0), "Lvl3Cone");
@@ -26,11 +27,11 @@ public class LevelThreeHeight extends ParallelCommandGroup implements IAutonomou
 
     @Override
     public void setParameters(List<String> parameters) {
-
+        timeout = Double.parseDouble(parameters.get(0));
     }
 
     @Override
     public double getTimeout() {
-        return 0;
+        return timeout;
     }
 }
