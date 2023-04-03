@@ -9,9 +9,7 @@ import java.util.List;
 
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.core238.autonomous.AutonomousModeAnnotation;
-import frc.robot.RobotMap;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -22,7 +20,7 @@ public class GrabAuto extends SequentialCommandGroup implements IAutonomousComma
   List<String> params = new ArrayList<String>();
 
   public GrabAuto() {
-    addCommands(new FloorStandingHeight());
+    addCommands(new FloorTippedHeight());
     addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In).deadlineWith(new DriveStraightInches(18, .165)));
   }
   
