@@ -1,0 +1,996 @@
+{
+  "AutonomousModes": [
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cube3_Charge_1",
+            "true",
+            "1.5"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StayLevelCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Charge_Cube3_Charge"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cube3_Charge_1",
+            "true",
+            "1.5"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StayLevelCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Charge_Cone3_Charge"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_2ndInner",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone3_Cone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_2ndInner",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cone3_Cone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_2ndCone",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube3_Cone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_2ndCone",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cube3_Cone"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_2ndCube",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone3_Cube"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_2ndCube",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cone3_Cube"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_2ndShort",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube3_Cube"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "180",
+            "0.25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_2ndShort",
+            "false",
+            "1.2"
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cube3_Cube"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cone3_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cone_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cone3_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Cable_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Cable_Cube3_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cube"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Station_Cube_Mobi",
+            "true",
+            ""
+          ],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Station_Cube3_Mobi"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "LevelThreeHeight",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cone_Cone_Charge_1",
+            "true",
+            "1.5"
+          ],
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "3"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GyroTurnCommand",
+          "Parameters": [
+            "0",
+            ".25"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAutoFast",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cone_Cone_Charge_2",
+            "false",
+            "1.5"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StayLevelCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "Charge_Cone3_Cone_Charge"
+    }
+  ]
+}
