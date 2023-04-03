@@ -53,6 +53,11 @@
           "ParallelType": "None"
         },
         {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
           "Name": "LevelThreeHeight",
           "Parameters": [
             "3"
@@ -93,6 +98,11 @@
           "Parameters": [
             "Cone"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -180,6 +190,11 @@
           "Parameters": [
             "Cone"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -444,6 +459,11 @@
           "ParallelType": "None"
         },
         {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
           "Name": "LevelThreeHeight",
           "Parameters": [
             "3"
@@ -528,6 +548,11 @@
           "Parameters": [
             "Cone"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -785,10 +810,22 @@
     {
       "Commands": [
         {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
           "Name": "LevelThreeHeight",
           "Parameters": [
             "3"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -815,6 +852,18 @@
     },
     {
       "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
+            "Cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
         {
           "Name": "LevelThreeHeight",
           "Parameters": [
@@ -927,6 +976,11 @@
           "Parameters": [
             "Cone"
           ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
