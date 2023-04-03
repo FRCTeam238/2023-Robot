@@ -43,7 +43,7 @@ public class IntakeInOutCommand extends CommandBase {
     {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
       intake.run(Robot.gamepiece == Gamepiece.CONE ? 
-      RobotMap.IntakeParameters.holdSpeedCone: 
+      RobotMap.IntakeParameters.intakeSpeedCube: 
       RobotMap.IntakeParameters.holdSpeedCube * -1);
     } else {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
@@ -69,7 +69,7 @@ public class IntakeInOutCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (DriverStation.isAutonomous()) {
+    if (DriverStation.isAutonomous() && direction == Direction.In) {
      return intake.isStalling();
     }
 
