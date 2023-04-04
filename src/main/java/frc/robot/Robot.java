@@ -13,6 +13,7 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.util.datalog.StringLogEntry;
 import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot {
   Mechanism2d mechanism;
   MechanismRoot2d root;
   MechanismLigament2d elevator2D, carriage2D, arm2D, wrist2D;
+  StringLogEntry gamepieceLog;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -151,7 +153,7 @@ public class Robot extends TimedRobot {
     elevator2D.setLength(5+Units.metersToInches(elevator.getPositionMeters()));
     arm2D.setAngle(arm.getEncoderPosition());
     wrist2D.setAngle(-arm.getEncoderPosition());
-    SmartDashboard.putString("Gamepiece", this.gamepiece.toString());
+    SmartDashboard.putBoolean("GamepieceIsCube", gamepiece == Gamepiece.CUBE);
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
