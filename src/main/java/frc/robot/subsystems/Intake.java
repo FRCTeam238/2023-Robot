@@ -20,29 +20,31 @@ public class Intake extends SubsystemBase {
   protected StringLogEntry logCommand;
   protected int stallCounter = 0;
 
-  /** Creates a new Intake. */
+  /**
+   * Creates a new Intake.
+   */
   public Intake() {
     logCommand = new StringLogEntry(DataLogManager.getLog(), "Intake:Command");
     logIntake = new DoubleLogEntry(DataLogManager.getLog(), "Intake:Speed");
 
     RobotMap.IntakeParameters.intakeMotor.configSupplyCurrentLimit(new SupplyCurrentLimitConfiguration(
-      true, RobotMap.IntakeParameters.continuousCurrent, 
-      RobotMap.IntakeParameters.peakCurrent, RobotMap.IntakeParameters.peakDuration));
+            true, RobotMap.IntakeParameters.continuousCurrent,
+            RobotMap.IntakeParameters.peakCurrent, RobotMap.IntakeParameters.peakDuration));
   }
 
 
-  public void run (double intakeSpeed) {
+  public void run(double intakeSpeed) {
     RobotMap.IntakeParameters.intakeMotor.set(ControlMode.PercentOutput, intakeSpeed);
     logIntake.append(intakeSpeed);
   }
 
-  public void stop () {
+  public void stop() {
     RobotMap.IntakeParameters.intakeMotor.set(ControlMode.PercentOutput, 0);
     logIntake.append(0);
   }
 
   public void putCommandString(Command command) {
-      logCommand.append(command.getName());
+    logCommand.append(command.getName());
   }
 
   @Override
@@ -51,8 +53,7 @@ public class Intake extends SubsystemBase {
   }
 
   public boolean isStalling() {
-    if (RobotMap.IntakeParameters.intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.stallCurrent)
-    {
+    if (RobotMap.IntakeParameters.intakeMotor.getSupplyCurrent() > RobotMap.IntakeParameters.stallCurrent) {
       return true;
       //stallCounter++;
     } else {
@@ -67,3 +68,4 @@ public class Intake extends SubsystemBase {
     }*/
   }
 }
+

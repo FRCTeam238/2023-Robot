@@ -210,9 +210,9 @@ public final class RobotMap {
         public static final double doubleSubCube = 103.33;
         public static final double singleSubCone = 161;
         public static final double stow = 161;
-        public static double maxJerk = 3000;
-        public static double maxAccel = 5000;
-        public static double maxVelocity = 150;
+        public static double maxJerk = 4000;
+        public static double maxAccel = 6000;
+        public static double maxVelocity = 200;
         public static double velocityTolerance = 2;
         public static double tolerance = 5;
         public static final double voltageLimit = 3;

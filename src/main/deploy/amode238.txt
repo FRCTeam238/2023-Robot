@@ -159,9 +159,14 @@
           "ParallelType": "None"
         },
         {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
+          "ParallelType": "Parallel"
+        },
+        {
           "Name": "StowCommand",
           "Parameters": [],
-          "ParallelType": "None"
+          "ParallelType": "Parallel"
         },
         {
           "Name": "GyroTurnCommand",

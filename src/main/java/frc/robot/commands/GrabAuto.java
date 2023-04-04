@@ -20,8 +20,8 @@ public class GrabAuto extends SequentialCommandGroup implements IAutonomousComma
   List<String> params = new ArrayList<String>();
 
   public GrabAuto() {
-    addCommands(new FloorTippedHeight());
-    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In).deadlineWith(new DriveStraightInches(18, .165)));
+    addCommands(new FloorTippedHeight().asProxy());
+    addCommands(new DriveStraightInches(18, .165).deadlineWith(new IntakeInOutCommand(IntakeInOutCommand.Direction.In)).asProxy());
   }
   
   @Override

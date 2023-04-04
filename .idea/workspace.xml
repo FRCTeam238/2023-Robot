@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED">
-      <change beforePath="$PROJECT_DIR$/.Glass/glass.json" beforeDir="false" afterPath="$PROJECT_DIR$/.Glass/glass.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/core238/MotionProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/core238/MotionProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/Robot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/amode238.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/amode238.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_2ndInner.path" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_2ndInner.path" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone2_Cube2_2.path" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone_Mobi.path" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone_Mobi.path" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmManualCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmManualCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ArmProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Arm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" afterDir="false" />
     </list>
     <list id="ed172a05-e4fb-4a20-ae32-fd3a114398b6" name="Changes by Team238" comment="" />
@@ -247,9 +244,6 @@
       <item itemvalue="Gradle.2023-robot [InstallAllTools]" />
       <item itemvalue="Gradle.2023-robot [ShuffleBoard]" />
       <item itemvalue="Gradle.2023-robot [deploy]" />
-      <item itemvalue="JAR Application.Launch Shuffleboard (1)" />
-      <item itemvalue="JAR Application.Launch Shuffleboard" />
-      <item itemvalue="JAR Application.Launch SmartDashboard" />
       <item itemvalue="Remote JVM Debug.Debug Robot via IP" />
       <item itemvalue="Remote JVM Debug.Debug Robot via USB" />
     </list>
@@ -313,6 +307,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED" />
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20230402155010" />
+    <option name="lastChecked" value="20230403180726" />
   </component>
 </project>
