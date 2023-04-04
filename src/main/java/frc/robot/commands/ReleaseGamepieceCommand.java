@@ -6,6 +6,7 @@ package frc.robot.commands;
 
 import java.util.List;
 
+import edu.wpi.first.wpilibj2.command.ProxyCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
@@ -20,10 +21,8 @@ public class ReleaseGamepieceCommand extends SequentialCommandGroup implements I
   /** Creates a new ReleaseGamepieceCommand. */
   public ReleaseGamepieceCommand() {
     // Add your commands in the addCommands() call, e.g.
-    Intake intake = Robot.intake;
-    addRequirements(intake);
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.Out).withTimeout(.5));
+    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.Out).withTimeout(.5).asProxy());
   }
 
   @Override
