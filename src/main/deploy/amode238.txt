@@ -156,17 +156,19 @@
         {
           "Name": "GrabAuto",
           "Parameters": [],
-          "ParallelType": "None"
+          "ParallelType": "Race"
         },
         {
-          "Name": "SeatGamepiece",
-          "Parameters": [],
-          "ParallelType": "Parallel"
+          "Name": "DelayCommand",
+          "Parameters": [
+            "5"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "StowCommand",
           "Parameters": [],
-          "ParallelType": "Parallel"
+          "ParallelType": "None"
         },
         {
           "Name": "GyroTurnCommand",
@@ -519,7 +521,14 @@
         {
           "Name": "GrabAuto",
           "Parameters": [],
-          "ParallelType": "None"
+          "ParallelType": "Race"
+        },
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "5"
+          ],
+          "ParallelType": "Race"
         },
         {
           "Name": "StowCommand",

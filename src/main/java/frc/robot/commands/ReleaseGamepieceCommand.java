@@ -22,7 +22,7 @@ public class ReleaseGamepieceCommand extends SequentialCommandGroup implements I
   public ReleaseGamepieceCommand() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.Out).withTimeout(.5).asProxy());
+    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.Out).withTimeout(1).asProxy());
   }
 
   @Override

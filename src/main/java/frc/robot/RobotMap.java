@@ -170,7 +170,7 @@ public final class RobotMap {
         public static final double intakeSpeedCone = .75;
         public static final double intakeSpeedCube = .75;
         public static final double outtakeSpeedCube = .5;
-        public static final double outtakeSpeedCone = .3;
+        public static final double outtakeSpeedCone = .4;
         public enum Gamepiece {CONE, CUBE}
 
         // team color yellow to represent cones

@@ -91,9 +91,9 @@ public class Robot extends TimedRobot {
     arm = new Arm();
     oi = new OI(driveType.Tank);
     if (isReal()) {
-      //intakeCamera = CameraServer.startAutomaticCapture();
-      //intakeCamera.setResolution(160, 120);
-      //intakeCamera.setFPS(20);
+      intakeCamera = CameraServer.startAutomaticCapture();
+      intakeCamera.setResolution(160, 120);
+      intakeCamera.setFPS(20);
       leDs = new LEDs();
     }
 
