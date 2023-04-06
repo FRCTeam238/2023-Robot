@@ -1,4 +1,16 @@
 {
+  "HALProvider": {
+    "Other Devices": {
+      "window": {
+        "visible": false
+      }
+    },
+    "RoboRIO": {
+      "window": {
+        "visible": true
+      }
+    }
+  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
@@ -6,13 +18,16 @@
       "/Shuffleboard/Logging/Scheduler": "Scheduler",
       "/Shuffleboard/Logging/TrajectoryPose": "Field2d",
       "/SmartDashboard/Auto Modes": "String Chooser",
+      "/SmartDashboard/Drive Type": "String Chooser",
       "/SmartDashboard/Elevator Sim": "Mechanism2d",
+      "/SmartDashboard/Mechanism": "Mechanism2d",
+      "/SmartDashboard/RobotPose": "Field2d",
       "/SmartDashboard/SendableChooser[0]": "String Chooser",
       "/SmartDashboard/SendableChooser[1]": "String Chooser",
       "/SmartDashboard/TrajectoryPose": "Field2d"
     },
     "windows": {
-      "/Shuffleboard/Logging/RobotPose": {
+      "/FMSInfo": {
         "window": {
           "visible": true
         }
@@ -23,11 +38,6 @@
         }
       },
       "/SmartDashboard/Elevator Sim": {
-        "window": {
-          "visible": true
-        }
-      },
-      "/SmartDashboard/TrajectoryPose": {
         "window": {
           "visible": true
         }
@@ -58,6 +68,21 @@
       }
     }
   },
+  "NetworkTables Info": {
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "Publishers": {
+        "open": true
+      },
+      "Subscribers": {
+        "open": true
+      },
+      "open": true
+    },
+    "visible": true
+  },
   "Plot": {
     "Plot <0>": {
       "plots": [
@@ -67,7 +92,7 @@
               "autoFit": true
             }
           ],
-          "height": 335,
+          "height": 245,
           "series": [
             {
               "color": [
@@ -89,7 +114,10 @@
             }
           ]
         }
-      ]
+      ],
+      "window": {
+        "visible": false
+      }
     }
   }
 }

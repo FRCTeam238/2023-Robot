@@ -4,17 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED">
+    <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="tuning of autos">
+      <change beforePath="$PROJECT_DIR$/.glass/glass.json" beforeDir="false" afterPath="$PROJECT_DIR$/.glass/glass.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui-ds.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui-ds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/deploy/amode238.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/amode238.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_2ndInner.path" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_2ndInner.path" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone2_Cube2_2.path" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone_Mobi.path" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/pathplanner/Cable_Cone_Mobi.path" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/deploy/pathplanner/Charge_Cone_Cone_Charge_1.path" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/pathplanner/Charge_Cone_Cone_Charge_1.path" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ElevatorTrapezoid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ElevatorTrapezoid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/subsystems/Intake.java" afterDir="false" />
     </list>
     <list id="ed172a05-e4fb-4a20-ae32-fd3a114398b6" name="Changes by Team238" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -274,6 +276,14 @@
       <workItem from="1680359021442" duration="483000" />
       <workItem from="1680359515383" duration="18854000" />
     </task>
+    <task id="LOCAL-00001" summary="tuning of autos">
+      <created>1680569586827</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1680569586827</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,9 +314,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED" />
+    <MESSAGE value="tuning of autos" />
+    <option name="LAST_COMMIT_MESSAGE" value="tuning of autos" />
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20230403180726" />
+    <option name="lastChecked" value="20230405190022" />
   </component>
 </project>

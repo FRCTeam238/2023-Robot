@@ -27,6 +27,7 @@ public class IntakeInOutCommand extends CommandBase {
   public IntakeInOutCommand(Direction direction) {
     this.direction = direction;
     intake = Robot.intake;
+    setName(getName() + ": " + direction.name());
 
   }
 

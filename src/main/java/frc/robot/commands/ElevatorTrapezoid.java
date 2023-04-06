@@ -26,6 +26,7 @@ public class ElevatorTrapezoid extends CommandBase {
     this.goal = goal;
     constraints = new Constraints(RobotMap.ElevatorParameters.MaxVel, RobotMap.ElevatorParameters.MaxAccel);
     timer = new Timer();
+    elevator.putCommandString(this);
     addRequirements(Robot.elevator);
     this.setName(name);
   }

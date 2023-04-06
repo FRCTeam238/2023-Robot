@@ -48,6 +48,28 @@
         {
           "Name": "SetMode",
           "Parameters": [
+            "cone"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
+          "Parameters": [],
+          "ParallelType": "None"
+        }
+      ],
+      "Name": "testAuto"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "SetMode",
+          "Parameters": [
             "Cone"
           ],
           "ParallelType": "None"
@@ -831,15 +853,15 @@
           "ParallelType": "None"
         },
         {
+          "Name": "SeatGamepiece",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
           "Name": "LevelThreeHeight",
           "Parameters": [
             "3"
           ],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "SeatGamepiece",
-          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -1028,7 +1050,7 @@
           "Parameters": [
             "3"
           ],
-          "ParallelType": "None"
+          "ParallelType": "Race"
         },
         {
           "Name": "GyroTurnCommand",
@@ -1039,7 +1061,12 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAutoFast",
+          "Name": "GrabAuto",
+          "Parameters": [],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "StowCommand",
           "Parameters": [],
           "ParallelType": "None"
         },

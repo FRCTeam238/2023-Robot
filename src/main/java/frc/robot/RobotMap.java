@@ -98,12 +98,12 @@ public final class RobotMap {
         public static final double coneLevel2 = 9.8;
         public static final double cubeLevel2 = 12.9;
 //        public static final double coneLevel3 = inchesToTicks(35.65);
-        public static final double coneLevel3 = 24;
+        public static final double coneLevel3 = 26.238;
         public static final double cubeLevel3 = 29.5;
-        public static final double doubleSubCone = 8.47;
+        public static final double doubleSubCone = 20.394;
         public static final double doubleSubConeStanding = 18.5;
-        public static final double doubleSubCube = inchesToTicks(23.85);
-        public static final double singleSubCone = inchesToTicks(8.13);
+        public static final double doubleSubCube = 12.1429;
+        public static final double singleSubCone = 6.0714;
     }
 
     public static class ControlParameters {
@@ -203,16 +203,16 @@ public final class RobotMap {
         public static final double cubeLevel3 = 40;
 
 
+        public static final double coneLevel3 = 76.464;
         public static final double coneLevel2 = 93;
-        public static final double coneLevel3 = 68.5;
         public static final double coneLevel1 = 147;
-        public static final double doubleSubCone = 117;
+        public static final double doubleSubCone = 127;
         public static final double doubleSubCube = 103.33;
-        public static final double singleSubCone = 161;
+        public static final double singleSubCone = 120.7;
         public static final double stow = 161;
         public static double maxJerk = 4000;
         public static double maxAccel = 6000;
-        public static double maxVelocity = 200;
+        public static double maxVelocity = 238; //TEAM NUMBER FTW
         public static double velocityTolerance = 2;
         public static double tolerance = 5;
         public static final double voltageLimit = 3;
