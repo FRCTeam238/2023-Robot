@@ -89,7 +89,7 @@ public final class RobotMap {
         public static double toleranceRotations = .7;//inchesToTicks(.5);
         public static double toleranceVelocity = .2; // in rotatation per sec
 
-        public static final double cubeFloor = inchesToTicks(9.5);
+        public static final double cubeFloor = 8.76;
         public static final double tippedConeFloor = 0;
         public static final double standingCone = 11.4;
         public static final double coneLevel1 = inchesToTicks(0);
@@ -100,9 +100,9 @@ public final class RobotMap {
 //        public static final double coneLevel3 = inchesToTicks(35.65);
         public static final double coneLevel3 = 26.238;
         public static final double cubeLevel3 = 29.5;
-        public static final double doubleSubCone = 20.394;
+        public static final double doubleSubCone = 12.04;
         public static final double doubleSubConeStanding = 18.5;
-        public static final double doubleSubCube = 12.1429;
+        public static final double doubleSubCube = 12.69;
         public static final double singleSubCone = 6.0714;
     }
 
@@ -195,7 +195,7 @@ public final class RobotMap {
 
         public static double armCurrentLimit = 11; //?;
 
-        public static final double cubeFloor = -64;
+        public static final double cubeFloor = -58;
         public static final double tippedConeFloor = -39.8;
         public static final double standingCone = -71;
         public static final double cubeLevel1 = 82;
@@ -206,7 +206,7 @@ public final class RobotMap {
         public static final double coneLevel3 = 76.464;
         public static final double coneLevel2 = 93;
         public static final double coneLevel1 = 147;
-        public static final double doubleSubCone = 127;
+        public static final double doubleSubCone = 121;
         public static final double doubleSubCube = 103.33;
         public static final double singleSubCone = 120.7;
         public static final double stow = 161;

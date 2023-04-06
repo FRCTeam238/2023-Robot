@@ -88,8 +88,8 @@ public class OI {
 		POVButton tippedGamepiece = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.RIGHT.value);
 		tippedGamepiece.onTrue(new FloorTippedHeight().withTimeout(3));
 
-		POVButton singleSub = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.DOWN.value);
-		singleSub.onTrue(new SingleSubHeight().withTimeout(3));
+		POVButton tipped2 = new POVButton(operatorController, RobotMap.ControlParameters.DpadDirection.DOWN.value);
+		tipped2.onTrue(new FloorTippedHeight().withTimeout(3));
 
 		JoystickButton stowPos = new JoystickButton(operatorController, XboxController.Button.kBack.value);
 		stowPos.onTrue(new StowCommand().withTimeout(5));

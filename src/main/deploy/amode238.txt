@@ -48,7 +48,7 @@
         {
           "Name": "SetMode",
           "Parameters": [
-            "cone"
+            "cube"
           ],
           "ParallelType": "None"
         },
@@ -1068,7 +1068,7 @@
         {
           "Name": "StowCommand",
           "Parameters": [],
-          "ParallelType": "None"
+          "ParallelType": "Parallel"
         },
         {
           "Name": "TrajectoryDriveCommand",
@@ -1077,7 +1077,7 @@
             "false",
             "1.5"
           ],
-          "ParallelType": "None"
+          "ParallelType": "Parallel"
         },
         {
           "Name": "StayLevelCommand",
