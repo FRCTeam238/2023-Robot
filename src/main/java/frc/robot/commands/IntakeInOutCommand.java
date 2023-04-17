@@ -8,8 +8,8 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
@@ -17,7 +17,9 @@ import frc.robot.RobotMap;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 import frc.robot.subsystems.Intake;
 
-@AutonomousModeAnnotation(parameterNames = {})
+import java.util.List;
+
+@AutonomousModeAnnotation(parameterNames = {"direction"})
 public class IntakeInOutCommand extends CommandBase {
   
   Direction direction;
@@ -31,6 +33,10 @@ public class IntakeInOutCommand extends CommandBase {
 
   }
 
+  public IntakeInOutCommand() {
+
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -40,7 +46,7 @@ public class IntakeInOutCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Robot.intake.isStalling() && direction == Direction.In)
+    if(Robot.intake.isStalling() && direction == Direction.IN)
     {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 1);
       intake.run(Robot.gamepiece == Gamepiece.CONE ? 
@@ -48,7 +54,7 @@ public class IntakeInOutCommand extends CommandBase {
       RobotMap.IntakeParameters.holdSpeedCube * -1);
     } else {
       RobotMap.ControlParameters.operatorController.setRumble(RumbleType.kBothRumble, 0);
-      if (direction == Direction.In) {
+      if (direction == Direction.IN) {
         intake.run(Robot.gamepiece == Gamepiece.CONE ? 
         RobotMap.IntakeParameters.intakeSpeedCone : 
         RobotMap.IntakeParameters.intakeSpeedCube * -1 );
@@ -77,9 +83,10 @@ public class IntakeInOutCommand extends CommandBase {
     return false;
   }
 
+
   public enum Direction {
-    In,
-    Out
+    IN,
+    OUT
   }
 
 }

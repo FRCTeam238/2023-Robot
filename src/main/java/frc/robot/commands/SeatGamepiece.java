@@ -6,8 +6,6 @@ package frc.robot.commands;
 
 import java.util.List;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.ProxyCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -19,23 +17,11 @@ import frc.robot.commands.IntakeInOutCommand.Direction;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class SeatGamepiece extends SequentialCommandGroup implements IAutonomousCommand{
+public class SeatGamepiece extends SequentialCommandGroup {
   /** Creates a new SeatGamepiece. */
   public SeatGamepiece() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new WaitCommand(0.5).deadlineWith(new ProxyCommand(new IntakeInOutCommand(Direction.In)).asProxy()));
-  }
-
-  @Override
-  public void setParameters(List<String> parameters) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public double getTimeout() {
-    // TODO Auto-generated method stub
-    return 0;
+    addCommands(new WaitCommand(0.5).deadlineWith(new ProxyCommand(new IntakeInOutCommand(Direction.IN)).asProxy()));
   }
 }

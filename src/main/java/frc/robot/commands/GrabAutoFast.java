@@ -15,22 +15,14 @@ import frc.core238.autonomous.AutonomousModeAnnotation;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class GrabAutoFast extends SequentialCommandGroup implements IAutonomousCommand {
-  /** Creates a new GrabAuto. */
+public class GrabAutoFast extends SequentialCommandGroup {
+  /**
+   * Creates a new GrabAuto.
+   */
   List<String> params = new ArrayList<String>();
 
   public GrabAutoFast() {
     addCommands(new FloorTippedHeight());
-    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.In).alongWith(new DriveStraightInches(18, .165)));
-  }
-  
-  @Override
-  public void setParameters(List<String> parameters) {
-
-  }
-
-  @Override
-  public double getTimeout() {
-    return 0;
+    addCommands(new IntakeInOutCommand(IntakeInOutCommand.Direction.IN).alongWith(new DriveStraightInches(18, .165)));
   }
 }

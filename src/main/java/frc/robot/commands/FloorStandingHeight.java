@@ -13,7 +13,7 @@ import frc.robot.subsystems.Arm;
 import java.util.List;
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class FloorStandingHeight extends ParallelCommandGroup implements IAutonomousCommand {
+public class FloorStandingHeight extends ParallelCommandGroup {
 
     public FloorStandingHeight() {
         Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.standingCone, 0), "FloorStanding");
@@ -25,13 +25,4 @@ public class FloorStandingHeight extends ParallelCommandGroup implements IAutono
         addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
     }
 
-    @Override
-    public void setParameters(List<String> parameters) {
-
-    }
-
-    @Override
-    public double getTimeout() {
-        return 0;
-    }
 }

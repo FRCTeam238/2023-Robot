@@ -19,7 +19,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 @AutonomousModeAnnotation(parameterNames = { "angle", "maxSpeed" })
-public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
+public class GyroTurnCommand extends CommandBase {
   /** Creates a new GyroTurnCommand. */
   double angle;
   double maxSpeed;
@@ -31,7 +31,14 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
   DoubleLogEntry logCurrent;
   DoubleLogEntry logMax;
 
-  public GyroTurnCommand() {
+  /**
+   *
+   * @param angle in degrees
+   * @param maxSpeed
+   */
+  public GyroTurnCommand(double angle, double maxSpeed) {
+    this.angle = angle;
+    this.maxSpeed = maxSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.drivetrain);
     controller = new PIDController(RobotMap.DrivetrainParameters.kPSpin, RobotMap.DrivetrainParameters.kISpin,
@@ -89,18 +96,4 @@ public class GyroTurnCommand extends CommandBase implements IAutonomousCommand {
   public boolean isFinished() {
     return controller.atSetpoint();
   }
-
-  @Override
-  public void setParameters(List<String> parameters) {
-    // TODO Auto-generated method stub
-    angle = Double.parseDouble(parameters.get(0));
-    maxSpeed = Double.parseDouble(parameters.get(1));
-  }
-
-  @Override
-  public double getTimeout() {
-    // TODO Auto-generated method stub
-    return 0;
-  }
-
 }

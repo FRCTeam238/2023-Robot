@@ -12,7 +12,7 @@ import frc.robot.RobotMap;
 import java.util.List;
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class LevelOneHeight extends ParallelCommandGroup implements IAutonomousCommand {
+public class LevelOneHeight extends ParallelCommandGroup {
 
     public LevelOneHeight() {
         Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.coneLevel1, 0), "Lvl1Cone");
@@ -24,13 +24,4 @@ public class LevelOneHeight extends ParallelCommandGroup implements IAutonomousC
         addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
     }
 
-    @Override
-    public void setParameters(List<String> parameters) {
-
-    }
-
-    @Override
-    public double getTimeout() {
-        return 0;
-    }
 }

@@ -37,7 +37,7 @@
           "visible": true
         }
       },
-      "/SmartDashboard/Elevator Sim": {
+      "/SmartDashboard/RobotPose": {
         "window": {
           "visible": true
         }
@@ -78,10 +78,8 @@
       },
       "Subscribers": {
         "open": true
-      },
-      "open": true
-    },
-    "visible": true
+      }
+    }
   },
   "Plot": {
     "Plot <0>": {

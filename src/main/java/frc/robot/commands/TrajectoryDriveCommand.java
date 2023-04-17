@@ -21,42 +21,49 @@ import frc.robot.subsystems.Drivetrain;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {"TrajectoryName", "IsFirstPath", "MaxVelocity"})
-public class TrajectoryDriveCommand extends SequentialCommandGroup implements IAutonomousCommand{
+public class TrajectoryDriveCommand extends SequentialCommandGroup {
   DifferentialDriveKinematics kinematics;
   Drivetrain drivetrain = Robot.drivetrain;
   PathPlannerTrajectory trajectory;
   private boolean isFirstPath;
-  /** Creates a new TrajectoryDriveCommand. */
-  public TrajectoryDriveCommand() {
-    kinematics = Drivetrain.kinematics;
 
 
-    addRequirements(Robot.drivetrain);
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
-    
-  }
-  
-  @Override
-  public void setParameters(List<String> parameters) {
+  /**
+   * loads the path corresponding to the given <strong>trajectoryName</strong>
+   * and builds a new {@link TrajectoryControllerCommand} with it
+   *
+   * @param trajectoryName : name of the trajectory to find and run
+   * @param isFirstPath : if this path is being run first,
+   * or if you need to replace the robot's state with the one from the start of the given path
+   * @param maxVelocity the override for the maximum velocity of this path
+   */
+  public TrajectoryDriveCommand(String trajectoryName, boolean isFirstPath, double maxVelocity) {
     // TODO Auto-generated method stub
-    isFirstPath = Boolean.parseBoolean(parameters.get(1));
-    boolean isReversed = ReverseChecker.checkReversed(parameters.get(0));
-    double velocity = 0;
-    try {
-      velocity = Double.parseDouble(parameters.get(2));
-    } catch (Exception e) {
-      velocity = RobotMap.DrivetrainParameters.maxVelocity;
-    }
-    System.out.println("Velocity: " + velocity);
-    trajectory = PathPlanner.loadPath(parameters.get(0), velocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
+    addRequirements(Robot.drivetrain);
+    kinematics = Drivetrain.kinematics;
+    boolean isReversed = ReverseChecker.checkReversed(trajectoryName);
+    trajectory = PathPlanner.loadPath(trajectoryName, maxVelocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
     TrajectoryControllerCommand ltv = new TrajectoryControllerCommand(trajectory, drivetrain::getCurrentPose, kinematics, isFirstPath, drivetrain);
     addCommands(ltv);
-    
+
   }
-  @Override
-  public double getTimeout() {
+
+  /**
+   * backup constructor in case a maximum velocity is not given
+   *
+   * @param trajectoryName : name of the trajectory to find and run
+   * @param isFirstPath : if this path is being run first,
+   * or if you need to replace the robot's state with the one from the start of the given path
+   */
+  public TrajectoryDriveCommand(String trajectoryName, boolean isFirstPath) {
     // TODO Auto-generated method stub
-    return 0;
+    addRequirements(Robot.drivetrain);
+    kinematics = Drivetrain.kinematics;
+    boolean isReversed = ReverseChecker.checkReversed(trajectoryName);
+    double velocity = RobotMap.DrivetrainParameters.maxVelocity;
+    trajectory = PathPlanner.loadPath(trajectoryName, velocity, RobotMap.DrivetrainParameters.maxAccel, isReversed);
+    TrajectoryControllerCommand ltv = new TrajectoryControllerCommand(trajectory, drivetrain::getCurrentPose, kinematics, isFirstPath, drivetrain);
+    addCommands(ltv);
+
   }
 }

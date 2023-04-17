@@ -11,7 +11,7 @@ import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class StayLevelCommand extends CommandBase implements IAutonomousCommand {
+public class StayLevelCommand extends CommandBase {
   /** Creates a new StayLevelCommand. */
 
   final double triggerAngle = 12;
@@ -65,15 +65,4 @@ public class StayLevelCommand extends CommandBase implements IAutonomousCommand 
     return false;
   }
 
-  @Override
-  public void setParameters(List<String> parameters) {
-    // TODO Auto-generated method stub
-    
-  }
-
-  @Override
-  public double getTimeout() {
-    // TODO Auto-generated method stub
-    return 0;
-  }
 }

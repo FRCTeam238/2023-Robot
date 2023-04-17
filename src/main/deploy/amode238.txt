@@ -11,9 +11,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -48,28 +46,6 @@
         {
           "Name": "SetMode",
           "Parameters": [
-            "cube"
-          ],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "GrabAuto",
-          "Parameters": [],
-          "ParallelType": "None"
-        },
-        {
-          "Name": "StowCommand",
-          "Parameters": [],
-          "ParallelType": "None"
-        }
-      ],
-      "Name": "testAuto"
-    },
-    {
-      "Commands": [
-        {
-          "Name": "SetMode",
-          "Parameters": [
             "Cone"
           ],
           "ParallelType": "None"
@@ -81,9 +57,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -129,9 +103,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -228,9 +200,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -315,9 +285,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -402,9 +370,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -494,9 +460,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -593,9 +557,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -680,9 +642,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -767,9 +727,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -853,15 +811,13 @@
           "ParallelType": "None"
         },
         {
-          "Name": "SeatGamepiece",
+          "Name": "LevelThreeHeight",
           "Parameters": [],
           "ParallelType": "None"
         },
         {
-          "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Name": "SeatGamepiece",
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -902,9 +858,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -945,9 +899,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -983,9 +935,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -1021,9 +971,7 @@
         },
         {
           "Name": "LevelThreeHeight",
-          "Parameters": [
-            "3"
-          ],
+          "Parameters": [],
           "ParallelType": "None"
         },
         {
@@ -1047,10 +995,8 @@
         },
         {
           "Name": "DelayCommand",
-          "Parameters": [
-            "3"
-          ],
-          "ParallelType": "Race"
+          "Parameters": [],
+          "ParallelType": "None"
         },
         {
           "Name": "GyroTurnCommand",
@@ -1061,14 +1007,9 @@
           "ParallelType": "None"
         },
         {
-          "Name": "GrabAuto",
+          "Name": "GrabAutoFast",
           "Parameters": [],
           "ParallelType": "None"
-        },
-        {
-          "Name": "StowCommand",
-          "Parameters": [],
-          "ParallelType": "Parallel"
         },
         {
           "Name": "TrajectoryDriveCommand",
@@ -1077,7 +1018,7 @@
             "false",
             "1.5"
           ],
-          "ParallelType": "Parallel"
+          "ParallelType": "None"
         },
         {
           "Name": "StayLevelCommand",
@@ -1086,6 +1027,39 @@
         }
       ],
       "Name": "Charge_Cone3_Cone_Charge"
+    },
+    {
+      "Commands": [
+        {
+          "Name": "DelayCommand",
+          "Parameters": [
+            "4"
+          ],
+          "ParallelType": "None"
+        },
+        {
+          "Name": "TrajectoryDriveCommand",
+          "Parameters": [
+            "Charge_Cone_Charge",
+            "true",
+            "0.5"
+          ],
+          "ParallelType": "Deadline_Leader"
+        },
+        {
+          "Name": "ReleaseGamepieceCommand",
+          "Parameters": [],
+          "ParallelType": "Deadline_Follower"
+        },
+        {
+          "Name": "IntakeInOutCommand",
+          "Parameters": [
+            "out"
+          ],
+          "ParallelType": "Deadline_Follower"
+        }
+      ],
+      "Name": "stuff"
     }
   ]
 }

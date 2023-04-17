@@ -22,7 +22,7 @@ import frc.robot.subsystems.Intake;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 @AutonomousModeAnnotation(parameterNames = {})
-public class StowCommand extends ParallelCommandGroup implements IAutonomousCommand {
+public class StowCommand extends ParallelCommandGroup {
   /** Creates a new StowCommand. */
   public StowCommand() {
     // Add your commands in the addCommands() call, e.g.
@@ -34,16 +34,5 @@ public class StowCommand extends ParallelCommandGroup implements IAutonomousComm
     Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "StowCube");
     Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "Lvl1Cone");
     addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
-  }
-
-  @Override
-  public double getTimeout() {
-      // TODO Auto-generated method stub
-      return 0;
-  }
-  @Override
-  public void setParameters(List<String> parameters) {
-      // TODO Auto-generated method stub
-      
   }
 }

@@ -68,8 +68,8 @@ public class OI {
 		levelThreeHeight.onTrue(new LevelThreeHeight().withTimeout(3));
 
 		//Triggers
-		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(IntakeInOutCommand.Direction.In));
-		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(IntakeInOutCommand.Direction.Out));
+		commandController.leftTrigger(.1).whileTrue(new IntakeInOutCommand(IntakeInOutCommand.Direction.IN));
+		commandController.rightTrigger(.1).whileTrue(new IntakeInOutCommand(IntakeInOutCommand.Direction.OUT));
 
 		//Right Bumper
 		JoystickButton setCube = new JoystickButton(operatorController, XboxController.Button.kRightBumper.value);

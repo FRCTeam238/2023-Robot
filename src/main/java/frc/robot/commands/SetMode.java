@@ -13,7 +13,7 @@ import frc.robot.Robot;
 import frc.robot.RobotMap.IntakeParameters.Gamepiece;
 
 @AutonomousModeAnnotation(parameterNames = {"Gamepiece"})
-public class SetMode extends InstantCommand implements IAutonomousCommand{
+public class SetMode extends InstantCommand {
   Gamepiece gamepiece;
 
   /** Creates a new SetMode. */
@@ -21,22 +21,8 @@ public class SetMode extends InstantCommand implements IAutonomousCommand{
     this.gamepiece = gamepiece;
   }
 
-  public SetMode() {}
-
-  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Robot.gamepiece = gamepiece;
-  }
-
-  @Override
-  public void setParameters(List<String> parameters) {
-    gamepiece = Gamepiece.valueOf(parameters.get(0).toUpperCase());
-  }
-
-  @Override
-  public double getTimeout() {
-    // TODO Auto-generated method stub
-    return 0;
   }
 }

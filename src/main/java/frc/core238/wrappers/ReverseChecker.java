@@ -27,7 +27,10 @@ public class ReverseChecker {
 
         String fileContent = fileContentBuilder.toString();
         JSONObject json = (JSONObject) new JSONParser().parse(fileContent);
+        if (json.get("isReversed") == null) return false;
+
         return (Boolean) json.get("isReversed");
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;

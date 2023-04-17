@@ -12,7 +12,7 @@ import frc.robot.RobotMap;
 import java.util.List;
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class SingleSubHeight extends ParallelCommandGroup implements IAutonomousCommand {
+public class SingleSubHeight extends ParallelCommandGroup {
 
     public SingleSubHeight() {
         Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.singleSubCone, 0), "SingleSubCone");
@@ -24,13 +24,5 @@ public class SingleSubHeight extends ParallelCommandGroup implements IAutonomous
         addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
     }
 
-    @Override
-    public void setParameters(List<String> parameters) {
 
-    }
-
-    @Override
-    public double getTimeout() {
-        return 0;
-    }
 }

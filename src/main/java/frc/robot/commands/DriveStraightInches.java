@@ -12,7 +12,7 @@ import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 
 @AutonomousModeAnnotation(parameterNames = {"DistanceInches", "Speed"})
-public class DriveStraightInches extends CommandBase implements IAutonomousCommand{
+public class DriveStraightInches extends CommandBase {
 
   private double startingVal;
   private double target;
@@ -54,19 +54,6 @@ public class DriveStraightInches extends CommandBase implements IAutonomousComma
   public boolean isFinished() {
     double currentDist = Units.metersToInches(Robot.drivetrain.stepsToMeters(Robot.drivetrain.getLeftEncoderTicks())) - startingVal;
     return Math.abs(currentDist) > target;
-  }
-
-  @Override
-  public void setParameters(List<String> parameters) {
-    // TODO Auto-generated method stub
-    target = Double.parseDouble(parameters.get(0));
-    speed = Double.parseDouble(parameters.get(1));
-  }
-
-  @Override
-  public double getTimeout() {
-    // TODO Auto-generated method stub
-    return 0;
   }
 }
 

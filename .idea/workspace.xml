@@ -4,11 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="insurance commit nedcmp day 1, 10:49 AM&#10;- tuned autos&#10;- added stow to Charge_Cone_Cone_Charge&#10;- changed some setpoint numbys in robotmap &#10;- we now grabAuto correctly">
+    <list default="true" id="0ca35de4-8698-4794-aa5a-546b01ddd1c4" name="Changes" comment="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simgui.json" beforeDir="false" afterPath="$PROJECT_DIR$/simgui.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/deploy/amode238.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/deploy/amode238.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/core238/autonomous/AutonomousModesReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/core238/autonomous/AutonomousModesReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/core238/wrappers/ReverseChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/core238/wrappers/ReverseChecker.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/OI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/RobotMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DelayCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DelayCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DoubleSubHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DoubleSubHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DriveStraightInches.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/DriveStraightInches.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorStandingHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorStandingHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorTippedHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/FloorTippedHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAuto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAutoFast.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GrabAutoFast.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GyroTurnCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/GyroTurnCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IAutonomousCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/IntakeInOutCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/KindaRunIntakeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelOneHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelOneHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelThreeHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelThreeHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelTwoHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/LevelTwoHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ReleaseGamepieceCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/ReleaseGamepieceCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SeatGamepiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SetMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SetMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SingleSubHeight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/SingleSubHeight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StayLevelCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StayLevelCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/StowCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/frc/robot/commands/TrajectoryDriveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/robot/commands/TrajectoryDriveCommand.java" afterDir="false" />
     </list>
     <list id="ed172a05-e4fb-4a20-ae32-fd3a114398b6" name="Changes by Team238" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +96,10 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="17r2wwrp" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -112,7 +140,7 @@
       <recent name="frc.robot.commands" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Build &amp; Deploy Robot">
+  <component name="RunManager" selected="Gradle.Build &amp; Run Simulate Java">
     <configuration name="2023-robot [DataLogTool]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -267,22 +295,17 @@
       <workItem from="1680351496710" duration="207000" />
       <workItem from="1680359021442" duration="483000" />
       <workItem from="1680359515383" duration="18854000" />
+      <workItem from="1680704259888" duration="1676000" />
+      <workItem from="1680711777340" duration="37000" />
+      <workItem from="1681130652515" duration="273000" />
+      <workItem from="1681222046823" duration="20000" />
+      <workItem from="1681314850173" duration="7374000" />
+      <workItem from="1681392386573" duration="845000" />
+      <workItem from="1681396867673" duration="3176000" />
+      <workItem from="1681429399804" duration="598000" />
+      <workItem from="1681430771235" duration="39000" />
+      <workItem from="1681749544266" duration="6617000" />
     </task>
-    <task id="LOCAL-00001" summary="tuning of autos">
-      <created>1680569586827</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1680569586827</updated>
-    </task>
-    <task id="LOCAL-00002" summary="insurance commit nedcmp day 1, 10:49 AM&#10;- tuned autos&#10;- added stow to Charge_Cone_Cone_Charge&#10;- changed some setpoint numbys in robotmap &#10;- we now grabAuto correctly">
-      <created>1680792822414</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1680792822414</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,11 +336,20 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED" />
-    <MESSAGE value="tuning of autos" />
-    <MESSAGE value="insurance commit nedcmp day 1, 10:49 AM&#10;- tuned autos&#10;- added stow to Charge_Cone_Cone_Charge&#10;- changed some setpoint numbys in robotmap &#10;- we now grabAuto correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="insurance commit nedcmp day 1, 10:49 AM&#10;- tuned autos&#10;- added stow to Charge_Cone_Cone_Charge&#10;- changed some setpoint numbys in robotmap &#10;- we now grabAuto correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed more todo list tasks&#10;- made multiple heights&#10;- added to the arm subsystem&#10;- edited existing commands such as IntakeInOutCommand&#10;- finished todos in LED" />
   </component>
   <component name="WpiLibVersionService">
-    <option name="lastChecked" value="20230405190022" />
+    <option name="lastChecked" value="20230417123914" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/frc/core238/autonomous/AutonomousModesReader.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

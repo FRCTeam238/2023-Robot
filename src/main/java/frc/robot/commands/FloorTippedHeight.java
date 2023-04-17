@@ -17,7 +17,7 @@ import frc.robot.RobotMap;
 
 
 @AutonomousModeAnnotation(parameterNames = {})
-public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomousCommand {
+public class FloorTippedHeight extends ParallelCommandGroup {
   /** Creates a new MidHeight. */
   
   
@@ -33,18 +33,4 @@ public class FloorTippedHeight extends ParallelCommandGroup implements IAutonomo
     Command ArmCone = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.tippedConeFloor), "FloorTipped");
     addCommands(new ConditionalCommand(ArmCube.asProxy(), ArmCone.asProxy(), Robot::isCube));
   }
-
-  @Override
-  public double getTimeout() {
-      // TODO Auto-generated method stub
-      return 0;
-  }
-  @Override
-  public void setParameters(List<String> parameters) {
-      // TODO Auto-generated method stub
-      
-  }
-
-
-
 }
