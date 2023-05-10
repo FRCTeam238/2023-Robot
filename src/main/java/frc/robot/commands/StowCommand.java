@@ -15,8 +15,6 @@ import frc.core238.MotionProfile;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Intake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -27,8 +25,8 @@ public class StowCommand extends ParallelCommandGroup {
   public StowCommand() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCone");
-    Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCube");
+    Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCone");
+    Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCube");
     addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
     Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "StowCube");

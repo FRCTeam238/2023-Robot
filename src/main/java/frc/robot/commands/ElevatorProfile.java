@@ -4,28 +4,26 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
-import edu.wpi.first.math.trajectory.TrapezoidProfile.State;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.core238.MotionProfile;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.Elevator;
 
-public class ElevatorTrapezoid extends CommandBase {
-  State goal;
-  Constraints constraints;
+public class ElevatorProfile extends CommandBase {
+  MotionProfile.State goal;
+  MotionProfile.MotionConstraints constraints;
   Timer timer;
-  TrapezoidProfile profile;
+  MotionProfile profile;
   Elevator elevator = Robot.elevator;
-  State currentState, nextState;
+ MotionProfile.State currentState;
+
   /** Creates a new Trapezoid238. */
-  public ElevatorTrapezoid(State goal, String name) {
+  public ElevatorProfile(MotionProfile.State goal, String name) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.goal = goal;
-    constraints = new Constraints(RobotMap.ElevatorParameters.MaxVel, RobotMap.ElevatorParameters.MaxAccel);
-    timer = new Timer();
+    constraints = new MotionProfile.MotionConstraints(RobotMap.ElevatorParameters.MaxElevatorJerk, RobotMap.ElevatorParameters.MaxAccel, RobotMap.ElevatorParameters.MaxVel, RobotMap.ElevatorParameters.elevatorVelocityTolerance);
     elevator.putCommandString(this);
     addRequirements(Robot.elevator);
     this.setName(name);
@@ -34,12 +32,9 @@ public class ElevatorTrapezoid extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    double posMeters = elevator.getEncoderPosition();
-    double velocity = elevator.getVelocity();
-    State startPos = new State(posMeters, velocity);
-    profile = new TrapezoidProfile(constraints, goal, startPos);
-    timer.reset();
-    timer.start();
+    currentState = new MotionProfile.State(Robot.elevator.getEncoderPosition(), Robot.elevator.getVelocity());
+    profile = new MotionProfile(goal, currentState, constraints, MotionProfile.ProfileType.AUTO);
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -48,8 +43,8 @@ public class ElevatorTrapezoid extends CommandBase {
     if (Robot.arm.hitsBumper()) {
       timer.restart();
     } else {
-      currentState = profile.calculate(timer.get());
-      nextState = profile.calculate(timer.get() +.02);
+      currentState = profile.sample();
+      nextState = profile.sample();
       elevator.PIDdrive(currentState, nextState);
 
     }

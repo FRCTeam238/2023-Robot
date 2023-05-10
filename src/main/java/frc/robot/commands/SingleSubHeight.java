@@ -15,8 +15,8 @@ import java.util.List;
 public class SingleSubHeight extends ParallelCommandGroup {
 
     public SingleSubHeight() {
-        Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.singleSubCone, 0), "SingleSubCone");
-        Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "SingleSubCube");
+        Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.singleSubCone, 0), "SingleSubCone");
+        Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "SingleSubCube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
         Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor, 0), "SingleSubCube");

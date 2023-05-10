@@ -8,7 +8,6 @@ import frc.core238.MotionProfile;
 import frc.core238.autonomous.AutonomousModeAnnotation;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.Arm;
 
 import java.util.List;
 
@@ -16,8 +15,8 @@ import java.util.List;
 public class FloorStandingHeight extends ParallelCommandGroup {
 
     public FloorStandingHeight() {
-        Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.standingCone, 0), "FloorStanding");
-        Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
+        Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.standingCone, 0), "FloorStanding");
+        Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
         Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor), "FloorCube");

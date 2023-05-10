@@ -22,8 +22,8 @@ public class FloorTippedHeight extends ParallelCommandGroup {
   
   
   public FloorTippedHeight() { 
-    Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
-    Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "FloorTipped");
+    Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
+    Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "FloorTipped");
     
     //AsProxy means that this command group doesn't inherit the requirements. This is important so that the subsystems
     //default commands will run after the setpoint is reached and hold the position while the other command completes

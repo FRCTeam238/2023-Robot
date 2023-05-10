@@ -16,8 +16,8 @@ public class LevelThreeHeight extends ParallelCommandGroup {
     double timeout;
 
     public LevelThreeHeight() {
-        Command ElevatorCone = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.coneLevel3, 0), "Lvl3Cone");
-        Command ElevatorCube = new ElevatorTrapezoid(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeLevel3, 0), "Lvl3Cube");
+        Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.coneLevel3, 0), "Lvl3Cone");
+        Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeLevel3, 0), "Lvl3Cube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
         Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeLevel3), "Lvl3Cube");
