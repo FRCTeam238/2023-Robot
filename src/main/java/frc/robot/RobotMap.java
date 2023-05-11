@@ -63,6 +63,7 @@ public final class RobotMap {
         protected final static int cpr = 1;
         protected final static double gearing = 4; // 4:1 gear ratio
         protected final static double inchesPerRev = 1.5 * Math.PI; // 1.5" diameter pulley
+        public static double bottomThreshold = .25;
 
         public static double inchesToTicks(double inches) {
             return (inches / inchesPerRev) * gearing * cpr;

@@ -24,9 +24,9 @@ public class ElevatorProfile extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     this.goal = goal;
     constraints = new MotionProfile.MotionConstraints(RobotMap.ElevatorParameters.MaxElevatorJerk, RobotMap.ElevatorParameters.MaxAccel, RobotMap.ElevatorParameters.MaxVel, RobotMap.ElevatorParameters.elevatorVelocityTolerance);
+    this.setName(name);
     elevator.putCommandString(this);
     addRequirements(Robot.elevator);
-    this.setName(name);
   }
 
   // Called when the command is initially scheduled.
@@ -40,12 +40,9 @@ public class ElevatorProfile extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (Robot.arm.hitsBumper()) {
-      timer.restart();
-    } else {
+    if (!Robot.arm.hitsBumper()) {
       currentState = profile.sample();
-      nextState = profile.sample();
-      elevator.PIDdrive(currentState, nextState);
+      elevator.PIDdrive(currentState);
 
     }
   }
@@ -59,12 +56,8 @@ public class ElevatorProfile extends CommandBase {
   public boolean isFinished() {
     double tolerance = RobotMap.ElevatorParameters.toleranceRotations;
     double velocityTolerance = RobotMap.ElevatorParameters.toleranceVelocity;
-    if (Math.abs(goal.position - elevator.getEncoderPosition()) <= tolerance 
-    && Math.abs(goal.velocity - elevator.getVelocity()) <= velocityTolerance) {
-      return true;
-    }
-
-    return false;
+    return Math.abs(goal.position - elevator.getEncoderPosition()) <= tolerance
+            && Math.abs(goal.velocity - elevator.getVelocity()) <= velocityTolerance;
 
   }
 }

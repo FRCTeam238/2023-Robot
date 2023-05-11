@@ -11,6 +11,8 @@ import frc.robot.subsystems.Elevator;
 
 public class ElevatorManualCommand extends CommandBase {
   Elevator elevator;
+
+  private double position;
   /** Creates a new ElevatorManualCommand. */
   public ElevatorManualCommand() {
     elevator = Robot.elevator;
@@ -22,6 +24,8 @@ public class ElevatorManualCommand extends CommandBase {
   @Override
   public void initialize() {
     elevator.putCommandString(this);
+    position = elevator.getEncoderPosition();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,8 +34,12 @@ public class ElevatorManualCommand extends CommandBase {
     if (Math.abs(RobotMap.ControlParameters.operatorController.getRightY()) > RobotMap.ControlParameters.elevatorThreshold) {
       double percentOutput = -1*RobotMap.ControlParameters.operatorController.getRightY() * RobotMap.ControlParameters.elevatorMultiplier;
         elevator.moveByPercentOutput(percentOutput);
-    } else if (!elevator.getLowerLimit()){ // If we're at the bottom just let it go, otherwise hold
-      elevator.moveByPercentOutput(RobotMap.ElevatorParameters.holdPercent);
+        position = elevator.getEncoderPosition();
+    } else if (elevator.getEncoderPosition() > RobotMap.ElevatorParameters.bottomThreshold) { // If we're at the bottom just let it go, otherwise hold
+
+      elevator.holdPosition(position);
+    } else {
+      elevator.moveByPercentOutput(0);
     }
   }
 
