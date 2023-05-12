@@ -25,8 +25,8 @@ public class StowCommand extends ParallelCommandGroup {
   public StowCommand() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCone");
-    Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCube");
+    Command ElevatorCone = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCone");
+    Command ElevatorCube = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.tippedConeFloor, 0), "StowCube");
     addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
     Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.stow), "StowCube");

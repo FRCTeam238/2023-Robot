@@ -15,8 +15,8 @@ import java.util.List;
 public class LevelTwoHeight extends ParallelCommandGroup {
 
     public LevelTwoHeight() {
-        Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.coneLevel2, 0), "Lvl2Cone");
-        Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeLevel2, 0), "Lvl2Cube");
+        Command ElevatorCone = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.coneLevel2, 0), "Lvl2Cone");
+        Command ElevatorCube = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.cubeLevel2, 0), "Lvl2Cube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
         Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeLevel2), "Lvl2Cube");

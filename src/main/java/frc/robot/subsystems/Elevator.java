@@ -102,6 +102,7 @@ public class Elevator extends SubsystemBase {
     public void moveByPercentOutput(double percent) {
         if (Robot.isReal()) {
             elevatorLeader.set(percent);
+            System.out.println(percent);
         } else {
             m_simMotor.set(percent);
         }

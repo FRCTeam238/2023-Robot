@@ -15,8 +15,8 @@ import java.util.List;
 public class FloorStandingHeight extends ParallelCommandGroup {
 
     public FloorStandingHeight() {
-        Command ElevatorCone = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.standingCone, 0), "FloorStanding");
-        Command ElevatorCube = new ElevatorProfile(new TrapezoidProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
+        Command ElevatorCone = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.standingCone, 0), "FloorStanding");
+        Command ElevatorCube = new ElevatorProfile(new MotionProfile.State(RobotMap.ElevatorParameters.cubeFloor, 0), "FloorCube");
         addCommands(new ConditionalCommand(ElevatorCube.asProxy(), ElevatorCone.asProxy(), Robot::isCube));
 
         Command ArmCube = new ArmProfile(new MotionProfile.State(RobotMap.ArmParameters.cubeFloor), "FloorCube");
